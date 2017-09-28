@@ -31,8 +31,10 @@ export default class TodoInput extends Component {
         const { text } = this.state
         return(
             <div>
-                <Input placeholder='Write your Todo...' onChange={this.onChange} value={text}/>
-                <Button icon='plus' color='green' onClick={this.onButtonClick}></Button>
+                <Input action fluid placeholder='Write your Todo...' onChange={this.onChange} value={text}>
+                    <input />
+                    <Button icon='plus' color='green' onClick={this.onButtonClick}></Button>
+                </Input>
             </div>
         )
     }
