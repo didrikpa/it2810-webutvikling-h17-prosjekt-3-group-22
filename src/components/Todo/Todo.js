@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Segment, Checkbox, Grid, Icon } from 'semantic-ui-react'
 
+import DeleteModal from './DeleteModal'
+
 class Todo extends Component {
     constructor(props) {
         super(props)
@@ -34,7 +36,7 @@ class Todo extends Component {
                         <Checkbox onClick={this.handleCheckBoxClick} defaultChecked={todo.checked} />
                     </Grid.Column>
                     <Grid.Column width={1}>
-                        <Icon size='large' color='red' name='delete' onClick={this.handleDelete} />
+                        <DeleteModal handleDelete={this.handleDelete} />
                     </Grid.Column>
                 </Grid>
             </Segment>
