@@ -1,5 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default () => (
-    <h1>Notes</h1>
-)
+import Navbar from '../Navbar'
+
+
+export default class NoteContainer extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    render() {
+        return (
+            <div>
+                <Navbar />
+            </div>
+        )
+    }
+}

@@ -3,10 +3,10 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
 import NotFound from './components/NotFound'
 import ButtonContainer from './components/ButtonContainer'
+import HomeContainer from './components/Home/HomeContainer'
 import TodoContainer from './components/Todo/TodoContainer'
 import NoteContainer from './components/Notes/NoteContainer'
 import EventContainer from './components/Events/EventContainer'
-
 
 const App = () => (
     <div>
