@@ -25,7 +25,7 @@ class Todo extends Component {
     render() {
         const { todo, checkBoxClick } = this.props
         return(
-            <Segment>
+            <Segment color={todo.checked ? 'green' : undefined} inverted={todo.checked}>
                 <Grid>
                     <Grid.Column width={14}>
                         { todo.text }
