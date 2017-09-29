@@ -33,7 +33,7 @@ export default class TodoInput extends Component {
             <div>
                 <Input action fluid placeholder='Write your Todo...' onChange={this.onChange} value={text}>
                     <input />
-                    <Button icon='plus' color='green' onClick={this.onButtonClick}></Button>
+                    <Button icon='plus' color='green' onClick={this.onButtonClick}/>
                 </Input>
             </div>
         )
