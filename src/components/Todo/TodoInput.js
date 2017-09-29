@@ -21,10 +21,12 @@ export default class TodoInput extends Component {
 
     onButtonClick() {
         const { text } = this.state
-        this.props.onButtonClick(text)
-        this.setState({
-            text: ''
-        })
+        if(text !== '') {
+            this.props.onButtonClick(text)
+            this.setState({
+                text: ''
+            })
+        }
     }
 
     render() {
