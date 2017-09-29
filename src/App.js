@@ -12,7 +12,7 @@ const App = () => (
     <div>
         <BrowserRouter>
             <Switch>
-                <Route exact path='/' component={TodoContainer} />
+                <Route exact path='/' component={HomeContainer} />
                 <Route exact path='/todos' component={TodoContainer} />
                 <Route exact path='/notes' component={NoteContainer} />
                 <Route exact path='/events' component={EventContainer} />
