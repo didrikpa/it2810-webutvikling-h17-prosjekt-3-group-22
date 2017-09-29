@@ -1,9 +1,9 @@
- import React, { Component } from 'react'
+import React, { Component } from 'react'
 
- import Navbar from '../Navbar'
+import Navbar from '../Navbar'
 
 
- export default class NoteContainer extends Component {
+export default class NoteContainer extends Component {
     constructor(props) {
         super(props)
     }
@@ -15,4 +15,4 @@
             </div>
         )
     }
- }
+}
