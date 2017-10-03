@@ -12,7 +12,7 @@ export default class NoteContainer extends Component {
 
       this.state = {
           notes: [],
-          isOpen: false
+          newModalOpen: false,
       }
     }
   componentWillMount = () => {
@@ -34,12 +34,10 @@ export default class NoteContainer extends Component {
     })
   }
 
-  toggleModal = () => {
+  toggleNewModal = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      newModalOpen: !this.state.newModalOpen
     })
-    console.log("toggleModal")
-    console.log(this.state.isOpen)
   }
 
     deleteItem = (note) => {
@@ -66,18 +64,23 @@ export default class NoteContainer extends Component {
       notes.push(note)
       this.updateState({
         notes: notes,
-        isOpen: false
+        newModalOpen: false
       })
+
+    }
+
+    handleViewModal = (title, content) => {
 
     }
 
 
 
+
     render() {
 
-      const { notes, isOpen } = this.state
+      const { notes, newModalOpen } = this.state
       console.log("BEFORE RENDER")
-      console.log(this.state.isOpen)
+      console.log(this.state.newModalOpen)
 
         return (
             <div>
@@ -92,11 +95,12 @@ export default class NoteContainer extends Component {
                     <Button
                       icon='plus'
                       positive
-                      onClick={this.toggleModal}/>
+                      onClick={this.toggleNewModal}/>
                     <NewNoteModal
-                      isOpen={isOpen}
-                      onClose={this.toggleModal}
+                      isOpen={ newModalOpen }
+                      onClose={this.toggleNewModal}
                       onButtonSaveClick={this.onButtonSaveClick}/>
+
                   </Grid.Column>
                 </Grid>
                 <Divider hidden/>
@@ -104,7 +108,8 @@ export default class NoteContainer extends Component {
                   <Note
                     note={note}
                     key={note.date}
-                    deleteItem={this.deleteItem}/>)}
+                    deleteItem={this.deleteItem}
+                    onButtonSaveClick={this.onButtonSaveClick}/>)}
               </Container>
             </div>
         )

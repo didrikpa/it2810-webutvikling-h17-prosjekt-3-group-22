@@ -56,6 +56,12 @@ export default class NewNoteModal extends Component{
     this.props.onClose()
   }
 
+  handleButtonEditClick = () => {
+    const { handleDelete } = this.props
+    handleDelete()
+    this.handleButtonSaveClick()
+  }
+
   handleButtonClose = () => {
     this.props.onClose()
   }
@@ -83,10 +89,9 @@ export default class NewNoteModal extends Component{
             </Grid.Column>
             <Grid.Column>
               <Button
-                onClick={ this.handleButtonSaveClick }
-                color='green'>
-                Save
-              </Button>
+                onClick={ this.handleButtonEditClick }
+                color='green'
+                >Save</Button>
             </Grid.Column>
           </Grid>
 
