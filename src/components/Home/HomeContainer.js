@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Header, Divider } from 'semantic-ui-react'
 
 import Navbar from '../Navbar'
+import Footer from '../Footer';
 
 
 class HomeContainer extends Component {
@@ -19,6 +20,7 @@ class HomeContainer extends Component {
                         <Header as="h1">Docs maybe bby</Header>
                     </Grid.Column>
                 </Grid>
+                <Footer/>
             </div>
         )
     }
