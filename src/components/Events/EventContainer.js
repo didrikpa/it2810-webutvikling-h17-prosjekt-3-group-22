@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Divider, Grid, Header, Segment, Container, Button } from 'semantic-ui-react'
 
+import CreateEvent from './CreateEvent'
 import Navbar from '../Navbar'
 
 export default class EventContainer extends Component {
@@ -24,7 +25,7 @@ export default class EventContainer extends Component {
                         </Segment>
                     </div>
                     <Divider hidden/>
-                    <Button color="blue">Add event</Button>
+                    <CreateEvent OpenModalForEvent={this.OpenModalForEvent}/>
                 </Container>
             </div>
         )
