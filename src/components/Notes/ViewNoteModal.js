@@ -51,12 +51,7 @@ export default class ViewNoteModal extends Component{
             <Grid.Column width={13}>
               { title }
             </Grid.Column>
-            <Grid.Column>
-              <Button
-                onClick={ this.handleButtonClose }
-                color='grey'
-              >Close</Button>
-            </Grid.Column>
+
           </Grid>
 
         </Modal.Header>
@@ -68,6 +63,10 @@ export default class ViewNoteModal extends Component{
 
         </Modal.Content>
         <Modal.Actions>
+                <Button
+                onClick={ this.handleButtonClose }
+                color='grey'
+              >Close</Button>
         </Modal.Actions>
       </Modal>
     )
