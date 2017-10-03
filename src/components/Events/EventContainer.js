@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Divider, Grid, Header } from 'semantic-ui-react'
+import { Divider, Grid, Header, Segment, Container, Button } from 'semantic-ui-react'
 
 import Navbar from '../Navbar'
 
@@ -13,11 +13,19 @@ export default class EventContainer extends Component {
             <div>
                 <Navbar/>
                 <Divider hidden/>
-                <Grid width={16}>
-                    <Grid.Column width={16} textAlign="center">
-                        <Header as="h1">Eventsuff goes here</Header>
-                    </Grid.Column>
-                </Grid>
+                <Container text textAlign="center">
+                    <Header as="h1">Eventsuff goes here</Header>
+                    <div>
+                        <Header as='h5' attached='top'>
+                            Mandag
+                        </Header>
+                        <Segment attached>
+                            Event...
+                        </Segment>
+                    </div>
+                    <Divider hidden/>
+                    <Button color="blue">Add event</Button>
+                </Container>
             </div>
         )
     }
