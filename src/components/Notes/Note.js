@@ -9,9 +9,10 @@ export default class Note extends Component {
     super(props)
 
     this.state = {
-
     }
   }
+
+
 
   handleDeleteClick = () => {
     const { note, deleteItem } = this.props
@@ -21,8 +22,16 @@ export default class Note extends Component {
 
 
   render() {
-    const { note } = this.props
+    const { note, onButtonClick, isOpen, toggleModal } = this.props
+    const { title, content } = this.state
     const date = '01.01.2000'
+
+    console.log('******Note.js******')
+    console.log(this.props.title)
+    console.log(this.props.content)
+    console.log('*******************')
+
+
     return (
       <div>
         <Segment>
@@ -35,8 +44,22 @@ export default class Note extends Component {
             </Grid.Column>
             <Grid.Column>
               <Button.Group floated='right'>
-                <Button onClick={this.handleDeleteClick} negative icon='delete'/>
-                <Button color='grey' icon='edit' />
+                <Button
+                  onClick={ this.handleDeleteClick }
+                  negative
+                  icon='delete'/>
+                <Button
+                  color='grey'
+                  icon='edit'
+                  onClick={ toggleModal } />
+{/*                <NoteModal
+                open={ isOpen }
+                editMode='edit'
+                onClose={ toggleModal }
+                onButtonClick={ onButtonClick }
+                title={ title }
+                content={ content}
+                />*/}
               </Button.Group>
             </Grid.Column>
           </Grid>

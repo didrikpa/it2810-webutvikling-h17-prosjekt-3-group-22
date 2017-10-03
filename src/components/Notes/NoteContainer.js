@@ -1,18 +1,17 @@
  import React, { Component } from 'react'
  import { Container, Button, Divider, Grid, Header } from 'semantic-ui-react'
 
-
  import Navbar from '../Navbar'
  import Note from './Note'
  import NoteModal from './NoteModal'
-
 
  export default class NoteContainer extends Component {
     constructor(props) {
         super(props)
 
       this.state = {
-          notes: []
+          notes: [],
+          isOpen: false
       }
     }
 
@@ -61,8 +60,16 @@
      }
    }
 
+   toggleModal = () => {
+     this.setState({
+       isOpen: !this.state.isOpen
+     })
+   }
+
     render() {
-      const { notes } = this.state
+
+      console.log(this.state.notes)
+      const { notes, isOpen } = this.state
         return (
             <div>
               <Navbar />
@@ -73,13 +80,28 @@
                   <Grid.Column width={14}>
                     <Header as='h1'>Your Notes:</Header>
                   </Grid.Column>
-                  <Grid.Column width={2} floated='right'>
-                    <NoteModal editMode='new' onButtonClick={this.onButtonClick}/>
-                  </Grid.Column>
+                    <Grid.Column floated='right' width={2}>
+                    <Button
+                      icon='plus'
+                      positive
+                      onClick={ this.toggleModal } />
+                      <NoteModal
+                        open={ isOpen }
+                        editMode='edit'
+                        onClose={ this.toggleModal }
+                        onButtonClick = { this.onButtonClick }
+                      />
+                    </Grid.Column>
                 </Grid>
-
                 <Divider hidden/>
-                { notes.map((note) => <Note key={note.date} note={note} deleteItem={this.deleteItem}/>) }
+                { notes.map((note) =>
+                  <Note key={note.date}
+                        note={note}
+                        deleteItem={ this.deleteItem }
+                        onButtonClick={ this.onButtonClick }
+                        isOpen={ isOpen }
+                        toggleModal = { this.toggleModal }
+                  />) }
               </Container>
             </div>
         )

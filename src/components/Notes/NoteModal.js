@@ -7,8 +7,8 @@ export default class NoteModal extends Component{
     super(props)
 
     this.state = {
-      title: '',
-      content: '',
+      title: this.props.title,
+      content: this.props.content,
       open:false
     }
 
@@ -51,29 +51,42 @@ export default class NoteModal extends Component{
       title: '',
       content: ''
     })
-    this.close()
+    this.props.onClose()
   }
 
   render() {
-    const { editMode } = this.props
-    const { title, content, open } = this.state
+    const { editMode, open } = this.props
+    const { title, content } = this.state
+
+    console.log('------NoteModal.js------')
+    console.log(editMode)
+    console.log(this.props.key)
+    console.log(this.props.title)
+    console.log(this.props.content)
+    console.log('------------------------')
+    if(!this.props.open) {
+      return null;
+    }
 
     if (editMode === 'new') {
       return (
         <Modal
           open={open}
-          size='tiny'
-          onOpen={this.open}
-          onClose={this.close}
-          trigger={<Button icon='plus' positive/>}>
+          size='tiny'>
           <Modal.Header>
 
             <Grid width={16}>
               <Grid.Column width={13}>
-                <Input onChange={this.onTitleChange} value={title} placeholder='Title ...'/>
+                <Input
+                  onChange={ this.onTitleChange }
+                  value={ title }
+                  placeholder='Title ...'/>
               </Grid.Column>
               <Grid.Column>
-                <Button onClick={this.onButtonClick} color='green'>Save</Button>
+                <Button
+                  onClick={ this.onButtonClick }
+                  color='green'
+                  onClose={ this.close }>Save</Button>
               </Grid.Column>
             </Grid>
 
@@ -81,7 +94,10 @@ export default class NoteModal extends Component{
           <Modal.Content scrolling>
 
             <Modal.Description>
-              <Form.TextArea onChange={this.onContentChange} value={ content } size='small' placeholder='Note text ...' />
+              <Form.TextArea
+                onChange={ this.onContentChange }
+                value={ content } size='small'
+                placeholder='Note text ...' />
             </Modal.Description>
 
           </Modal.Content>
@@ -93,19 +109,21 @@ export default class NoteModal extends Component{
     else if (editMode === 'edit'){
       return (
         <Modal
-          open={open}
+          open={ open }
           size='tiny'
-          onOpen={this.open}
-          onClose={this.close}
-          trigger={<Button color='grey'>EDIT</Button>}>
+          onOpen={ this.open }
+          onClose={ this.close }>
           <Modal.Header>
 
             <Grid width={16}>
               <Grid.Column width={13}>
-                <Input onChange={this.onTitleChange} value={title} placeholder='Title ...'/>
+                <Input onChange={ this.onTitleChange }
+                       value={ title }
+                       placeholder='Title ...'/>
               </Grid.Column>
               <Grid.Column>
-                <Button onClick={this.onButtonClick} color='green'>Save</Button>
+                <Button onClick={ this.onButtonClick }
+                        color='green'>Save</Button>
               </Grid.Column>
             </Grid>
 
@@ -113,7 +131,10 @@ export default class NoteModal extends Component{
           <Modal.Content scrolling>
 
             <Modal.Description>
-              <Form.TextArea onChange={this.onContentChange} value={ content } size='small' placeholder='Note text ...' />
+              <Form.TextArea onChange={ this.onContentChange }
+                             value={ content }
+                             size='small'
+                             placeholder='Note text ...' />
             </Modal.Description>
 
           </Modal.Content>
