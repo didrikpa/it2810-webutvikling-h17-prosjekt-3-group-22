@@ -12,9 +12,9 @@ export default class CreateEvent extends Component {
         this.state = {
             text: '',
             where: '',
-            open: false
+            open: false,
             date: null,
-            time: null,
+            time: null
         }
 
         this.onChange = this.onChange.bind(this)
