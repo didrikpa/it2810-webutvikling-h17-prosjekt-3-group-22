@@ -2,21 +2,21 @@ import React, { Component } from 'react'
 
 
 const style = {
-    backgroundColor: "#F8F8F8",
-    borderTop: "1px solid #E7E7E7",
-    textAlign: "center",
-    padding: "20px",
+    backgroundColor: "#282828",
+    borderTop: "0.1rem solid #E7E7E7",
+    textAlign: "right",
+    padding: "1rem",
     position: "fixed",
     left: "0",
     bottom: "0",
-    height: "60px",
+    height: "8rem",
     width: "100%",
 };
 
 const phantom = {
-    display: 'block',
-    padding: '20px',
-    height: '60px',
+    display: 'flex',
+    padding: '1rem',
+    height: '8rem',
     width: '100%',
 }
 
