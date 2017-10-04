@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Segment, Checkbox, Grid, Icon } from 'semantic-ui-react'
 
-import DeleteModal from './DeleteModal'
+import DeleteModal from '../DeleteModal'
 
 class Todo extends Component {
     constructor(props) {
