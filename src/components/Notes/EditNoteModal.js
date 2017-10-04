@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { Button, Input, Modal, Grid, Form, TextArea } from 'semantic-ui-react'
 
+const dateStyle = {
+  fontSize: "1rem",
+  color: "#999999"
+}
 
 export default class NewNoteModal extends Component{
   constructor (props){
@@ -76,14 +80,14 @@ export default class NewNoteModal extends Component{
         size='tiny'>
         <Modal.Header>
 
-          <Grid width={16}>
-            <Grid.Column width={13}>
+          <Grid width={16} >
+            <Grid.Column width={10}>
               <Input
                 onChange={ this.handleTitleInput }
                 value={ tempTitle }
                 placeholder='Title ...'/>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column width={6} textAlign="right" verticalAlign="middle" style={dateStyle}>
               { date }
             </Grid.Column>
 

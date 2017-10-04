@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import { Button, Modal, Grid, Form } from 'semantic-ui-react'
 
+const dateStyle = {
+  fontSize: "1rem",
+  color: "#999999"
+}
 
 export default class ViewNoteModal extends Component{
+
+
 
 
   handleButtonClose = () => {
@@ -37,11 +43,10 @@ export default class ViewNoteModal extends Component{
         <Modal.Header>
 
           <Grid width={16}>
-            <Grid.Column width={13}>
+            <Grid.Column width={10}>
               { title }
             </Grid.Column>
-
-            <Grid.Column>
+            <Grid.Column width={6} textAlign='right' style={dateStyle}>
               { date }
             </Grid.Column>
 

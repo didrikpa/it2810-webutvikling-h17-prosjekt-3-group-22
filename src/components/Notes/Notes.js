@@ -5,7 +5,10 @@ import moment from 'moment'
 import ViewNoteModal from './ViewNoteModal'
 import EditNoteModal from './EditNoteModal'
 
-
+const dateStyle = {
+  fontSize: "1rem",
+  color: "#999999"
+}
 
 export default class Note extends Component{
   constructor(props){
@@ -51,14 +54,15 @@ export default class Note extends Component{
       <Segment>
         <Grid
           columns='equal'
-          width={16}>
+          width={16}
+          verticalAlign="middle">
 
           <Grid.Column width={9} onClick={this.toggleViewModal}>
             {note.title}
           </Grid.Column>
 
-          <Grid.Column onClick={this.toggleViewModal}>
-            {moment(date).format('MMMM Do YYYY')}
+          <Grid.Column onClick={this.toggleViewModal} style={dateStyle}>
+            {moment(date).calendar()}
           </Grid.Column>
 
           <Grid.Column>
@@ -85,7 +89,7 @@ export default class Note extends Component{
         onClose={this.toggleViewModal}
         title={title}
         content={content}
-        date={moment(date).format('MMMM Do YYYY')}
+        date={moment(date).format('h:mm A, MMM Do YYYY')}
 
       />
 
@@ -96,7 +100,7 @@ export default class Note extends Component{
       handleDelete={this.handleDelete}
       title={title}
       content={content}
-      date={moment(date).format('MMMM Do YYYY')}
+      date={moment(date).format('h:mm A, MMM Do YYYY')}
       />
 
 
