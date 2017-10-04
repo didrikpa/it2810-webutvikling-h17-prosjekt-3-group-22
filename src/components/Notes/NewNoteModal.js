@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Input, Modal, Grid, Form } from 'semantic-ui-react'
+import { Button, Input, Modal, Grid, Form, TextArea } from 'semantic-ui-react'
 
 
 export default class NewNoteModal extends Component{
@@ -57,6 +57,10 @@ export default class NewNoteModal extends Component{
   }
 
   handleButtonClose = () => {
+    this.setState({
+      title: '',
+      content: ''
+    })
     this.props.onClose()
   }
 
@@ -81,30 +85,35 @@ export default class NewNoteModal extends Component{
                 value={ title }
                 placeholder='Title ...'/>
             </Grid.Column>
-            <Grid.Column>
-              <Button
-                onClick={ this.handleButtonSaveClick }
-                color='green'>
-                Save
-              </Button>
-            </Grid.Column>
+
           </Grid>
 
         </Modal.Header>
         <Modal.Content scrolling>
 
           <Modal.Description>
-            <Form.TextArea
+            <Form>
+            <TextArea
               onChange={ this.handleContentInput }
               value={ content } size='small'
-              placeholder='Note text ...' />
+              placeholder='Note text ...'
+              autoHeight={true}/>
+            </Form>
           </Modal.Description>
 
         </Modal.Content>
         <Modal.Actions>
+          <Button.Group>
+          <Button
+            onClick={ this.handleButtonSaveClick }
+            color='green'>
+            Save
+          </Button>
           <Button
             onClick={this.handleButtonClose}
-            color='grey'>Close</Button>
+            color='grey'>Close
+          </Button>
+          </Button.Group>
         </Modal.Actions>
       </Modal>
     )

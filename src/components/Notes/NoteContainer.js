@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Divider, Button, Grid, Container, Header } from 'semantic-ui-react'
+import moment from 'moment'
 
 import Navbar from '../Navbar'
 import Note from './Notes'
@@ -58,7 +59,7 @@ export default class NoteContainer extends Component {
       let note = {
         title: title,
         content: content,
-        date: new Date()
+        date: moment()
       }
 
       notes.push(note)
@@ -104,7 +105,8 @@ export default class NoteContainer extends Component {
                   </Grid.Column>
                 </Grid>
                 <Divider hidden/>
-                {notes.map((note) =>
+                {notes.sort((b,a) => {
+                  return moment(a.date).unix() - moment(b.date).unix()}).map((note) =>
                   <Note
                     note={note}
                     key={note.date}

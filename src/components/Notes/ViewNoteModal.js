@@ -1,22 +1,11 @@
 import React, { Component } from 'react'
-import { Button, Modal, Grid } from 'semantic-ui-react'
+import { Button, Modal, Grid, Form } from 'semantic-ui-react'
 
 
 export default class ViewNoteModal extends Component{
 
 
   handleButtonClose = () => {
-    this.props.onClose()
-  }
-
-  handleButtonSaveClick = () => {
-    const { title, content } = this.state
-    this.props.onButtonSaveClick(title, content)
-    this.setState({
-      title: '',
-      content: ''
-    })
-
     this.props.onClose()
 
   }
@@ -36,7 +25,7 @@ export default class ViewNoteModal extends Component{
 
 
   render() {
-    const { isOpen, title, content } = this.props
+    const { isOpen, title, content, date } = this.props
 
     if(!this.props.isOpen) {
       return null;
@@ -52,13 +41,19 @@ export default class ViewNoteModal extends Component{
               { title }
             </Grid.Column>
 
+            <Grid.Column>
+              { date }
+            </Grid.Column>
+
           </Grid>
 
         </Modal.Header>
         <Modal.Content scrolling>
 
           <Modal.Description>
-            { content }
+            <Form>
+                { content }
+            </Form>
           </Modal.Description>
 
         </Modal.Content>
