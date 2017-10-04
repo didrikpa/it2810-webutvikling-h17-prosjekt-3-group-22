@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import DatePicker from 'material-ui/DatePicker'
+import TimePicker from 'material-ui/TimePicker'
+
 import { Divider, Button, Header, Modal, Input, Container, Grid, Checkbox } from 'semantic-ui-react'
 /*import DatePicker from 'react-datepicker';*/
 
@@ -7,17 +10,27 @@ export default class CreateEvent extends Component {
         super(props)
 
         this.state = {
+            date: null,
+            time: null,
             text: ''
         }
 
         this.onChange = this.onChange.bind(this)
+        this.handleDate = this.handleDate.bind(this);
         this.onButtonClick = this.onButtonClick.bind(this)
+        this.handleTime = this.handleTime.bind(this);
     }
 
     onChange(e, {value}) {
         this.setState({
             text: value
         })
+    }
+    handleDate(event, date){
+        this.setState({date: date})
+    }
+    handleTime(event, time){
+        this.setState({time: time})
     }
 
     onButtonClick() {
@@ -56,7 +69,10 @@ export default class CreateEvent extends Component {
                             </Grid.Column>
                             <Grid.Column width={8}>
                                 <Header>Time</Header>
-                                <Input action fluid placeholder='Time...'/>
+
+                                    <DatePicker onChange={this.handleDate} value ={this.state.date} hintText="Date to be completed by" />
+                                    <TimePicker onChange={this.handleTime} value={this.state.time} format={'24hr'} hintText="Time to be completed by" />
+
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
