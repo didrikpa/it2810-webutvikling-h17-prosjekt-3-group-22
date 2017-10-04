@@ -19,23 +19,25 @@ export default class Event extends Component {
         console.log(event)
         return(
             <div>
+                <Segment attached textAlign="center">
+                    <Header>{ event.day }, { event.date }</Header>
+                </Segment>
                 <Segment attached>
-                    <Grid textAlign="left">
-                        <Grid.Column width={6}>
-                            { event.text }
-                        </Grid.Column>
-                        <Grid.Column width={4}>
-                            { event.where }
-                        </Grid.Column>
-                        <Grid.Column width={2}>
-                            { event.date }
-                        </Grid.Column>
-                        <Grid.Column width={2}>
-                            { event.time }
-                        </Grid.Column>
-                        <Grid.Column width={2}>
-                            <DeleteModal handleDelete={this.handleDelete} />
-                        </Grid.Column>
+                    <Grid>
+                        <Grid.Row textAlign="left">
+                            <Grid.Column width={6}>
+                                { event.text }
+                            </Grid.Column>
+                            <Grid.Column width={5}>
+                                { event.where }
+                            </Grid.Column>
+                            <Grid.Column width={3}>
+                                { event.time }
+                            </Grid.Column>
+                            <Grid.Column width={2}>
+                                <DeleteModal handleDelete={this.handleDelete} />
+                            </Grid.Column>
+                        </Grid.Row>
                     </Grid>
                 </Segment>
             </div>

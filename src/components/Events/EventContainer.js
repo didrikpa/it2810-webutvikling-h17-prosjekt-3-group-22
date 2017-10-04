@@ -83,9 +83,6 @@ export default class EventContainer extends Component {
                     </Grid>
                     <Divider hidden/>
                     <div>
-                        <Header as='h3' attached='top'>
-                            Dager :((
-                        </Header>
                         { events.map((event) => <Event key={event.createdAt} event={event}  deleteItem={this.deleteItem}/>) }
                     </div>
                     <Divider hidden/>
