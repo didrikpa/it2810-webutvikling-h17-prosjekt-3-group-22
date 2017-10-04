@@ -1,59 +1,54 @@
 import React, { Component } from 'react'
-import { Button, Input, Modal, Grid, Form } from 'semantic-ui-react'
+import { Button, Input, Modal, Grid, Form, TextArea } from 'semantic-ui-react'
 
+const dateStyle = {
+  fontSize: "1rem",
+  color: "#999999"
+}
 
 export default class NewNoteModal extends Component{
   constructor (props){
     super(props)
 
     this.state = {
+      tempTitle: this.props.title,
+      tempContent: this.props.content,
       title: this.props.title,
       content: this.props.content,
+      date: this.props.date
     }
 
     this.handleTitleInput = this.handleTitleInput.bind(this)
     this.handleContentInput = this.handleContentInput.bind(this)
-    this.onButtonClick = this.onButtonClick.bind(this)
 
   }
 
-  //Monitor title input
+  //Monitor tempTitle input
   handleTitleInput(e, {value}) {
     this.setState({
-      title: value
+      tempTitle: value
     })
   }
 
-  //Monitor content input
+  //Monitor tempContent input
   handleContentInput(e, {value}) {
     this.setState({
-      content: value
+      tempContent: value
     })
   }
 
   handleButtonSaveClick = () => {
-    const { title, content } = this.state
-    this.props.onButtonSaveClick(title, content)
+    const { tempTitle, tempContent } = this.state
+    this.props.onButtonSaveClick(tempTitle, tempContent)
     this.setState({
+      tempTitle: '',
+      tempContent: '',
       title: '',
       content: ''
     })
 
     this.props.onClose()
 
-  }
-
-  //Save title and content, reset and close Modal
-  onButtonClick(){
-    const { title, content } = this.state
-    this.props.onButtonClick(title, content)
-
-    //Render nothing if model isOpen is false
-    this.setState({
-      title: '',
-      content: ''
-    })
-    this.props.onClose()
   }
 
   handleButtonEditClick = () => {
@@ -63,13 +58,18 @@ export default class NewNoteModal extends Component{
   }
 
   handleButtonClose = () => {
+    const { title, content } = this.state
+    this.setState({
+      tempTitle: title,
+      tempContent: content
+    })
     this.props.onClose()
   }
 
 
   render() {
     const { isOpen } = this.props
-    const { title, content } = this.state
+    const { tempTitle, tempContent, date } = this.state
 
     if(!this.props.isOpen) {
       return null;
@@ -80,36 +80,46 @@ export default class NewNoteModal extends Component{
         size='tiny'>
         <Modal.Header>
 
-          <Grid width={16}>
-            <Grid.Column width={13}>
+          <Grid width={16} >
+            <Grid.Column width={10}>
               <Input
                 onChange={ this.handleTitleInput }
-                value={ title }
+                value={ tempTitle }
                 placeholder='Title ...'/>
             </Grid.Column>
-            <Grid.Column>
-              <Button
-                onClick={ this.handleButtonEditClick }
-                color='green'
-                >Save</Button>
+            <Grid.Column width={6} textAlign="right" verticalAlign="middle" style={dateStyle}>
+              { date }
             </Grid.Column>
+
           </Grid>
 
         </Modal.Header>
         <Modal.Content scrolling>
 
           <Modal.Description>
-            <Form.TextArea
+            <Form>
+            <TextArea
               onChange={ this.handleContentInput }
-              value={ content } size='small'
-              placeholder='Note text ...' />
+              value={ tempContent } size='small'
+              placeholder='Note text ...'
+              autoHeight={true}/>
+            </Form>
           </Modal.Description>
 
         </Modal.Content>
         <Modal.Actions>
+          <Button.Group>
+          <Button
+            onClick={ this.handleButtonEditClick }
+            color='green'>
+            Save
+          </Button>
           <Button
             onClick={this.handleButtonClose}
-            color='grey'>Close</Button>
+            color='grey'>
+            Close
+          </Button>
+          </Button.Group>
         </Modal.Actions>
       </Modal>
     )

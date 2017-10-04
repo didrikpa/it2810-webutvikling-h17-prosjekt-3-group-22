@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { Segment,Button, Grid } from 'semantic-ui-react'
+import moment from 'moment'
 
 import ViewNoteModal from './ViewNoteModal'
 import EditNoteModal from './EditNoteModal'
 
-
+const dateStyle = {
+  fontSize: "1rem",
+  color: "#999999"
+}
 
 export default class Note extends Component{
   constructor(props){
@@ -15,9 +19,12 @@ export default class Note extends Component{
       viewModalOpen: false,
       editModalOpen: false,
       title: this.props.note.title,
-      content: this.props.note.content
+      content: this.props.note.content,
+      date: this.props.note.date
     }
+
   }
+
 
   handleDelete = () => {
     const { note, deleteItem } = this.props
@@ -39,8 +46,7 @@ export default class Note extends Component{
 
   render(){
     const { note, onButtonSaveClick } = this.props
-    const { viewModalOpen, title, content, editModalOpen } = this.state
-    const date = '01.01.2001'
+    const { viewModalOpen, title, content, date, editModalOpen } = this.state
 
     return (
 
@@ -48,15 +54,15 @@ export default class Note extends Component{
       <Segment>
         <Grid
           columns='equal'
-          floated='left'
-          width={16}>
+          width={16}
+          verticalAlign="middle">
 
           <Grid.Column width={9} onClick={this.toggleViewModal}>
             {note.title}
           </Grid.Column>
 
-          <Grid.Column onClick={this.toggleViewModal}>
-            {date}
+          <Grid.Column onClick={this.toggleViewModal} style={dateStyle}>
+            {moment(date).calendar()}
           </Grid.Column>
 
           <Grid.Column>
@@ -79,11 +85,13 @@ export default class Note extends Component{
       </Segment>
 
       <ViewNoteModal
-        isOpen={viewModalOpen}
+        isOpen={ viewModalOpen}
         onClose={this.toggleViewModal}
         title={title}
         content={content}
-        />
+        date={moment(date).format('h:mm A, MMM Do YYYY')}
+
+      />
 
       <EditNoteModal
       isOpen={editModalOpen}
@@ -91,7 +99,10 @@ export default class Note extends Component{
       onButtonSaveClick={onButtonSaveClick}
       handleDelete={this.handleDelete}
       title={title}
-      content={content}/>
+      content={content}
+      date={moment(date).format('h:mm A, MMM Do YYYY')}
+      />
+
 
     </div>
     )}

@@ -7,13 +7,14 @@ export default class NewNoteModal extends Component{
     super(props)
 
     this.state = {
-      title: this.props.title,
-      content: this.props.content,
+      title: "",
+      content: "",
+      titleError: false,
+      contentError: false
     }
 
     this.handleTitleInput = this.handleTitleInput.bind(this)
     this.handleContentInput = this.handleContentInput.bind(this)
-    this.onButtonClick = this.onButtonClick.bind(this)
 
   }
 
@@ -32,38 +33,59 @@ export default class NewNoteModal extends Component{
   }
 
   handleButtonSaveClick = () => {
-    const { title, content } = this.state
-    this.props.onButtonSaveClick(title, content)
-    this.setState({
-      title: '',
-      content: ''
-    })
+    const { title, content, titleError } = this.state
 
-    this.props.onClose()
+    console.log(title, content)
+    if((title.length !== 0) && (content.length !== 0)){
+      this.props.onButtonSaveClick(title, content)
+      this.setState({
+        title: '',
+        content: ''
+      })
+
+      this.props.onClose()
+    }
+
+
+    if(title.length === 0){
+      this.toggleErrorTitleInput()
+      setTimeout(this.toggleErrorTitleInput,3000)
+    }
+    if(content.length === 0){
+      this.toggleErrorContentInput()
+      setTimeout(this.toggleErrorContentInput,3000)
+    }
+
+
 
   }
 
-  //Save title and content, reset and close Modal
-  onButtonClick(){
-    const { title, content } = this.state
-    this.props.onButtonClick(title, content)
-
-    //Render nothing if model isOpen is false
+  toggleErrorTitleInput = () => {
+    const { titleError } = this.state
     this.setState({
-      title: '',
-      content: ''
+      titleError: !titleError
     })
-    this.props.onClose()
+  }
+
+  toggleErrorContentInput = () => {
+    const { contentError } = this.state
+    this.setState({
+      contentError: !contentError
+    })
   }
 
   handleButtonClose = () => {
+    this.setState({
+      title: '',
+      content: ''
+    })
     this.props.onClose()
   }
 
 
   render() {
     const { isOpen } = this.props
-    const { title, content } = this.state
+    const { title, content, titleError, contentError } = this.state
 
     if(!this.props.isOpen) {
       return null;
@@ -74,37 +96,45 @@ export default class NewNoteModal extends Component{
         size='tiny'>
         <Modal.Header>
 
-          <Grid width={16}>
-            <Grid.Column width={13}>
+          <Grid width={16} >
+            <Grid.Column width={13} >
               <Input
                 onChange={ this.handleTitleInput }
                 value={ title }
+                error={titleError}
                 placeholder='Title ...'/>
             </Grid.Column>
-            <Grid.Column>
-              <Button
-                onClick={ this.handleButtonSaveClick }
-                color='green'>
-                Save
-              </Button>
-            </Grid.Column>
+
           </Grid>
 
         </Modal.Header>
         <Modal.Content scrolling>
 
           <Modal.Description>
+            <Form>
             <Form.TextArea
+              error={contentError}
               onChange={ this.handleContentInput }
-              value={ content } size='small'
-              placeholder='Note text ...' />
+              value={ content }
+              size='small'
+              placeholder='Note text ...'
+              autoHeight={true}/>
+            </Form>
           </Modal.Description>
 
         </Modal.Content>
         <Modal.Actions>
+          <Button.Group>
+          <Button
+            onClick={ this.handleButtonSaveClick }
+            color='green'>
+            Save
+          </Button>
           <Button
             onClick={this.handleButtonClose}
-            color='grey'>Close</Button>
+            color='grey'>Close
+          </Button>
+          </Button.Group>
         </Modal.Actions>
       </Modal>
     )
