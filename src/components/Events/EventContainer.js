@@ -15,23 +15,36 @@ export default class EventContainer extends Component {
     }
 
     componentWillMount = () => {
-        //localStorage.clear()
         let localEvents = JSON.parse(localStorage.getItem('events'))
         this.setState({
             events: localEvents || []
         })
     }
 
-    onButtonClick = (text) => {
+    onButtonClick = (text, where) => {
         const { events } = this.state
         let event = {
             text: text,
+            where: where,
             date: new Date()
         }
         events.push(event)
         this.updateState({
             events: events
         })
+    }
+
+    deleteItem = (event) => {
+        let { events } = this.state
+        const i = events.indexOf(event)
+        if (i >= 0) {
+            events.splice(i, 1)
+            this.updateState({
+                events: events
+            })
+        } else {
+            console.error(`[EventContainer](checkBoxClick) Couldn't find object at index ${i}`)
+        }
     }
 
     updateLocalStorage = () => {
@@ -51,13 +64,13 @@ export default class EventContainer extends Component {
             <div>
                 <Navbar/>
                 <Divider hidden/>
-                <Container text textAlign="center">
+                <Container text textAlign='center'>
                     <Grid>
                         <Grid.Column width={3}>
                             <Button>Last</Button>
                         </Grid.Column>
                         <Grid.Column width={10}>
-                            <Header as="h1">Week 42</Header>
+                            <Header as='h1' >Week 42</Header>
                         </Grid.Column>
                         <Grid.Column width={3}>
                             <Button>Next</Button>
@@ -68,7 +81,7 @@ export default class EventContainer extends Component {
                         <Header as='h3' attached='top'>
                             Mandag
                         </Header>
-                        { events.map((event) => <Event key={event.date} event={event}/>) }
+                        { events.map((event) => <Event key={event.date} event={event}  deleteItem={this.deleteItem}/>) }
                     </div>
                     <Divider hidden/>
                     <CreateEvent onButtonClick={this.onButtonClick}/>
