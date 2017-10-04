@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Divider, Grid, Header, Segment, Container, Button } from 'semantic-ui-react'
+import moment from 'moment'
 
 import Event from './Event'
 import CreateEvent from './CreateEvent'
@@ -21,13 +22,17 @@ export default class EventContainer extends Component {
         })
     }
 
-    onButtonClick = (text, where) => {
+    onButtonClick = (text, where, date, time) => {
         const { events } = this.state
         let event = {
             text: text,
             where: where,
-            date: new Date()
+            createdAt: moment(),
+            date: moment(`${date}`).format('MMM Do'),
+            day: moment(`${date}`).format('dddd'),
+            time: moment(`${time}`).format('h:mm a')
         }
+        console.log(event.date)
         events.push(event)
         this.updateState({
             events: events
@@ -59,7 +64,7 @@ export default class EventContainer extends Component {
     }
 
     render () {
-        const { events } = this.state
+        const { events, event } = this.state
         return (
             <div>
                 <Navbar/>
@@ -79,9 +84,9 @@ export default class EventContainer extends Component {
                     <Divider hidden/>
                     <div>
                         <Header as='h3' attached='top'>
-                            Mandag
+                            Dager :((
                         </Header>
-                        { events.map((event) => <Event key={event.date} event={event}  deleteItem={this.deleteItem}/>) }
+                        { events.map((event) => <Event key={event.createdAt} event={event}  deleteItem={this.deleteItem}/>) }
                     </div>
                     <Divider hidden/>
                     <CreateEvent onButtonClick={this.onButtonClick}/>
