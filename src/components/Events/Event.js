@@ -20,7 +20,7 @@ export default class Event extends Component {
         return(
             <div>
                 <Segment attached>
-                    <Grid>
+                    <Grid text-align='left'>
                         <Grid.Column width={14}>
                             { event.text }
                         </Grid.Column>

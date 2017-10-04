@@ -7,7 +7,8 @@ export default class CreateEvent extends Component {
         super(props)
 
         this.state = {
-            text: ''
+            text: '',
+            open: false
         }
 
         this.onChange = this.onChange.bind(this)
@@ -30,11 +31,29 @@ export default class CreateEvent extends Component {
         }
     }
 
+    handleOpen = () => {
+        this.setState({
+            open: true
+        }, () => {
+            console.log('open')
+        })
+    }
+
+    handleClose = () => {
+        this.setState({
+            open: false
+        }, () => {
+          console.log('closed')
+      } )
+    }
+
     render() {
-        const { text } = this.state
+        const { text, open } = this.state
         return(
             <div>
-                <Modal trigger={<Button color='blue'>Add event</Button>}>
+                <Modal onClose={this.handleClose} closeOnDimmerClick open={open} trigger={
+                  <Button color='blue' onClick={this.handleOpen}>Add event</Button>
+                }>
                     <Modal.Content>
                     <Grid>
                         <Grid.Row>
@@ -61,7 +80,7 @@ export default class CreateEvent extends Component {
                         </Grid.Row>
                     </Grid>
                     <Divider hidden/>
-                    <Button color='blue' onClick={this.onButtonClick}>Create event</Button>
+                    <Button color='blue' onClick={this.onButtonClick, this.handleClose}>Create event</Button>
                     </Modal.Content>
                 </Modal>
             </div>

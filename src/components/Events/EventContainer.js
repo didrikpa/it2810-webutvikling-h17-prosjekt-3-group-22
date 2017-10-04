@@ -64,13 +64,13 @@ export default class EventContainer extends Component {
             <div>
                 <Navbar/>
                 <Divider hidden/>
-                <Container text textAlign="center">
+                <Container text textAlign='center'>
                     <Grid>
                         <Grid.Column width={3}>
                             <Button>Last</Button>
                         </Grid.Column>
                         <Grid.Column width={10}>
-                            <Header as="h1" >Week 42</Header>
+                            <Header as='h1' >Week 42</Header>
                         </Grid.Column>
                         <Grid.Column width={3}>
                             <Button>Next</Button>
