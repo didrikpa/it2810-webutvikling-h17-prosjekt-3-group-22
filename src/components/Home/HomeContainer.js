@@ -3,6 +3,7 @@ import { Grid, Header, Divider, Container } from 'semantic-ui-react'
 import Markdown from 'react-remarkable'
 
 import Navbar from '../Navbar'
+import Footer from '../Footer';
 
 class HomeContainer extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class HomeContainer extends Component {
             <div>
                 <Navbar/>
                 <Divider hidden/>
+
                 <Container text>
                     <Header as='h1'> PIM</Header>
                     <p>
