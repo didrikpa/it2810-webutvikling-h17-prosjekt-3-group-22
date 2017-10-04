@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Grid, Header, Divider, Container } from 'semantic-ui-react'
-import Markdown from 'react-remarkable'
 
 import Navbar from '../Navbar'
 import Footer from '../Footer';
