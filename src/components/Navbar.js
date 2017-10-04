@@ -11,25 +11,30 @@ export default class Navbar extends Component {
     const { activeItem } = this.state
 
     return (
-      <Container>
-        <Menu inverted size='massive'>
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
-              <Link to="/">Home</Link>
-          </Menu.Item>
-
-          <Menu.Item name='todos' active={activeItem === 'todos'} onClick={this.handleItemClick}>
-            <Link to="todos">Todos</Link>
-          </Menu.Item>
-
-          <Menu.Item name='notes' active={activeItem === 'notes'} onClick={this.handleItemClick}>
-              <Link to="notes">Notes</Link>
-          </Menu.Item>
-
-            <Menu.Item name='events' active={activeItem === 'events'} onClick={this.handleItemClick}>
-                <Link to="events">Events</Link>
+      <Menu inverted size='massive'>
+        <Container text>
+          <Link to="/">
+            <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
+              Home
             </Menu.Item>
-        </Menu>
-      </Container>
+          </Link>
+          <Link to="/todos">
+            <Menu.Item name='todos' active={activeItem === 'todos'} onClick={this.handleItemClick}>
+              Todos
+            </Menu.Item>
+          </Link>
+          <Link to="/notes">
+            <Menu.Item name='notes' active={activeItem === 'notes'} onClick={this.handleItemClick}>
+              Notes
+            </Menu.Item>
+          </Link>
+          <Link to="/events">
+            <Menu.Item name='events' active={activeItem === 'events'} onClick={this.handleItemClick}>
+              Events
+            </Menu.Item>
+          </Link>
+        </Container>
+      </Menu>
     )
   }
 }
