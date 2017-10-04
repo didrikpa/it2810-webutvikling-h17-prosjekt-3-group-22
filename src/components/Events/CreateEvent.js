@@ -8,27 +8,33 @@ export default class CreateEvent extends Component {
 
         this.state = {
             text: '',
+            where: '',
             open: false
         }
-
-        this.onChange = this.onChange.bind(this)
-        this.onButtonClick = this.onButtonClick.bind(this)
     }
 
-    onChange(e, {value}) {
+    onChange = (e, {value}) => {
         this.setState({
             text: value
         })
     }
 
-    onButtonClick() {
-        const { text } = this.state
+    onLocationChange = (e, {value}) => {
+        this.setState({
+            where: value
+        })
+    }
+
+    onButtonClick = () =>  {
+        const { text, where } = this.state
         if(text !== '') {
-            this.props.onButtonClick(text)
+            this.props.onButtonClick(text, where)
             this.setState({
-                text: ''
+                text: '',
+                where: ''
             })
         }
+        this.handleClose()
     }
 
     handleOpen = () => {
@@ -48,7 +54,7 @@ export default class CreateEvent extends Component {
     }
 
     render() {
-        const { text, open } = this.state
+        const { text, where, open } = this.state
         return(
             <div>
                 <Modal onClose={this.handleClose} closeOnDimmerClick open={open} trigger={
@@ -71,7 +77,9 @@ export default class CreateEvent extends Component {
                         <Grid.Row>
                             <Grid.Column width={8}>
                                 <Header>Where</Header>
-                                <Input action fluid placeholder='Where...'/>
+                                <Input action fluid placeholder='Where...' onChange={this.onLocationChange} value={where}>
+                                    <input />
+                                </Input>
                             </Grid.Column>
                             <Grid.Column width={8}>
                                 <Header>Time</Header>
@@ -80,7 +88,7 @@ export default class CreateEvent extends Component {
                         </Grid.Row>
                     </Grid>
                     <Divider hidden/>
-                    <Button color='blue' onClick={this.onButtonClick, this.handleClose}>Create event</Button>
+                    <Button color='blue' onClick={this.onButtonClick}>Create event</Button>
                     </Modal.Content>
                 </Modal>
             </div>

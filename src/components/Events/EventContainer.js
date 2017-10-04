@@ -15,17 +15,17 @@ export default class EventContainer extends Component {
     }
 
     componentWillMount = () => {
-        //localStorage.clear()
         let localEvents = JSON.parse(localStorage.getItem('events'))
         this.setState({
             events: localEvents || []
         })
     }
 
-    onButtonClick = (text) => {
+    onButtonClick = (text, where) => {
         const { events } = this.state
         let event = {
             text: text,
+            where: where,
             date: new Date()
         }
         events.push(event)

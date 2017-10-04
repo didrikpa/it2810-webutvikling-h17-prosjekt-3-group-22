@@ -6,8 +6,6 @@ import DeleteModal from '../DeleteModal'
 export default class Event extends Component {
     constructor(props) {
         super(props)
-
-        console.log(props)
     }
 
     handleDelete = () => {
@@ -20,9 +18,12 @@ export default class Event extends Component {
         return(
             <div>
                 <Segment attached>
-                    <Grid text-align='left'>
-                        <Grid.Column width={14}>
+                    <Grid textAlign="left">
+                        <Grid.Column width={6}>
                             { event.text }
+                        </Grid.Column>
+                        <Grid.Column width={8}>
+                            { event.where }
                         </Grid.Column>
                         <Grid.Column width={2}>
                             <DeleteModal handleDelete={this.handleDelete} />
