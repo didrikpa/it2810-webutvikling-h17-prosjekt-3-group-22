@@ -4,6 +4,7 @@ import { Container, Divider } from 'semantic-ui-react'
 import Todo from './Todo'
 import TodoInput from './TodoInput'
 import Navbar from '../Navbar'
+import Footer from "../Footer";
 
 export default class TodoContainer extends Component {
     constructor(props) {
@@ -83,6 +84,8 @@ export default class TodoContainer extends Component {
                     <TodoInput onButtonClick={this.onButtonClick}/>
                     { todos.map((todo) => <Todo key={todo.date} todo={todo} checkBoxClick={this.checkBoxClick} deleteItem={this.deleteItem}/>) }
                 </Container>
+                <Divider hidden />
+                <Footer/>
             </div>
         )
     }

@@ -5,6 +5,7 @@ import moment from 'moment'
 import Navbar from '../Navbar'
 import Note from './Notes'
 import NewNoteModal from './NewNoteModal'
+import Footer from "../Footer";
 
 
 export default class NoteContainer extends Component {
@@ -113,6 +114,7 @@ export default class NoteContainer extends Component {
                     deleteItem={this.deleteItem}
                     onButtonSaveClick={this.onButtonSaveClick}/>)}
               </Container>
+              <Footer/>
             </div>
         )
     }
