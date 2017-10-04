@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Divider, Grid, Header } from 'semantic-ui-react'
 
 import Navbar from '../Navbar'
+import Footer from "../Footer";
 
 export default class EventContainer extends Component {
     constructor(props) {
@@ -18,6 +19,7 @@ export default class EventContainer extends Component {
                         <Header as="h1">Eventsuff goes here</Header>
                     </Grid.Column>
                 </Grid>
+            <Footer/>
             </div>
         )
     }

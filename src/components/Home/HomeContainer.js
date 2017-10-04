@@ -48,6 +48,7 @@ class HomeContainer extends Component {
 
                     <p># The website will be available locally on your machine at 'localhost:8000'</p>
                 </Container>
+                <Footer/>
             </div>
         )
     }
