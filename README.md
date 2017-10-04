@@ -4,8 +4,6 @@ With this application you can create and store your todos, notes and events loca
 
 ### Want to run it for yourself?
 
-To run it you need to frist install nodejs to your system, we use version 8.6.
-
 ```
 # To run it you need to frist install nodejs to your system, we use version 8.6.
 # Then you need to clone our repository
