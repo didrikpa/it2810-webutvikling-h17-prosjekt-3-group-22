@@ -39,7 +39,12 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+        {
+            test: /\.css$/,
+            use: [ 'style-loader', 'css-loader' ]
+        }
     ],
+
   },
 
   plugins: [
@@ -63,4 +68,5 @@ module.exports = {
     hot: true,
     // enable HMR on the server
   },
+
 };
