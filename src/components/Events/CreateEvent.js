@@ -37,20 +37,6 @@ export default class CreateEvent extends Component {
         })
     }
 
-    onButtonClick = () =>  {
-        const { text, where, date, time } = this.state
-        if(/*text !== '' && time &&*/ date) {
-            this.props.onButtonClick(text, where, date, time)
-            this.setState({
-                text: '',
-                where: '',
-                date: null,
-                time: null
-            })
-        }
-        this.handleClose()
-    }
-
     handleOpen = () => {
         this.setState({
             open: true
@@ -66,6 +52,20 @@ export default class CreateEvent extends Component {
           console.log('closed')
       } )
     }
+
+    onButtonClick = () =>  {
+        const { text, where, date, time } = this.state
+        if(text !== '' && date && time) {
+           this.props.onButtonClick(text, where, date, time)
+           this.setState({
+               text: '',
+               where: '',
+               date: null,
+               time: null
+           })
+         }
+         this.handleClose()
+     }
 
     render() {
         const { text, where, open } = this.state

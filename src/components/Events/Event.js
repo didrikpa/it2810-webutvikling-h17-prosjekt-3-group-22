@@ -3,7 +3,7 @@ import { Segment, Grid, Header } from 'semantic-ui-react'
 import moment from 'moment'
 
 import DeleteModal from '../DeleteModal'
-import EditModal from '../EditModal'
+import EditModal from './EditModal'
 
 export default class Event extends Component {
     constructor(props) {
@@ -16,8 +16,8 @@ export default class Event extends Component {
     }
 
     handleEdit = () => {
-        const { event, editItem } = this.props
-        editItem(event)
+        const { event, createEvent } = this.props
+        createEvent(event)
         this.handleClose()
     }
 

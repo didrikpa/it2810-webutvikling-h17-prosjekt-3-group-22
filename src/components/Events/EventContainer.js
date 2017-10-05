@@ -24,15 +24,16 @@ export default class EventContainer extends Component {
     }
 
     onButtonClick = (text, where, date, time) => {
-        const { events, sorted } = this.state
+        const { events } = this.state
         let event = {
             text: text,
             where: where,
             createdAt: moment(),
-            date: moment(`${date}`).format('MMMM Do'),
+            date: moment(`${date}`).format('MMM Do'),
             day: moment(`${date}`).format('dddd'),
             time: moment(`${time}`).format('h:mm a')
         }
+        console.log(event.date)
         events.push(event)
         this.updateState({
             events: events
