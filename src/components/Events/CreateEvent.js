@@ -39,7 +39,7 @@ export default class CreateEvent extends Component {
 
     onButtonClick = () =>  {
         const { text, where, date, time } = this.state
-        if(text !== '' && date && time) {
+        if(/*text !== '' && time &&*/ date) {
             this.props.onButtonClick(text, where, date, time)
             this.setState({
                 text: '',
@@ -98,15 +98,16 @@ export default class CreateEvent extends Component {
                             <Grid.Column width={8}>
                                 <Header>Time</Header>
 
-                                    <DatePicker onChange={this.handleDate} value ={this.state.date} hintText="Date to be completed by" />
+                                    <DatePicker onChange={this.handleDate} value={this.state.date} hintText="Date to be completed by" />
                                     <TimePicker onChange={this.handleTime} value={this.state.time} format={'24hr'} hintText="Time to be completed by" />
 
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
-                    <Divider hidden/>
-                    <Button color='blue' onClick={this.onButtonClick}>Create event</Button>
                     </Modal.Content>
+                    <Modal.Actions>
+                        <Button color='blue' icon="add" labelPosition='left' content='Create' onClick={this.onButtonClick}/>
+                    </Modal.Actions>
                 </Modal>
             </div>
         )

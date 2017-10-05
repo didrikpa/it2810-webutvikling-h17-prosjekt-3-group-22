@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Divider, Grid, Header, Segment, Container, Button } from 'semantic-ui-react'
 import moment from 'moment'
+import _ from 'lodash'
 
 import Event from './Event'
 import CreateEvent from './CreateEvent'
@@ -23,16 +24,15 @@ export default class EventContainer extends Component {
     }
 
     onButtonClick = (text, where, date, time) => {
-        const { events } = this.state
+        const { events, sorted } = this.state
         let event = {
             text: text,
             where: where,
             createdAt: moment(),
-            date: moment(`${date}`).format('MMM Do'),
+            date: moment(`${date}`).format('MMMM Do'),
             day: moment(`${date}`).format('dddd'),
             time: moment(`${time}`).format('h:mm a')
         }
-        console.log(event.date)
         events.push(event)
         this.updateState({
             events: events
@@ -72,13 +72,13 @@ export default class EventContainer extends Component {
                 <Container text textAlign='center'>
                     <Grid>
                         <Grid.Column width={3}>
-                            <Button>Last</Button>
+                            <Button content='Last' icon='left arrow' labelPosition='left'/>
                         </Grid.Column>
                         <Grid.Column width={10}>
                             <Header as='h1' >Week 42</Header>
                         </Grid.Column>
                         <Grid.Column width={3}>
-                            <Button>Next</Button>
+                            <Button content='Next' icon='right arrow' labelPosition='right'/>
                         </Grid.Column>
                     </Grid>
                     <Divider hidden/>

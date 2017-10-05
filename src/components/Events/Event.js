@@ -3,6 +3,7 @@ import { Segment, Grid, Header } from 'semantic-ui-react'
 import moment from 'moment'
 
 import DeleteModal from '../DeleteModal'
+import EditModal from '../EditModal'
 
 export default class Event extends Component {
     constructor(props) {
@@ -14,9 +15,14 @@ export default class Event extends Component {
         deleteItem(event)
     }
 
+    handleEdit = () => {
+        const { event, editItem } = this.props
+        editItem(event)
+        this.handleClose()
+    }
+
     render() {
         const { event } = this.props
-        console.log(event)
         return(
             <div>
                 <Segment attached textAlign="center">
@@ -25,6 +31,9 @@ export default class Event extends Component {
                 <Segment attached>
                     <Grid>
                         <Grid.Row textAlign="left">
+                            <Grid.Column width={1}>
+                                <EditModal handleEdit={this.handleEdit} />
+                            </Grid.Column>
                             <Grid.Column width={6}>
                                 { event.text }
                             </Grid.Column>
@@ -34,7 +43,7 @@ export default class Event extends Component {
                             <Grid.Column width={3}>
                                 { event.time }
                             </Grid.Column>
-                            <Grid.Column width={2}>
+                            <Grid.Column width={1}>
                                 <DeleteModal handleDelete={this.handleDelete} />
                             </Grid.Column>
                         </Grid.Row>
