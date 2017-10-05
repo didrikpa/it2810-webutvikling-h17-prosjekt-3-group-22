@@ -53,10 +53,10 @@ export default class EditModal extends Component {
       } )
     }
 
-    onButtonClick = () =>  {
+    updateEvent = () =>  {
         const { text, where, date, time } = this.state
         if(text !== '' && date && time) {
-           this.props.onButtonClick(text, where, date, time)
+           this.props.updateEvent(text, where, date, time)
            this.setState({
                text: '',
                where: '',
@@ -98,16 +98,14 @@ export default class EditModal extends Component {
                         </Grid.Column>
                         <Grid.Column width={8}>
                             <Header>Time</Header>
-
-                                <DatePicker onChange={this.handleDate} value={this.state.date} hintText="Date to be completed by" />
-                                <TimePicker onChange={this.handleTime} value={this.state.time} format={'24hr'} hintText="Time to be completed by" />
-
+                                <DatePicker onChange={this.handleDate} value={this.state.date} hintText="Date of event" />
+                                <TimePicker onChange={this.handleTime} value={this.state.time} format={'24hr'} hintText="Time of event" />
                         </Grid.Column>
                     </Grid.Row>
                     </Grid>
                     </Modal.Content>
                     <Modal.Actions>
-                      <Button color='blue' icon='edit' labelPosition='left' content='Edit' onClick={this.onButtonClick}/>
+                      <Button color='blue' icon='edit' labelPosition='left' content='Edit' onClick={this.updateEvent}/>
                     </Modal.Actions>
                 </Modal>
             </div>

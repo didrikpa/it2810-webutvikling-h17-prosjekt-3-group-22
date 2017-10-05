@@ -5,6 +5,7 @@ import _ from 'lodash'
 
 import Event from './Event'
 import CreateEvent from './CreateEvent'
+import EditModal from './EditModal'
 import Navbar from '../Navbar'
 
 export default class EventContainer extends Component {
@@ -23,7 +24,7 @@ export default class EventContainer extends Component {
         })
     }
 
-    onButtonClick = (text, where, date, time) => {
+    updateEvent = (text, where, date, time) => {
         const { events } = this.state
         let event = {
             text: text,
@@ -33,7 +34,6 @@ export default class EventContainer extends Component {
             day: moment(`${date}`).format('dddd'),
             time: moment(`${time}`).format('h:mm a')
         }
-        console.log(event.date)
         events.push(event)
         this.updateState({
             events: events
@@ -84,10 +84,10 @@ export default class EventContainer extends Component {
                     </Grid>
                     <Divider hidden/>
                     <div>
-                        { events.map((event) => <Event key={event.createdAt} event={event}  deleteItem={this.deleteItem}/>) }
+                        { events.map((event) => <Event key={event.createdAt} event={event} deleteItem={this.deleteItem} updateEvent={this.updateEvent}/>) }
                     </div>
                     <Divider hidden/>
-                    <CreateEvent onButtonClick={this.onButtonClick}/>
+                    <CreateEvent updateEvent={this.updateEvent}/>
                 </Container>
             </div>
         )
