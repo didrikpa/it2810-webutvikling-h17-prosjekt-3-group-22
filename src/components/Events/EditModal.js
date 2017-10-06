@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DatePicker from 'material-ui/DatePicker'
 import TimePicker from 'material-ui/TimePicker'
+import moment from 'moment'
 
 import { Button, Modal, Icon, Grid, Header, Input, Checkbox } from 'semantic-ui-react'
 
@@ -8,18 +9,8 @@ export default class EditModal extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            text: '',
-            where: '',
-            open: false,
-            date: null,
-            time: null
-        }
-    }
-
-    handleEdit = (text, where, date, time) => {
-        const { events } = this.state
-        this.props.updateEvent(text, where, date, time)
+        this.state = props.event
+        this.state.open = false
     }
 
     onChange = (e, {value}) => {
@@ -60,21 +51,17 @@ export default class EditModal extends Component {
 
     updateEvent = () =>  {
         const { text, where, date, time } = this.state
-        if(text !== '' && date && time) {
-           this.props.handleEdit(text, where, date, time)
-           this.setState({
-               text: '',
-               where: '',
-               date: null,
-               time: null
-           })
+        if (text !== '' && date && time) {
+           this.props.updateEvent(text, where, date, time)
          }
          this.handleClose()
+         this.props.handleDelete()
      }
 
     render() {
-        const { text, where, open } = this.state
-        const { handleEdit } = this.props
+        const { text, where, open, date, time } = this.state
+        let d = moment(date).toDate()
+        console.log(d)
         return (
             <div>
                 <Modal onClose={this.handleClose} closeOnDimmerClick open={open} trigger={
@@ -103,8 +90,8 @@ export default class EditModal extends Component {
                         </Grid.Column>
                         <Grid.Column width={8}>
                             <Header>Time</Header>
-                                <DatePicker onChange={this.handleDate} value={this.state.date} hintText="Date of event" />
-                                <TimePicker onChange={this.handleTime} value={this.state.time} format={'24hr'} hintText="Time of event" />
+                                <DatePicker onChange={this.handleDate} defaultDate={d} hintText="Date of event" />
+                                <TimePicker onChange={this.handleTime} defaultTime={d} format={'24hr'} hintText="Time of event" />
                         </Grid.Column>
                     </Grid.Row>
                     </Grid>

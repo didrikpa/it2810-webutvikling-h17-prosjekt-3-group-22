@@ -27,11 +27,16 @@ export default class EventContainer extends Component {
 
     updateEvent = (text, where, date, time) => {
         const { events } = this.state
+        let d = moment(date).format('YYYY-MM-DD')
+        console.log(d, time)
+        let d2 = moment(d + ' ' + time, 'YYYY-MM-DD HH:mm')
+        console.log(d2)
         let event = {
             text: text,
             where: where,
             createdAt: moment(),
-            date: moment(`${date}`).format('Do'),
+            date: d2,
+            day: moment(`${date}`).format('Do'),
             month: moment(`${date}`).format('MMM'),
             day: moment(`${date}`).format('dddd'),
             time: moment(`${time}`).format('h:mm a')
@@ -87,7 +92,14 @@ export default class EventContainer extends Component {
                     <Divider hidden/>
                     <CreateEvent updateEvent={this.updateEvent}/>
                     <div>
-                        { events.map((event) => <Event key={event.createdAt} event={event}  deleteItem={this.deleteItem} handleEdit={this.updateEvent}/>) }
+                        { events.map((event) => (
+                          <Event
+                            key={event.createdAt}
+                            event={event}
+                            deleteItem={this.deleteItem}
+                            updateEvent={this.updateEvent}
+                          />
+                        ))}
                     </div>
                     <Divider hidden/>
                 </Container>

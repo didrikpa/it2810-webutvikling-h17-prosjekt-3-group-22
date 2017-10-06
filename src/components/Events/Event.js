@@ -15,8 +15,7 @@ export default class Event extends Component {
         deleteItem(event)
     }
 
-    handleEdit = () => {
-        const { text, where, date, time } = this.state
+    handleEdit = (text, where, date, time) => {
         this.props.updateEvent(text, where, date, time)
     }
 
@@ -25,13 +24,13 @@ export default class Event extends Component {
         return(
             <div>
                 <Segment attached textAlign="center">
-                    <Header>{ event.day }, { event.date }</Header>
+                    <Header>{ event.day }</Header>
                 </Segment>
                 <Segment attached>
                     <Grid>
                         <Grid.Row textAlign="left">
                             <Grid.Column width={1}>
-                                <EditModal handleEdit={this.handleEdit} />
+                                <EditModal event={event} updateEvent={this.handleEdit} handleDelete={this.handleDelete}/>
                             </Grid.Column>
                             <Grid.Column width={6}>
                                 { event.text }
@@ -40,7 +39,7 @@ export default class Event extends Component {
                                 { event.where }
                             </Grid.Column>
                             <Grid.Column width={3}>
-                                { event.time }
+                                { moment(event.date).format('HH:mm') }
                             </Grid.Column>
                             <Grid.Column width={1}>
                                 <DeleteModal handleDelete={this.handleDelete} />
