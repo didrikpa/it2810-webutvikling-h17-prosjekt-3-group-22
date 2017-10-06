@@ -28,24 +28,22 @@ class DeleteModal extends Component {
 
   render() {
     const { open } = this.state
-    const { handleDelete } = this.props
+    const { handleDelete, title } = this.props
     return (
-        <div>
             <Modal onClose={this.handleClose} closeOnDimmerClick size='tiny' open={open} trigger={
-                <Icon size='large' color='red' name='delete' onClick={this.handleOpen}/>
+              <Button negative icon="delete" onClick={this.handleOpen} floated='right'/>
             }>
                 <Modal.Header>
-                    Delete your Todo
+                    Delete Your { title }
                 </Modal.Header>
                 <Modal.Content>
-                    <p>Are you sure you want to delete your Todo?</p>
+                    <p>Are you sure you want to delete your { title }?</p>
                 </Modal.Content>
                 <Modal.Actions>
                     <Button negative icon='x' labelPosition='left' content='Delete' onClick={handleDelete}/>
                     <Button content='No' onClick={this.handleClose}/>
                 </Modal.Actions>
             </Modal>
-        </div>
     )
   }
 }

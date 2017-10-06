@@ -33,9 +33,8 @@ export default class NewNoteModal extends Component{
   }
 
   handleButtonSaveClick = () => {
-    const { title, content, titleError } = this.state
+    const { title, content } = this.state
 
-    console.log(title, content)
     if((title.length !== 0) && (content.length !== 0)){
       this.props.onButtonSaveClick(title, content)
       this.setState({
@@ -55,8 +54,6 @@ export default class NewNoteModal extends Component{
       this.toggleErrorContentInput()
       setTimeout(this.toggleErrorContentInput,3000)
     }
-
-
 
   }
 
@@ -99,9 +96,9 @@ export default class NewNoteModal extends Component{
           <Grid width={16} >
             <Grid.Column width={13} >
               <Input
+                error={titleError}
                 onChange={ this.handleTitleInput }
                 value={ title }
-                error={titleError}
                 placeholder='Title ...'/>
             </Grid.Column>
 
