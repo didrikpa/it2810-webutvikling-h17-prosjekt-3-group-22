@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Divider, Grid, Header, Segment, Container, Button } from 'semantic-ui-react'
 import moment from 'moment'
-import _ from 'lodash'
 
 import Event from './Event'
 import CreateEvent from './CreateEvent'
@@ -27,14 +26,15 @@ export default class EventContainer extends Component {
 
     updateEvent = (text, where, date, time) => {
         const { events } = this.state
+        let d = moment(date).format('YYYY-MM-DD')
+        console.log(d, time)
+        let d2 = moment(d + ' ' + time, 'YYYY-MM-DD HH:mm')
+        console.log(d2)
         let event = {
             text: text,
             where: where,
             createdAt: moment(),
-            date: moment(`${date}`).format('Do'),
-            month: moment(`${date}`).format('MMM'),
-            day: moment(`${date}`).format('dddd'),
-            time: moment(`${time}`).format('h:mm a')
+            date: d2
         }
         events.push(event)
         this.updateState({
@@ -87,7 +87,13 @@ export default class EventContainer extends Component {
                     <Divider hidden/>
                     <CreateEvent updateEvent={this.updateEvent}/>
                     <div>
-                        { events.map((event) => <Event key={event.createdAt} event={event}  deleteItem={this.deleteItem} handleEdit={this.updateEvent}/>) }
+                    {events.sort((b,a) => {
+                      return moment(b.date).unix() - moment(a.date).unix()}).map((event) =>
+                      <Event
+                          key={event.createdAt}
+                          event={event}
+                          deleteItem={this.deleteItem}
+                          updateEvent={this.updateEvent}/>)}
                     </div>
                     <Divider hidden/>
                 </Container>

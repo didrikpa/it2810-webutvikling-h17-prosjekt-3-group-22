@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import DatePicker from 'material-ui/DatePicker'
 import TimePicker from 'material-ui/TimePicker'
 
+import moment from 'moment'
+
 import { Divider, Button, Header, Modal, Input, Container, Grid, Checkbox } from 'semantic-ui-react'
 
 export default class CreateEvent extends Component {
@@ -28,7 +30,8 @@ export default class CreateEvent extends Component {
     }
 
     handleTime = (event, time) => {
-        this.setState({time: time})
+        let t = moment(time).format('HH:mm')
+        this.setState({time: t})
     }
 
     onLocationChange = (e, {value}) => {
@@ -68,7 +71,7 @@ export default class CreateEvent extends Component {
      }
 
     render() {
-        const { text, where, open } = this.state
+        const { text, where, open, date, time } = this.state
         return(
             <div>
                 <Modal onClose={this.handleClose} closeOnDimmerClick open={open} trigger={
@@ -97,8 +100,8 @@ export default class CreateEvent extends Component {
                             </Grid.Column>
                             <Grid.Column width={8}>
                                 <Header>Time</Header>
-                                    <DatePicker onChange={this.handleDate} value={this.state.date} hintText="Date of event" />
-                                    <TimePicker onChange={this.handleTime} value={this.state.time} format={'24hr'} hintText="Time of event" />
+                                    <DatePicker onChange={this.handleDate} hintText="Date of event" />
+                                    <TimePicker onChange={this.handleTime} format={'24hr'} hintText="Time of event" />
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>

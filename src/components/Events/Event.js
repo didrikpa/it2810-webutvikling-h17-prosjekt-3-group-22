@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Grid, Header } from 'semantic-ui-react'
+import { Segment, Grid, Header, Button } from 'semantic-ui-react'
 import moment from 'moment'
 
 import DeleteModal from '../DeleteModal'
@@ -15,35 +15,34 @@ export default class Event extends Component {
         deleteItem(event)
     }
 
-    handleEdit = () => {
-        const { text, where, date, time } = this.state
+    handleEdit = (text, where, date, time) => {
         this.props.updateEvent(text, where, date, time)
     }
 
     render() {
-        const { event } = this.props
+        const { event, date } = this.props
         return(
             <div>
                 <Segment attached textAlign="center">
-                    <Header>{ event.day }, { event.date }</Header>
+                    <Header>{moment(event.date).format('Do')} {moment(event.date).format('MMM')}</Header>
                 </Segment>
                 <Segment attached>
                     <Grid>
-                        <Grid.Row textAlign="left">
-                            <Grid.Column width={1}>
-                                <EditModal handleEdit={this.handleEdit} />
-                            </Grid.Column>
-                            <Grid.Column width={6}>
-                                { event.text }
+                        <Grid.Row textAlign="center">
+                            <Grid.Column width={4}>
+                                {event.text}
                             </Grid.Column>
                             <Grid.Column width={5}>
-                                { event.where }
+                                {event.where}
+                            </Grid.Column>
+                            <Grid.Column width={4}>
+                                {moment(event.date).format('HH:mm')}
                             </Grid.Column>
                             <Grid.Column width={3}>
-                                { event.time }
-                            </Grid.Column>
-                            <Grid.Column width={1}>
-                                <DeleteModal handleDelete={this.handleDelete} />
+                                <Button.Group>
+                                    <EditModal event={event} updateEvent={this.handleEdit} handleDelete={this.handleDelete}/>
+                                    <DeleteModal handleDelete={this.handleDelete} title="Event"/>
+                                </Button.Group>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
