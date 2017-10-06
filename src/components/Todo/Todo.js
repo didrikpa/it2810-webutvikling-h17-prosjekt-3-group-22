@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Checkbox, Grid, Icon } from 'semantic-ui-react'
+import { Segment, Checkbox, Grid, Divider } from 'semantic-ui-react'
 
 import DeleteModal from '../DeleteModal'
 
@@ -25,21 +25,25 @@ class Todo extends Component {
     }
 
     render() {
-        const { todo, checkBoxClick } = this.props
+        const { todo } = this.props
         return(
-            <Segment color={todo.checked ? 'green' : undefined} inverted={todo.checked}>
-                <Grid>
-                    <Grid.Column width={14}>
+          <div>
+            <Segment color={todo.checked ? 'green' : undefined} inverted={todo.checked} >
+                <Grid
+                  verticalAlign="middle"
+                  width={16}>
+                    <Grid.Column width={13}>
                         { todo.text }
                     </Grid.Column>
                     <Grid.Column width={1}>
                         <Checkbox onClick={this.handleCheckBoxClick} defaultChecked={todo.checked} />
                     </Grid.Column>
-                    <Grid.Column width={1}>
-                        <DeleteModal handleDelete={this.handleDelete} />
+                    <Grid.Column width={2}>
+                        <DeleteModal handleDelete={this.handleDelete} title={"Todo"}/>
                     </Grid.Column>
                 </Grid>
             </Segment>
+          </div>
         )
     }
 }

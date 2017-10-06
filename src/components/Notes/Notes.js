@@ -4,6 +4,7 @@ import moment from 'moment'
 
 import ViewNoteModal from './ViewNoteModal'
 import EditNoteModal from './EditNoteModal'
+import DeleteModal from '../DeleteModal'
 
 const dateStyle = {
   fontSize: "1rem",
@@ -18,6 +19,7 @@ export default class Note extends Component{
     this.state = {
       viewModalOpen: false,
       editModalOpen: false,
+      deleteModalOpen: false,
       title: this.props.note.title,
       content: this.props.note.content,
       date: this.props.note.date
@@ -40,6 +42,12 @@ export default class Note extends Component{
   toggleEditModal = () => {
     this.setState({
       editModalOpen: !this.state.editModalOpen
+    })
+  }
+
+  toggleDeleteModal = () => {
+    this.setState({
+      deleteModalOpen: !this.state.deleteModalOpen
     })
   }
 
@@ -68,10 +76,9 @@ export default class Note extends Component{
           <Grid.Column>
             <Button.Group floated='right'>
 
-              <Button
-                icon='delete'
-                negative
-              onClick={this.handleDelete}/>
+              <DeleteModal
+              handleDelete = {this.handleDelete}
+              title={"Note"}/>
 
               <Button
                 color='grey'
@@ -89,7 +96,7 @@ export default class Note extends Component{
         onClose={this.toggleViewModal}
         title={title}
         content={content}
-        date={moment(date).format('h:mm A, MMM Do YYYY')}
+        date={moment(date).format('H:mm, MMM Do YYYY')}
 
       />
 
@@ -100,7 +107,7 @@ export default class Note extends Component{
       handleDelete={this.handleDelete}
       title={title}
       content={content}
-      date={moment(date).format('h:mm A, MMM Do YYYY')}
+      date={moment(date).format('H:mm, MMM Do YYYY')}
       />
 
 
