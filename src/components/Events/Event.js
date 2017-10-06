@@ -27,7 +27,7 @@ export default class Event extends Component {
                     <Header>{moment(event.date).format('Do')} {moment(event.date).format('MMM')}</Header>
                 </Segment>
                 <Segment attached>
-                    <Grid>
+                    <Grid verticalAlign="middle">
                         <Grid.Row textAlign="center">
                             <Grid.Column width={4}>
                                 {event.text}
