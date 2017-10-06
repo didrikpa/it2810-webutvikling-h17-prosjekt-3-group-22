@@ -7,6 +7,10 @@ import HomeContainer from './components/Home/HomeContainer'
 import TodoContainer from './components/Todo/TodoContainer'
 import NoteContainer from './components/Notes/NoteContainer'
 import EventContainer from './components/Events/EventContainer'
+import moment from 'moment'
+
+
+moment.locale('en-gb');
 
 const App = () => (
     <div>
