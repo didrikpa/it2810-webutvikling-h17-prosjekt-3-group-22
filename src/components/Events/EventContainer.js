@@ -7,6 +7,7 @@ import Event from './Event'
 import CreateEvent from './CreateEvent'
 import EditModal from './EditModal'
 import Navbar from '../Navbar'
+import Footer from "../Footer";
 
 export default class EventContainer extends Component {
     constructor(props) {
@@ -90,6 +91,7 @@ export default class EventContainer extends Component {
                     </div>
                     <Divider hidden/>
                 </Container>
+            <Footer/>
             </div>
         )
     }
