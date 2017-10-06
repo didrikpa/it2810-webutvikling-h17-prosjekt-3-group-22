@@ -63,44 +63,42 @@ export default class EditModal extends Component {
         let d = moment(date).toDate()
         console.log(d)
         return (
-            <div>
-                <Modal onClose={this.handleClose} closeOnDimmerClick open={open} trigger={
-                    <Icon size='large' color='blue' name='edit' onClick={this.handleOpen}/>
-                }>
-                    <Modal.Content>
-                    <Grid>
-                    <Grid.Row>
-                        <Grid.Column width={13}>
-                            <Header>Description</Header>
-                            <Input action fluid placeholder='Description...' onChange={this.onChange} value={text}>
-                                <input />
-                            </Input>
-                        </Grid.Column>
-                        <Grid.Column width={3}>
-                            <Header>Alert me</Header>
-                            <Checkbox defaultChecked />
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row>
-                        <Grid.Column width={8}>
-                            <Header>Where</Header>
-                            <Input action fluid placeholder='Where...' onChange={this.onLocationChange} value={where}>
-                                <input />
-                            </Input>
-                        </Grid.Column>
-                        <Grid.Column width={8}>
-                            <Header>Time</Header>
-                                <DatePicker onChange={this.handleDate} defaultDate={d} hintText="Date of event" />
-                                <TimePicker onChange={this.handleTime} defaultTime={d} format={'24hr'} hintText="Time of event" />
-                        </Grid.Column>
-                    </Grid.Row>
-                    </Grid>
-                    </Modal.Content>
-                    <Modal.Actions>
-                        <Button color='blue' icon='edit' labelPosition='left' content='Edit' onClick={this.updateEvent}/>
-                    </Modal.Actions>
-                </Modal>
-            </div>
+            <Modal onClose={this.handleClose} closeOnDimmerClick open={open} trigger={
+                <Button icon='edit' onClick={this.handleOpen} floated='right'/>
+            }>
+                <Modal.Content>
+                <Grid>
+                <Grid.Row>
+                    <Grid.Column width={13}>
+                        <Header>Description</Header>
+                        <Input action fluid placeholder='Description...' onChange={this.onChange} value={text}>
+                            <input />
+                        </Input>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                        <Header>Alert me</Header>
+                        <Checkbox defaultChecked />
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                    <Grid.Column width={8}>
+                        <Header>Where</Header>
+                        <Input action fluid placeholder='Where...' onChange={this.onLocationChange} value={where}>
+                            <input />
+                        </Input>
+                    </Grid.Column>
+                    <Grid.Column width={8}>
+                        <Header>Time</Header>
+                            <DatePicker onChange={this.handleDate} defaultDate={d} hintText="Date of event" />
+                            <TimePicker onChange={this.handleTime} defaultTime={d} format={'24hr'} hintText="Time of event" />
+                    </Grid.Column>
+                </Grid.Row>
+                </Grid>
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button color='blue' icon='edit' labelPosition='left' content='Edit' onClick={this.updateEvent}/>
+                </Modal.Actions>
+            </Modal>
         )
     }
 }

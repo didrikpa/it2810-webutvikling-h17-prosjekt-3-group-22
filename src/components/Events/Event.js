@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Grid, Header } from 'semantic-ui-react'
+import { Segment, Grid, Header, Button } from 'semantic-ui-react'
 import moment from 'moment'
 
 import DeleteModal from '../DeleteModal'
@@ -29,20 +29,20 @@ export default class Event extends Component {
                 <Segment attached>
                     <Grid>
                         <Grid.Row textAlign="center">
-                            <Grid.Column width={1}>
-                                <EditModal event={event} updateEvent={this.handleEdit} handleDelete={this.handleDelete}/>
-                            </Grid.Column>
                             <Grid.Column width={4}>
                                 {event.text}
                             </Grid.Column>
-                            <Grid.Column width={6}>
+                            <Grid.Column width={5}>
                                 {event.where}
                             </Grid.Column>
                             <Grid.Column width={4}>
                                 {moment(event.date).format('HH:mm')}
                             </Grid.Column>
-                            <Grid.Column width={1}>
-                                <DeleteModal handleDelete={this.handleDelete} />
+                            <Grid.Column width={3}>
+                                <Button.Group>
+                                    <EditModal event={event} updateEvent={this.handleEdit} handleDelete={this.handleDelete}/>
+                                    <DeleteModal handleDelete={this.handleDelete} title="Event"/>
+                                </Button.Group>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
