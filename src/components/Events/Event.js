@@ -20,26 +20,26 @@ export default class Event extends Component {
     }
 
     render() {
-        const { event } = this.props
+        const { event, date } = this.props
         return(
             <div>
                 <Segment attached textAlign="center">
-                    <Header>{ event.day }</Header>
+                    <Header>{moment(event.date).format('Do')} {moment(event.date).format('MMM')}</Header>
                 </Segment>
                 <Segment attached>
                     <Grid>
-                        <Grid.Row textAlign="left">
+                        <Grid.Row textAlign="center">
                             <Grid.Column width={1}>
                                 <EditModal event={event} updateEvent={this.handleEdit} handleDelete={this.handleDelete}/>
                             </Grid.Column>
+                            <Grid.Column width={4}>
+                                {event.text}
+                            </Grid.Column>
                             <Grid.Column width={6}>
-                                { event.text }
+                                {event.where}
                             </Grid.Column>
-                            <Grid.Column width={5}>
-                                { event.where }
-                            </Grid.Column>
-                            <Grid.Column width={3}>
-                                { moment(event.date).format('HH:mm') }
+                            <Grid.Column width={4}>
+                                {moment(event.date).format('HH:mm')}
                             </Grid.Column>
                             <Grid.Column width={1}>
                                 <DeleteModal handleDelete={this.handleDelete} />
