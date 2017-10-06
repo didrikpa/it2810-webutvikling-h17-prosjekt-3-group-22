@@ -5,6 +5,7 @@ import Todo from './Todo'
 import TodoInput from './TodoInput'
 import Navbar from '../Navbar'
 import Footer from "../Footer";
+import moment from "moment";
 
 export default class TodoContainer extends Component {
     constructor(props) {
@@ -41,7 +42,7 @@ export default class TodoContainer extends Component {
         const { todos } = this.state
         let todo = {
             text: text,
-            date: new Date(),
+            date: moment(),
             checked: false
         }
         todos.push(todo)
@@ -82,7 +83,7 @@ export default class TodoContainer extends Component {
                 <Container text>
                     <Divider hidden />
                     <TodoInput onButtonClick={this.onButtonClick}/>
-                    { todos.map((todo) => <Todo key={todo.date} todo={todo} checkBoxClick={this.checkBoxClick} deleteItem={this.deleteItem}/>) }
+                    { todos.map((todo) => <Todo key={todo.date} todo={todo} checkBoxClick={this.checkBoxClick} deleteItem={this.deleteItem} onButtonClick = {this.onButtonClick} />) }
                 </Container>
                 <Divider hidden />
                 <Footer/>

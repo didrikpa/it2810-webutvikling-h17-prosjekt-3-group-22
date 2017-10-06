@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Modal, Icon } from 'semantic-ui-react'
+import { Button, Modal } from 'semantic-ui-react'
 
 class DeleteModal extends Component {
   constructor(props) {
@@ -30,9 +30,8 @@ class DeleteModal extends Component {
     const { open } = this.state
     const { handleDelete } = this.props
     return (
-        <div>
             <Modal onClose={this.handleClose} closeOnDimmerClick size='tiny' open={open} trigger={
-                <Icon size='large' color='red' name='delete' onClick={this.handleOpen}/>
+                <Button negative icon="delete" onClick={this.handleOpen} floated="right"/>
             }>
                 <Modal.Header>
                     Delete your Todo
@@ -45,7 +44,6 @@ class DeleteModal extends Component {
                     <Button content='No' onClick={this.handleClose}/>
                 </Modal.Actions>
             </Modal>
-        </div>
     )
   }
 }
