@@ -30,7 +30,8 @@ export default class EventContainer extends Component {
             text: text,
             where: where,
             createdAt: moment(),
-            date: moment(`${date}`).format('MMM Do'),
+            date: moment(`${date}`).format('Do'),
+            month: moment(`${date}`).format('MMM'),
             day: moment(`${date}`).format('dddd'),
             time: moment(`${time}`).format('h:mm a')
         }
@@ -76,18 +77,18 @@ export default class EventContainer extends Component {
                             <Button content='Last' icon='left arrow' labelPosition='left'/>
                         </Grid.Column>
                         <Grid.Column width={10}>
-                            <Header as='h1' >Week 42</Header>
+                            <Header as='h1' > October </Header>
                         </Grid.Column>
                         <Grid.Column width={3}>
                             <Button content='Next' icon='right arrow' labelPosition='right'/>
                         </Grid.Column>
                     </Grid>
                     <Divider hidden/>
+                    <CreateEvent updateEvent={this.updateEvent}/>
                     <div>
-                        { events.map((event) => <Event key={event.createdAt} event={event} deleteItem={this.deleteItem} updateEvent={this.updateEvent}/>) }
+                        { events.map((event) => <Event key={event.createdAt} event={event}  deleteItem={this.deleteItem} handleEdit={this.updateEvent}/>) }
                     </div>
                     <Divider hidden/>
-                    <CreateEvent updateEvent={this.updateEvent}/>
                 </Container>
             </div>
         )

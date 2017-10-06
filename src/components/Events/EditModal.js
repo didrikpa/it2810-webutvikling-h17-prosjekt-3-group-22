@@ -17,6 +17,11 @@ export default class EditModal extends Component {
         }
     }
 
+    handleEdit = (text, where, date, time) => {
+        const { events } = this.state
+        this.props.updateEvent(text, where, date, time)
+    }
+
     onChange = (e, {value}) => {
         this.setState({
             text: value
@@ -56,7 +61,7 @@ export default class EditModal extends Component {
     updateEvent = () =>  {
         const { text, where, date, time } = this.state
         if(text !== '' && date && time) {
-           this.props.updateEvent(text, where, date, time)
+           this.props.handleEdit(text, where, date, time)
            this.setState({
                text: '',
                where: '',
@@ -105,7 +110,7 @@ export default class EditModal extends Component {
                     </Grid>
                     </Modal.Content>
                     <Modal.Actions>
-                      <Button color='blue' icon='edit' labelPosition='left' content='Edit' onClick={this.updateEvent}/>
+                        <Button color='blue' icon='edit' labelPosition='left' content='Edit' onClick={this.updateEvent}/>
                     </Modal.Actions>
                 </Modal>
             </div>

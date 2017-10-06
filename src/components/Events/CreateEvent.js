@@ -72,7 +72,7 @@ export default class CreateEvent extends Component {
         return(
             <div>
                 <Modal onClose={this.handleClose} closeOnDimmerClick open={open} trigger={
-                  <Button color='blue' onClick={this.handleOpen}>Add event</Button>
+                  <Button attached="top" color='blue' onClick={this.handleOpen}>Add event</Button>
                 }>
                     <Modal.Content>
                     <Grid>

@@ -15,9 +15,9 @@ export default class Event extends Component {
         deleteItem(event)
     }
 
-    handleEdit = (text, where, date, time) => {
-        const { event, updateEvent } = this.props
-        updateEvent(event)
+    handleEdit = () => {
+        const { text, where, date, time } = this.state
+        this.props.updateEvent(text, where, date, time)
     }
 
     render() {
