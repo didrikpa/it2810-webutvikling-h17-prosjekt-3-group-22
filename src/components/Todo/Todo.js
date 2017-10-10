@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Checkbox, Grid, Button } from 'semantic-ui-react'
+import { Segment, Checkbox, Grid, Button, Icon } from 'semantic-ui-react'
 import moment from 'moment'
 import EditToDoModal from "./EditTodoModal"
 
@@ -34,16 +34,26 @@ class Todo extends Component {
             editModalOpen: !this.state.editModalOpen
         })
     }
+    markAsFavorite = () => {
+        let { todo } = this.props
+        todo.isStar = !todo.isStar
+        this.props.updateToDos(todo)
+    }
+
+
 
 
     render() {
-        const { date, editModalOpen, viewModalOpen} = this.state
-        const { todo, checkBoxClick, onButtonClick} = this.props
+        const { date, editModalOpen} = this.state
+        const { todo, onButtonClick,} = this.props
         return(
             <div>
                 <Segment color={todo.checked ? 'green' : undefined} inverted={todo.checked}>
-                    <Grid>
-                        <Grid.Column width={8}>
+                    <Grid verticalAlign="middle">
+                        <Grid.Column width={1}>
+                            <Icon name={todo.isStar ? 'star' : 'empty star'} color='yellow' onClick={this.markAsFavorite}/>
+                        </Grid.Column>
+                        <Grid.Column width={7}>
                             { todo.text }
                         </Grid.Column>
                         <Grid.Column width={4} onClick={this.toggleViewModal}>
@@ -52,12 +62,13 @@ class Todo extends Component {
                         <Grid.Column width={1}>
                             <Checkbox onClick={this.handleCheckBoxClick} defaultChecked={todo.checked} />
                         </Grid.Column>
-                        <Grid.Column width={1}>
+                        <Grid.Column width={2}>
                             <Button.Group>
                                 <DeleteModal handleDelete={this.handleDelete} />
                                 <Button icon="edit" color="grey" onClick={this.toggleEditModal}/>
                             </Button.Group>
                         </Grid.Column>
+
                     </Grid>
                 </Segment>
 
