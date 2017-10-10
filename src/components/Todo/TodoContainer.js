@@ -45,7 +45,7 @@ export default class TodoContainer extends Component {
             date: moment(),
             checked: false
         }
-        todos.push(todo)
+        todos.splice(0,0,todo)
         this.updateState({
             todos: todos
         })
