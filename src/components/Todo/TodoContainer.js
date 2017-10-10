@@ -57,7 +57,7 @@ export default class TodoContainer extends Component {
         const i = todos.indexOf(todo)
         if (i >= 0) {
             todos.splice(i, 1)
-            this.updateLocalStorage({
+            this.updateState({
                 todos: todos
             })
         } else {
