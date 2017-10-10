@@ -97,7 +97,7 @@ export default class NoteContainer extends Component {
                     <Button
                       icon='plus'
                       positive
-                      onClick={this.toggleNewModal}/>
+                      onClick={this.toggleNewModal} floated='right'/>
                     <NewNoteModal
                       isOpen={ newModalOpen }
                       onClose={this.toggleNewModal}

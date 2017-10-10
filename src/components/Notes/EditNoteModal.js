@@ -6,7 +6,7 @@ const dateStyle = {
   color: "#999999"
 }
 
-export default class NewNoteModal extends Component{
+export default class EditNoteModal extends Component{
   constructor (props){
     super(props)
 
@@ -15,7 +15,9 @@ export default class NewNoteModal extends Component{
       tempContent: this.props.content,
       title: this.props.title,
       content: this.props.content,
-      date: this.props.date
+      date: this.props.date,
+      titleError: false,
+      contentError: false
     }
 
     this.handleTitleInput = this.handleTitleInput.bind(this)
@@ -39,22 +41,46 @@ export default class NewNoteModal extends Component{
 
   handleButtonSaveClick = () => {
     const { tempTitle, tempContent } = this.state
-    this.props.onButtonSaveClick(tempTitle, tempContent)
-    this.setState({
-      tempTitle: '',
-      tempContent: '',
-      title: '',
-      content: ''
-    })
+
+    if((tempTitle.length !== 0) && (tempContent.length !== 0)){
+      const { handleDelete } = this.props
+      this.props.onButtonSaveClick(tempTitle, tempContent)
+      handleDelete()
+
+      this.setState({
+        tempTitle: '',
+        tempContent: '',
+        title: '',
+        content: ''
+      })
 
     this.props.onClose()
+    }
+
+
+    if(tempTitle.length === 0){
+      this.toggleErrorTitleInput()
+      setTimeout(this.toggleErrorTitleInput,3000)
+    }
+    if(tempContent.length === 0){
+      this.toggleErrorContentInput()
+      setTimeout(this.toggleErrorContentInput,3000)
+    }
 
   }
 
-  handleButtonEditClick = () => {
-    const { handleDelete } = this.props
-    handleDelete()
-    this.handleButtonSaveClick()
+  toggleErrorTitleInput = () => {
+    const { titleError } = this.state
+    this.setState({
+      titleError: !titleError
+    })
+  }
+
+  toggleErrorContentInput = () => {
+    const { contentError } = this.state
+    this.setState({
+      contentError: !contentError
+    })
   }
 
   handleButtonClose = () => {
@@ -69,7 +95,7 @@ export default class NewNoteModal extends Component{
 
   render() {
     const { isOpen } = this.props
-    const { tempTitle, tempContent, date } = this.state
+    const { tempTitle, tempContent, contentError, titleError, date } = this.state
 
     if(!this.props.isOpen) {
       return null;
@@ -77,12 +103,14 @@ export default class NewNoteModal extends Component{
     return (
       <Modal
         open={isOpen}
-        size='tiny'>
+        size='tiny'
+        closeOnDimmerClick>
         <Modal.Header>
 
           <Grid width={16} >
             <Grid.Column width={10}>
               <Input
+                error={titleError}
                 onChange={ this.handleTitleInput }
                 value={ tempTitle }
                 placeholder='Title ...'/>
@@ -98,7 +126,8 @@ export default class NewNoteModal extends Component{
 
           <Modal.Description>
             <Form>
-            <TextArea
+            <Form.TextArea
+              error={contentError}
               onChange={ this.handleContentInput }
               value={ tempContent } size='small'
               placeholder='Note text ...'
@@ -110,7 +139,7 @@ export default class NewNoteModal extends Component{
         <Modal.Actions>
           <Button.Group>
           <Button
-            onClick={ this.handleButtonEditClick }
+            onClick={ this.handleButtonSaveClick }
             color='green'>
             Save
           </Button>

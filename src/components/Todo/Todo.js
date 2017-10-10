@@ -3,7 +3,7 @@ import { Segment, Checkbox, Grid, Button } from 'semantic-ui-react'
 import moment from 'moment'
 import EditToDoModal from "./EditTodoModal"
 
-import DeleteModal from './DeleteModal'
+import DeleteModal from '../DeleteModal'
 
 
 class Todo extends Component {
