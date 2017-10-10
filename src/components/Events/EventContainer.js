@@ -33,7 +33,7 @@ export default class EventContainer extends Component {
         let event = {
             text: text,
             where: where,
-            createdAt: moment(),
+            now: moment(),
             date: d2
         }
         events.push(event)
@@ -68,6 +68,7 @@ export default class EventContainer extends Component {
 
     render () {
         const { events, event } = this.state
+        const { now } = this.props
         return (
             <div>
                 <Navbar/>
@@ -78,7 +79,7 @@ export default class EventContainer extends Component {
                             <Button content='Last' icon='left arrow' labelPosition='left'/>
                         </Grid.Column>
                         <Grid.Column width={10}>
-                            <Header as='h1' > October </Header>
+                            <Header as='h1' >{moment(now).format('MMMM')}</Header>
                         </Grid.Column>
                         <Grid.Column width={3}>
                             <Button content='Next' icon='right arrow' labelPosition='right'/>

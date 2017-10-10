@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Grid, Header, Button } from 'semantic-ui-react'
+import { Segment, Grid, Header, Button, Divider } from 'semantic-ui-react'
 import moment from 'moment'
 
 import DeleteModal from '../DeleteModal'
@@ -23,8 +23,9 @@ export default class Event extends Component {
         const { event, date } = this.props
         return(
             <div>
+                <Divider hidden/>
                 <Segment attached textAlign="center">
-                    <Header>{moment(event.date).format('Do')} {moment(event.date).format('MMM')}</Header>
+                    <Header>{moment(event.date).format('dddd')} {moment(event.date).format('Do')}</Header>
                 </Segment>
                 <Segment attached>
                     <Grid verticalAlign="middle">
