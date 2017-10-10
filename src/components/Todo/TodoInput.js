@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { Input, Button } from 'semantic-ui-react'
+import moment from 'moment'
 
 export default class TodoInput extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            text: ''
+            text: '',
+
         }
 
         this.onChange = this.onChange.bind(this)
@@ -24,7 +26,9 @@ export default class TodoInput extends Component {
         if(text !== '') {
             this.props.onButtonClick(text)
             this.setState({
-                text: ''
+                text: '',
+                date: moment()
+
             })
         }
     }
