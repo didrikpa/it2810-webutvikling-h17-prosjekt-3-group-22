@@ -65,8 +65,8 @@ class HomeContainer extends Component {
                         npm start
                     </code></pre>
 
-                    <p>The website will be available locally on your machine at <code>localhost:8000</code></p>
-                    <p> </p>
+                    <p>The website will be available locally on your machine at <code>localhost:8000</code>.</p>
+                    <br/>
                 </Container>
                 <Footer/>
             </div>
