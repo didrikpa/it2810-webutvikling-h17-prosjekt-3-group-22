@@ -24,17 +24,13 @@ export default class EventContainer extends Component {
         })
     }
 
-    updateEvent = (text, where, date, time) => {
-        const { events } = this.state
-        let d = moment(date).format('YYYY-MM-DD')
-        console.log(d, time)
-        let d2 = moment(d + ' ' + time, 'YYYY-MM-DD HH:mm')
-        console.log(d2)
+    updateEvent = (text, where, date) => {
+        let { events } = this.state
         let event = {
             text: text,
             where: where,
             now: moment(),
-            date: d2
+            date: date,
         }
         events.push(event)
         this.updateState({
@@ -57,6 +53,7 @@ export default class EventContainer extends Component {
 
     updateLocalStorage = () => {
         const { events } = this.state
+        localStorage.clear()
         localStorage.setItem('events', JSON.stringify(events))
     }
 

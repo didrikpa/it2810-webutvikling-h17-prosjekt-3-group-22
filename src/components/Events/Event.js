@@ -15,12 +15,12 @@ export default class Event extends Component {
         deleteItem(event)
     }
 
-    handleEdit = (text, where, date, time) => {
-        this.props.updateEvent(text, where, date, time)
+    handleEdit = (text, where, date) => {
+        this.props.updateEvent(text, where, date)
     }
 
     render() {
-        const { event, date, isNew } = this.props
+        const { event, isNew } = this.props
         return(
             <div>
                 {isNew ? 
