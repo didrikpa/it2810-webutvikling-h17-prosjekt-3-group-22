@@ -8,8 +8,12 @@ import { Button, Modal, Icon, Grid, Header, Input, Checkbox } from 'semantic-ui-
 export default class EditModal extends Component {
     constructor(props) {
         super(props)
-
-        this.state = props.event
+        this.state = {
+            text: props.event.text,
+            where: props.event.where,
+            date: props.event.date,
+            time: props.event.date,
+        }
         this.state.open = false
     }
 
@@ -51,17 +55,19 @@ export default class EditModal extends Component {
 
     updateEvent = () =>  {
         const { text, where, date, time } = this.state
-        if (text !== '' && date && time) {
-           this.props.updateEvent(text, where, date, time)
+        let d2 = moment(moment(date).format('YYYY-MM-DD') + ' ' + moment(time).format('HH:mm'))
+        if (text !== '' && d2) {
+           this.props.updateEvent(text, where, d2)
          }
          this.handleClose()
          this.props.handleDelete()
      }
 
     render() {
-        const { text, where, open, date, time } = this.state
+        const { text, where, open, date, time} = this.state
         let d = moment(date).toDate()
-        console.log(d)
+        let d1 = moment(time).toDate()
+
         return (
             <Modal onClose={this.handleClose} closeOnDimmerClick open={open} trigger={
                 <Button icon='edit' onClick={this.handleOpen} floated='right'/>
@@ -90,13 +96,13 @@ export default class EditModal extends Component {
                     <Grid.Column width={8}>
                         <Header>Time</Header>
                             <DatePicker onChange={this.handleDate} defaultDate={d} hintText="Date of event" />
-                            <TimePicker onChange={this.handleTime} defaultTime={d} format={'24hr'} hintText="Time of event" />
+                            <TimePicker onChange={this.handleTime} defaultTime={d1} format={'24hr'} hintText="Time of event" />
                     </Grid.Column>
                 </Grid.Row>
                 </Grid>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button color='blue' icon='edit' labelPosition='left' content='Edit' onClick={this.updateEvent}/>
+                    <Button color='blue' icon='edit' labelPosition='left' content='Save' onClick={this.updateEvent}/>
                 </Modal.Actions>
             </Modal>
         )

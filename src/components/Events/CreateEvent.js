@@ -30,8 +30,7 @@ export default class CreateEvent extends Component {
     }
 
     handleTime = (event, time) => {
-        let t = moment(time).format('HH:mm')
-        this.setState({time: t})
+        this.setState({time: time})
     }
 
     onLocationChange = (e, {value}) => {
@@ -56,10 +55,11 @@ export default class CreateEvent extends Component {
       } )
     }
 
-    updateEvent = () =>  {
+    createEvent = () =>  {
         const { text, where, date, time } = this.state
-        if(text !== '' && date && time) {
-           this.props.updateEvent(text, where, date, time)
+        let d2 = moment(moment(date).format('YYYY-MM-DD') + ' ' + moment(time).format('HH:mm'))
+        if(text !== '' && d2) {
+           this.props.updateEvent(text, where, d2)
            this.setState({
                text: '',
                where: '',
@@ -107,7 +107,7 @@ export default class CreateEvent extends Component {
                     </Grid>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button color='blue' icon="add" labelPosition='left' content='Create' onClick={this.updateEvent}/>
+                        <Button color='blue' icon="add" labelPosition='left' content='Create' onClick={this.createEvent}/>
                     </Modal.Actions>
                 </Modal>
             </div>
