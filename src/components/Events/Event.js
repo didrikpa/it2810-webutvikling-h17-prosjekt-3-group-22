@@ -20,13 +20,17 @@ export default class Event extends Component {
     }
 
     render() {
-        const { event, date } = this.props
+        const { event, date, isNew } = this.props
         return(
             <div>
-                <Divider hidden/>
-                <Segment attached textAlign="center">
-                    <Header>{moment(event.date).format('dddd')} {moment(event.date).format('Do')}</Header>
-                </Segment>
+                {isNew ? 
+                    <div>
+                        <Divider hidden/>
+                        <Segment attached textAlign="center">
+                            <Header>{moment(event.date).format('dddd')} {moment(event.date).format('Do')}</Header>
+                        </Segment>
+                    </div> : undefined
+                }
                 <Segment attached>
                     <Grid verticalAlign="middle">
                         <Grid.Row textAlign="center">
