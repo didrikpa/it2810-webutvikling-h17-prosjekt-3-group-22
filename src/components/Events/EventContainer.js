@@ -13,7 +13,8 @@ export default class EventContainer extends Component {
         super(props)
 
         this.state = {
-            events: []
+            events: [],
+            month: moment()
         }
     }
 
@@ -21,6 +22,18 @@ export default class EventContainer extends Component {
         let localEvents = JSON.parse(localStorage.getItem('events'))
         this.setState({
             events: localEvents || []
+        })
+    }
+
+    decrementMonth = () => {
+        this.setState({
+            month: this.state.month.subtract(1, 'month')
+        })
+    }
+
+    incrementMonth = () => {
+        this.setState({
+            month: this.state.month.add(1, 'month')
         })
     }
 
@@ -64,9 +77,9 @@ export default class EventContainer extends Component {
     }
 
     render () {
-        const { events, event } = this.state
+        const { events, month } = this.state
         const { now } = this.props
-        const sortedEvents = events.sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()}) 
+        let sortedEvents = events.filter((event) => moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')).sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()}) 
         return (
             <div>
                 <Navbar/>
@@ -74,13 +87,13 @@ export default class EventContainer extends Component {
                 <Container text textAlign='center'>
                     <Grid>
                         <Grid.Column width={3}>
-                            <Button content='Last' icon='left arrow' labelPosition='left'/>
+                            <Button content='Last' icon='left arrow' labelPosition='left' onClick={this.decrementMonth}/>
                         </Grid.Column>
                         <Grid.Column width={10}>
-                            <Header as='h1' >{moment(now).format('MMMM')}</Header>
+                            <Header as='h1' >{month.format('MMMM')}</Header>
                         </Grid.Column>
                         <Grid.Column width={3}>
-                            <Button content='Next' icon='right arrow' labelPosition='right'/>
+                            <Button content='Next' icon='right arrow' labelPosition='right' onClick={this.incrementMonth}/>
                         </Grid.Column>
                     </Grid>
                     <Divider hidden/>
