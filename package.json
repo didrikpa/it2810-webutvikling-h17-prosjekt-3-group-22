@@ -1,11 +1,14 @@
 {
   "name": "it2810-g22-p3",
   "version": "0.0.1",
-  "description": "PIM",
+  "description": "PIMP",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "prod": "cd dist && python3 -m http.server 8083",
+    "build": "webpack",
+    "build:prod": "webpack --config webpack.config.production.js && cp ./index.prod.html ./dist/index.html"
   },
   "repository": {
     "type": "git",
@@ -42,12 +45,14 @@
     "material-ui": "^0.19.3",
     "moment": "^2.19.0",
     "moment-timezone": "^0.5.13",
+    "ncp": "^2.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-moment": "^0.6.5",
     "react-router-dom": "^4.2.2",
     "semantic-ui-react": "^0.74.2",
     "style-loader": "^0.19.0",
-    "ui": "^0.2.4"
+    "ui": "^0.2.4",
+    "webpack-merge": "^4.1.0"
   }
 }
