@@ -6,7 +6,7 @@ import Event from './Event'
 import CreateEvent from './CreateEvent'
 import EditModal from './EditModal'
 import Navbar from '../Navbar'
-import Footer from "../Footer";
+import Footer from "../Footer"
 
 export default class EventContainer extends Component {
     constructor(props) {
@@ -69,6 +69,7 @@ export default class EventContainer extends Component {
     render () {
         const { events, event } = this.state
         const { now } = this.props
+        const sortedEvents = events.sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()}) 
         return (
             <div>
                 <Navbar/>
@@ -88,17 +89,25 @@ export default class EventContainer extends Component {
                     <Divider hidden/>
                     <CreateEvent updateEvent={this.updateEvent}/>
                     <div>
-                    {events.sort((b,a) => {
-                      return moment(b.date).unix() - moment(a.date).unix()}).map((event) =>
-                      <Event
-                          key={event.createdAt}
-                          event={event}
-                          deleteItem={this.deleteItem}
-                          updateEvent={this.updateEvent}/>)}
+                        {sortedEvents.map((event, index) => {
+                            let n = true
+                            if (index > 0) {
+                                n = moment(event.date).format('YYYY-MM-DD') !== moment(sortedEvents[index-1].date).format('YYYY-MM-DD')
+                            }
+                            return (
+                                <Event
+                                    key={event.createdAt}
+                                    event={event}
+                                    deleteItem={this.deleteItem}
+                                    updateEvent={this.updateEvent}
+                                    isNew={n}
+                                />
+                            )
+                        })}
                     </div>
                     <Divider hidden/>
                 </Container>
-            <Footer/>
+                <Footer/>
             </div>
         )
     }
