@@ -35,7 +35,7 @@ export default class NewNoteModal extends Component{
   handleButtonSaveClick = () => {
     const { title, content } = this.state
 
-    if((title.length !== 0) && (content.length !== 0)){
+    //if((title.length !== 0) && (content.length !== 0)){
       this.props.onButtonSaveClick(title, content)
       this.setState({
         title: '',
@@ -43,17 +43,17 @@ export default class NewNoteModal extends Component{
       })
 
       this.props.onClose()
-    }
+    //}
 
 
-    if(title.length === 0){
+    /*if(title.length === 0){
       this.toggleErrorTitleInput()
       setTimeout(this.toggleErrorTitleInput,3000)
     }
     if(content.length === 0){
       this.toggleErrorContentInput()
       setTimeout(this.toggleErrorContentInput,3000)
-    }
+    }*/
 
   }
 
