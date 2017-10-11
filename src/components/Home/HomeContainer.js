@@ -4,10 +4,19 @@ import { Grid, Header, Divider, Container } from 'semantic-ui-react'
 import Navbar from '../Navbar'
 import Footer from '../Footer';
 
+const preStyle = {
+    backgroundColor: "#eee",
+    border: "0.1rem",
+    solid: "#999",
+    display: "flex",
+    padding: "1rem"
+}
+
 class HomeContainer extends Component {
     constructor(props) {
         super(props)
     }
+
 
     render () {
         return (
@@ -23,29 +32,41 @@ class HomeContainer extends Component {
                     <Header as='h3'>
                         Want to run it for yourself? Our code is avaible on Github!
                     </Header>
-                    <p># To run it you need to frist install nodejs to your system, we use version 8.6.</p>
-                    <p># Then you need to clone our repository</p>
+                    <p>To run it you need to first install nodejs to your system, we use version 8.6.</p>
+                    <p>Then you need to clone our repository</p>
 
-                    <p>git clone https://github.com/IT2810/it2810-webutvikling-h17-prosjekt-3-group-22.git</p>
+                    <pre><code style={preStyle}>
+                        git clone https://github.com/IT2810/<br></br>
+                        it2810-webutvikling-h17-prosjekt-3-group-22.git
+                    </code></pre>
 
-                    <p># Enter the project directory</p>
+                    <p>Enter the project directory</p>
 
-                    <p>cd it2810-webutvikling-h17-prosjekt-3-group-22</p>
+                        <pre><code style={preStyle}>
+                            cd it2810-webutvikling-h17-prosjekt-3-group-22
+                        </code></pre>
 
-                    <p># install webpack and webpack-dev-server globally on your system</p>
-                    <p># Note that you may need to use 'sudo' on *NIX systems, depending on your configuration</p>
+                    <p>install webpack and webpack-dev-server globally on your system</p>
+                    <p>Note that you may need to use <code>sudo</code> on *NIX systems, depending on your configuration</p>
 
-                    <p>npm install webpack webpack-dev-server -g</p>
+                    <pre><code style={preStyle}>
+                        npm install webpack webpack-dev-server -g
+                    </code></pre>
 
-                    <p># Install projec dependencies locally to the project</p>
+                    <p>Install project dependencies locally to the project</p>
 
-                    <p>npm install</p>
+                    <pre><code style={preStyle}>
+                        npm install
+                    </code></pre>
 
-                    <p># Run the project</p>
+                    <p>Run the project</p>
 
-                    <p>npm start</p>
+                    <pre><code style={preStyle}>
+                        npm start
+                    </code></pre>
 
-                    <p># The website will be available locally on your machine at 'localhost:8000'</p>
+                    <p>The website will be available locally on your machine at <code>localhost:8000</code>.</p>
+                    <br/>
                 </Container>
                 <Footer/>
             </div>
