@@ -36,7 +36,7 @@ export default class NewNoteModal extends Component{
     const { title, content } = this.state
 
     if((title.length !== 0) && (content.length !== 0)){
-      this.props.onButtonSaveClick(title, conétent)
+      this.props.onButtonSaveClick(title, content)
       this.setState({
         title: '',
         content: ''
