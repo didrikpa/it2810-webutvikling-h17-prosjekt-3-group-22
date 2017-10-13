@@ -1,5 +1,58 @@
+# OSX
+#
+.DS_Store
+
+# Xcode_react_native
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+
+# Android/IntelliJ_react_native
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+
+# node.js_react_native
+#
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# BUCK_react_native
+buck-out/
+\.buckd/
+*.keystore
+
+# fastlane_react_native
+#
+
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+
+#WEB
+
 *node_modules
 *dist/*
 *web/dist/*
 .idea/
 package-lock.json
+
