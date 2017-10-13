@@ -30,4 +30,4 @@ With this application you can create and store your todos, notes and events loca
 
 ##### The website will be available locally on your machine at `localhost:8000`.
 
-[logo]: https://github.com/IT2810/it2810-webutvikling-h17-prosjekt-3-group-22/blob/readmefix/react-opti.png "Source: https://moduscreate.com/wp-content/uploads/2014/03/react-opti.png"
+[logo]: https://raw.githubusercontent.com/IT2810/it2810-webutvikling-h17-prosjekt-3-group-22/readmefix/react-opti.png "Source: https://moduscreate.com/wp-content/uploads/2014/03/react-opti.png"
