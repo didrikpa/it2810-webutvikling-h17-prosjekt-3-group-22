@@ -1,4 +1,5 @@
 *node_modules
 *dist/*
+*web/dist/*
 .idea/
 package-lock.json
