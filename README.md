@@ -11,7 +11,7 @@ With this application you can create and store your todos, notes and events loca
 3. Enter the project directory:  
  `cd it2810-webutvikling-h17-prosjekt-3-group-22`
 
-4. Install `webpack` and `webpack-dev-server` globally on your system.
+4. Install webpack and webpack-dev-server globally on your system.
  Note that you may need to use `sudo` on *NIX systems, depending on your configuration,  
  `npm install webpack webpack-dev-server -g`
 
