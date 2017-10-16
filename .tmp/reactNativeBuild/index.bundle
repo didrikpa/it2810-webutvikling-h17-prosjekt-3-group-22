@@ -94761,118 +94761,133 @@ var Todo = _wrapComponent('Todo')(function (_Component) {
                         }
                     },
                     _react3.default.createElement(
-                        _nativeBase.Text,
+                        _reactNativeEasyGrid.Grid,
                         {
                             __source: {
                                 fileName: _jsxFileName,
                                 lineNumber: 50
                             }
                         },
-                        ' ',
-                        todo.text,
-                        ' '
-                    ),
-                    _react3.default.createElement(
-                        _reactNativeEasyGrid.Grid,
-                        {
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 51
-                            }
-                        },
                         _react3.default.createElement(
                             _reactNativeEasyGrid.Col,
-                            { style: { height: 50 }, __source: {
+                            { size: 15, style: { height: 50 }, __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 51
+                                }
+                            },
+                            _react3.default.createElement(_nativeBase.CheckBox, { onPress: this.handleCheckBoxClick, checked: todo.checked, __source: {
                                     fileName: _jsxFileName,
                                     lineNumber: 52
                                 }
-                            },
-                            _react3.default.createElement(
-                                _nativeBase.Item,
-                                {
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 53
-                                    }
-                                },
-                                _react3.default.createElement(_nativeBase.Icon, { name: todo.isStar ? 'md-star' : 'star', color: 'yellow', onPress: this.markAsFavorite, __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 54
-                                    }
-                                })
-                            )
+                            })
                         ),
                         _react3.default.createElement(
                             _reactNativeEasyGrid.Col,
-                            { style: { height: 50 }, __source: {
+                            { size: 85, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 57
+                                    lineNumber: 54
                                 }
                             },
                             _react3.default.createElement(
-                                _nativeBase.Text,
+                                _reactNativeEasyGrid.Row,
+                                {
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 55
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _nativeBase.Text,
+                                    { style: { fontSize: 21, paddingBottom: 2 }, __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 56
+                                        }
+                                    },
+                                    todo.text,
+                                    ' '
+                                )
+                            ),
+                            _react3.default.createElement(
+                                _reactNativeEasyGrid.Row,
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
                                         lineNumber: 58
                                     }
                                 },
-                                (0, _moment2.default)(date).calendar()
-                            )
-                        ),
-                        _react3.default.createElement(
-                            _reactNativeEasyGrid.Col,
-                            { style: { height: 50 }, __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 60
-                                }
-                            },
-                            _react3.default.createElement(_nativeBase.CheckBox, { onPress: this.handleCheckBoxClick, checked: todo.checked, __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 61
-                                }
-                            })
-                        ),
-                        _react3.default.createElement(
-                            _reactNativeEasyGrid.Col,
-                            { style: { height: 50 }, __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 63
-                                }
-                            },
-                            _react3.default.createElement(
-                                _nativeBase.Item,
-                                {
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 64
-                                    }
-                                },
                                 _react3.default.createElement(
-                                    _nativeBase.Button,
-                                    { onPress: this.toggleEditModal, success: true, __source: {
+                                    _reactNativeEasyGrid.Col,
+                                    { style: { height: 50 }, __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 65
+                                            lineNumber: 59
                                         }
                                     },
-                                    _react3.default.createElement(_nativeBase.Icon, { name: 'create', __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 66
-                                        }
-                                    })
+                                    _react3.default.createElement(
+                                        _nativeBase.Text,
+                                        {
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 60
+                                            }
+                                        },
+                                        (0, _moment2.default)(date).calendar()
+                                    )
                                 ),
                                 _react3.default.createElement(
-                                    _nativeBase.Button,
-                                    { onPress: this.handleDelete, danger: true, __source: {
+                                    _reactNativeEasyGrid.Col,
+                                    { style: { height: 50 }, __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 68
+                                            lineNumber: 62
                                         }
                                     },
-                                    _react3.default.createElement(_nativeBase.Icon, { name: 'trash', __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 69
-                                        }
-                                    })
+                                    _react3.default.createElement(
+                                        _nativeBase.Item,
+                                        {
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 63
+                                            }
+                                        },
+                                        _react3.default.createElement(
+                                            _nativeBase.Button,
+                                            { onPress: this.toggleEditModal, success: true, __source: {
+                                                    fileName: _jsxFileName,
+                                                    lineNumber: 64
+                                                }
+                                            },
+                                            _react3.default.createElement(_nativeBase.Icon, { name: 'create', __source: {
+                                                    fileName: _jsxFileName,
+                                                    lineNumber: 65
+                                                }
+                                            })
+                                        ),
+                                        _react3.default.createElement(
+                                            _nativeBase.Button,
+                                            { onPress: this.handleDelete, danger: true, __source: {
+                                                    fileName: _jsxFileName,
+                                                    lineNumber: 67
+                                                }
+                                            },
+                                            _react3.default.createElement(_nativeBase.Icon, { name: 'trash', __source: {
+                                                    fileName: _jsxFileName,
+                                                    lineNumber: 68
+                                                }
+                                            })
+                                        ),
+                                        _react3.default.createElement(
+                                            _nativeBase.Button,
+                                            { onPress: this.markAsFavorite, warning: true, __source: {
+                                                    fileName: _jsxFileName,
+                                                    lineNumber: 70
+                                                }
+                                            },
+                                            _react3.default.createElement(_nativeBase.Icon, { name: todo.isStar ? 'md-star' : 'star', __source: {
+                                                    fileName: _jsxFileName,
+                                                    lineNumber: 71
+                                                }
+                                            })
+                                        )
+                                    )
                                 )
                             )
                         )
@@ -94883,7 +94898,7 @@ var Todo = _wrapComponent('Todo')(function (_Component) {
                         handleDelete: this.handleDelete,
                         content: todo.text, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 74
+                            lineNumber: 78
                         }
                     })
                 )

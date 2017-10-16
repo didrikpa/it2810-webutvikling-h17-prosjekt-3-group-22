@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Segment, CheckBox, Button, Icon, Content, Text, ListItem, Item } from 'native-base'
-import { Col, Grid } from 'react-native-easy-grid';
+import { Col, Grid, Row } from 'react-native-easy-grid';
 import moment from 'moment'
 import EditTodoModal from "./EditTodoModal"
 
@@ -47,30 +47,34 @@ class Todo extends Component<{}> {
         return(
             <ListItem>
                     <Content>
-                        <Text> { todo.text } </Text>
                         <Grid>
-                            <Col style={{height: 50}}>
-                                <Item>
-                                    <Icon name={todo.isStar ? 'md-star' : 'star'} color='yellow' onPress={this.markAsFavorite}/>
-                                </Item>
-                            </Col>
-                            <Col style={{height: 50}}>
-                                <Text>{ moment(date).calendar()}</Text>
-                            </Col>
-                            <Col style={{height: 50}}>
+                            <Col size={15} style={{height: 50 }}>
                                 <CheckBox onPress={this.handleCheckBoxClick} checked={todo.checked} />
                             </Col>
-                            <Col style={{height: 50}}>
-                                <Item>
-                                    <Button onPress={this.toggleEditModal} success>
-                                        <Icon name='create'/>
-                                    </Button>
-                                    <Button onPress={this.handleDelete} danger>
-                                        <Icon name='trash'/>
-                                    </Button>
-                                </Item>
+                            <Col size={85}>
+                                <Row>
+                                    <Text style={{fontSize: 21, paddingBottom: 2}}>{ todo.text } </Text>
+                                </Row>
+                                <Row>
+                                    <Col style={{height: 50}}>
+                                        <Text>{ moment(date).calendar()}</Text>
+                                    </Col>
+                                    <Col style={{height: 50}}>
+                                        <Item>
+                                            <Button onPress={this.toggleEditModal} success>
+                                                <Icon name='create'/>
+                                            </Button>
+                                            <Button onPress={this.handleDelete} danger>
+                                                <Icon name='trash'/>
+                                            </Button>
+                                            <Button onPress={this.markAsFavorite} warning>
+                                                <Icon name={todo.isStar ? 'md-star' : 'star'}/>
+                                            </Button>
+                                        </Item>
+                                    </Col>
+                                </Row>
                             </Col>
-                        </Grid>
+                          </Grid>
                         <EditTodoModal toggleModal={this.toggleEditModal}
                                        isOpen={editModalOpen}
                                        onButtonSaveClick={onButtonClick}
