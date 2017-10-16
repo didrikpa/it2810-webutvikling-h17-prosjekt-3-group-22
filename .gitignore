@@ -58,3 +58,5 @@ package-lock.json
 
 
 native/\.eslintrc
+
+\.tmp/reactNativeBuild/
