@@ -24,6 +24,7 @@ export default class TodoContainer extends Component<{}> {
     }
 
     checkBoxClick = (todo) => {
+        console.log("im running")
         const { todos } = this.state
         const i = todos.indexOf(todo)
         if (i >= 0) {
@@ -69,7 +70,7 @@ export default class TodoContainer extends Component<{}> {
         try {
             await AsyncStorage.setItem('todos', JSON.stringify(todos));
         } catch (error) {
-            // Error saving data
+            console.error(error)
         }
     }
 
@@ -82,13 +83,10 @@ export default class TodoContainer extends Component<{}> {
 
     updateToDos = (todo) => {
         const {todos} = this.state;
-        console.log(todos)
-        console.log(todo)
         for(let i = 0; i < todos.length; i++) {
             if(todos[i] === todo){
-                console.log("test")
                 todos.splice(i,1)
-                todo.isStar ? todos.splice(0,0,todo) : todos.push(todo)
+                todo.isStar ? todos.push(todo) : todos.splice(0,0,todo)
                 this.updateState(todos)
                 break
             }

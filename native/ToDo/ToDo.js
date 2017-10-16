@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, CheckBox, Button, Icon, Content, Text, ListItem } from 'native-base'
+import { Segment, CheckBox, Button, Icon, Content, Text, ListItem, Item } from 'native-base'
 import { Col, Grid } from 'react-native-easy-grid';
 import moment from 'moment'
 import EditTodoModal from "./EditTodoModal"
@@ -43,23 +43,35 @@ class Todo extends Component<{}> {
     render() {
         const { date, editModalOpen} = this.state
         const { todo, onButtonClick} = this.props
+        console.log(todo.checked , "this ibe")
         return(
             <ListItem>
                     <Content>
+                        <Text> { todo.text } </Text>
                         <Grid>
                             <Col style={{height: 50}}>
-                                <Text> { todo.text } </Text>
+                                <Item>
+                                    <Icon name={todo.isStar ? 'star' : 'md-star'} color='yellow' onPress={this.markAsFavorite}/>
+                                </Item>
                             </Col>
                             <Col style={{height: 50}}>
                                 <Text>{ moment(date).calendar()}</Text>
                             </Col>
-                            <Col style={{height: 100}}>
-                                <CheckBox onValueChange={this.handleCheckBoxClick} Checked={todo.checked} />
+                            <Col style={{height: 50}}>
+                                <CheckBox onPress={this.handleCheckBoxClick} checked={todo.checked} />
                             </Col>
                             <Col style={{height: 50}}>
-                                <EditTodoModal />
+                                <Item>
+                                    <Button onPress={this.toggleEditModal} color="green">
+                                        <Icon name='create'/>
+                                    </Button>
+                                    <Button onPress={this.handleDelete} color="firebrick">
+                                        <Icon name='trash'/>
+                                    </Button>
+                                </Item>
                             </Col>
                         </Grid>
+                        <EditTodoModal />
                 </Content>
             </ListItem>
         )

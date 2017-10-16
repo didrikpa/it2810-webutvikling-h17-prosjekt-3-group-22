@@ -58065,11 +58065,6 @@ function _wrapComponent(id) {
   };
 }
 
-var instructions = _reactNative.Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu'
-});
-
 var App = _wrapComponent('App')(function (_Component) {
   _inherits(App, _Component);
 
@@ -58087,13 +58082,13 @@ var App = _wrapComponent('App')(function (_Component) {
         {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 20
+            lineNumber: 13
           }
         },
         _react3.default.createElement(_TodoContainer2.default, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 21
+            lineNumber: 14
           }
         })
       );
@@ -94494,6 +94489,7 @@ var TodoContainer = _wrapComponent('TodoContainer')(function (_Component) {
         };
 
         _this.checkBoxClick = function (todo) {
+            console.log("im running");
             var todos = _this.state.todos;
 
             var i = todos.indexOf(todo);
@@ -94548,14 +94544,16 @@ var TodoContainer = _wrapComponent('TodoContainer')(function (_Component) {
                             return regeneratorRuntime.awrap(_reactNative.AsyncStorage.setItem('todos', JSON.stringify(todos)));
 
                         case 4:
-                            _context2.next = 8;
+                            _context2.next = 9;
                             break;
 
                         case 6:
                             _context2.prev = 6;
                             _context2.t0 = _context2['catch'](1);
 
-                        case 8:
+                            console.error(_context2.t0);
+
+                        case 9:
                         case 'end':
                             return _context2.stop();
                     }
@@ -94572,13 +94570,10 @@ var TodoContainer = _wrapComponent('TodoContainer')(function (_Component) {
         _this.updateToDos = function (todo) {
             var todos = _this.state.todos;
 
-            console.log(todos);
-            console.log(todo);
             for (var i = 0; i < todos.length; i++) {
                 if (todos[i] === todo) {
-                    console.log("test");
                     todos.splice(i, 1);
-                    todo.isStar ? todos.splice(0, 0, todo) : todos.push(todo);
+                    todo.isStar ? todos.push(todo) : todos.splice(0, 0, todo);
                     _this.updateState(todos);
                     break;
                 }
@@ -94604,12 +94599,12 @@ var TodoContainer = _wrapComponent('TodoContainer')(function (_Component) {
                 {
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 103
+                        lineNumber: 101
                     }
                 },
                 _react3.default.createElement(_TodoInput2.default, { onButtonClick: this.onButtonClick, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 104
+                        lineNumber: 102
                     }
                 }),
                 _react3.default.createElement(
@@ -94617,7 +94612,7 @@ var TodoContainer = _wrapComponent('TodoContainer')(function (_Component) {
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 105
+                            lineNumber: 103
                         }
                     },
                     todos.map(function (todo) {
@@ -94625,7 +94620,7 @@ var TodoContainer = _wrapComponent('TodoContainer')(function (_Component) {
                             deleteItem: _this3.deleteItem, onButtonClick: _this3.onButtonClick,
                             updateToDos: _this3.updateToDos, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 107
+                                lineNumber: 105
                             }
                         });
                     })
@@ -94748,12 +94743,13 @@ var Todo = _wrapComponent('Todo')(function (_Component) {
                 todo = _props.todo,
                 onButtonClick = _props.onButtonClick;
 
+            console.log(todo.checked, "this ibe");
             return _react3.default.createElement(
                 _nativeBase.ListItem,
                 {
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 47
+                        lineNumber: 48
                     }
                 },
                 _react3.default.createElement(
@@ -94761,42 +94757,56 @@ var Todo = _wrapComponent('Todo')(function (_Component) {
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 48
+                            lineNumber: 49
                         }
                     },
+                    _react3.default.createElement(
+                        _nativeBase.Text,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 50
+                            }
+                        },
+                        ' ',
+                        todo.text,
+                        ' '
+                    ),
                     _react3.default.createElement(
                         _reactNativeEasyGrid.Grid,
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 49
+                                lineNumber: 51
                             }
                         },
                         _react3.default.createElement(
                             _reactNativeEasyGrid.Col,
                             { style: { height: 50 }, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 50
+                                    lineNumber: 52
                                 }
                             },
                             _react3.default.createElement(
-                                _nativeBase.Text,
+                                _nativeBase.Item,
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 51
+                                        lineNumber: 53
                                     }
                                 },
-                                ' ',
-                                todo.text,
-                                ' '
+                                _react3.default.createElement(_nativeBase.Icon, { name: todo.isStar ? 'star' : 'md-star', color: 'yellow', onPress: this.markAsFavorite, __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 54
+                                    }
+                                })
                             )
                         ),
                         _react3.default.createElement(
                             _reactNativeEasyGrid.Col,
                             { style: { height: 50 }, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 53
+                                    lineNumber: 57
                                 }
                             },
                             _react3.default.createElement(
@@ -94804,7 +94814,7 @@ var Todo = _wrapComponent('Todo')(function (_Component) {
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 54
+                                        lineNumber: 58
                                     }
                                 },
                                 (0, _moment2.default)(date).calendar()
@@ -94812,14 +94822,14 @@ var Todo = _wrapComponent('Todo')(function (_Component) {
                         ),
                         _react3.default.createElement(
                             _reactNativeEasyGrid.Col,
-                            { style: { height: 100 }, __source: {
+                            { style: { height: 50 }, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 56
+                                    lineNumber: 60
                                 }
                             },
-                            _react3.default.createElement(_nativeBase.CheckBox, { onValueChange: this.handleCheckBoxClick, Checked: todo.checked, __source: {
+                            _react3.default.createElement(_nativeBase.CheckBox, { onPress: this.handleCheckBoxClick, checked: todo.checked, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 57
+                                    lineNumber: 61
                                 }
                             })
                         ),
@@ -94827,17 +94837,52 @@ var Todo = _wrapComponent('Todo')(function (_Component) {
                             _reactNativeEasyGrid.Col,
                             { style: { height: 50 }, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 59
+                                    lineNumber: 63
                                 }
                             },
-                            _react3.default.createElement(_EditTodoModal2.default, {
-                                __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 60
-                                }
-                            })
+                            _react3.default.createElement(
+                                _nativeBase.Item,
+                                {
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 64
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _nativeBase.Button,
+                                    { onPress: this.toggleEditModal, color: 'green', __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 65
+                                        }
+                                    },
+                                    _react3.default.createElement(_nativeBase.Icon, { name: 'create', __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 66
+                                        }
+                                    })
+                                ),
+                                _react3.default.createElement(
+                                    _nativeBase.Button,
+                                    { onPress: this.handleDelete, color: 'firebrick', __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 68
+                                        }
+                                    },
+                                    _react3.default.createElement(_nativeBase.Icon, { name: 'trash', __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 69
+                                        }
+                                    })
+                                )
+                            )
                         )
-                    )
+                    ),
+                    _react3.default.createElement(_EditTodoModal2.default, {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 74
+                        }
+                    })
                 )
             );
         }
