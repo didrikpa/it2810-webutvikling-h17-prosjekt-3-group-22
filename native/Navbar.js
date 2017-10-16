@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
 
-export default class Navbar extends Component<{}> {
+export default class Navbar extends Component {
   state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -10,7 +10,7 @@ export default class Navbar extends Component<{}> {
     const { activeItem } = this.state
 
     return (
-      <Container>
+      <Content>
         <Tabs initialPage={1} >
             <Tab heading='Home' onClick={this.handleItemClick}>
             </Tab>
@@ -21,7 +21,7 @@ export default class Navbar extends Component<{}> {
             <Tab heading='Events' onClick={this.handleItemClick}>
             </Tab>
         </Tabs>
-      </Container>
+      </Content>
     )
   }
 }

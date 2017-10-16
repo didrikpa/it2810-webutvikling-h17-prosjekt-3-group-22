@@ -5,6 +5,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Navbar from './Navbar'
+import NoteContainer from './components/Notes/NoteContainer'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -13,12 +14,12 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class App extends Component<{}> {
+export default class App extends Component {
   render() {
     return (
-      <Container>
-        <Navbar/>
-      </Container>
+      <Content>
+        <NoteContainer/>
+      </Content>
     );
   }
 }
