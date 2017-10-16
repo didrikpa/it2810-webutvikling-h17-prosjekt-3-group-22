@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
+
+import NavFooter from './NavFooter'
+
 import {
   Platform,
   StyleSheet,
@@ -13,7 +16,7 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class App extends Component<{}> {
+export default class App extends Component {
   render() {
     return (
       <Container>
