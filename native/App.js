@@ -1,22 +1,16 @@
-import React, { Component } from 'react';
-import { Container, Header, Content, Tab, Tabs } from 'native-base';
-import {
-  Platform,
-  StyleSheet,
-} from 'react-native';
-import Navbar from './Navbar'
-import NoteContainer from './components/Notes/NoteContainer'
+import React, { Component } from 'react'
+import { Container } from 'native-base'
 
 import Routes from './Routes'
 
 export default class App extends Component {
-  render() {
-    return (
-      <Content >
-        <NoteContainer/>
-      </Content>
-    );
-  }
+    render() {
+        return (
+            <Container>
+              <Routes/>
+            </Container>
+        )
+    }
 }
 
 
