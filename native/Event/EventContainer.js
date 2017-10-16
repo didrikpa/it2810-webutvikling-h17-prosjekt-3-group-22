@@ -12,7 +12,8 @@ export default class EventContainer extends Component {
 
         this.state = {
             events: [],
-            month: moment()
+            month: moment(),
+            newModalOpen: false,
         }
     }
 
@@ -45,7 +46,8 @@ export default class EventContainer extends Component {
         }
         events.push(event)
         this.updateState({
-            events: events
+            events: events,
+            newModalOpen: false
         })
     }
 
@@ -74,10 +76,16 @@ export default class EventContainer extends Component {
         })
     }
 
+    toggleNewModal = () => {
+      this.setState({
+        newModalOpen: !this.state.newModalOpen
+      })
+    }
+
     render() {
-      const { events, month } = this.state
+      const { events, month, newModalOpen  } = this.state
       const { now } = this.props
-      //let sortedEvents = events.filter((event) => moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')).sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()})
+      let sortedEvents = events.filter((event) => moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')).sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()})
       return (
           <Content>
               <View style={{
@@ -102,8 +110,29 @@ export default class EventContainer extends Component {
                     </Button>
                   </View>
               </View>
-              <CreateEvent updateEvent={this.updateEvent}/>
-              
+              <Button style={{margin: 15}} block info onPress={this.toggleNewModal}>
+                <Text>Add event</Text>
+              </Button>
+              <CreateEvent
+                updateEvent={this.updateEvent}
+                toggleModal={this.toggleNewModal}
+                isOpen={newModalOpen}
+              />
+              {sortedEvents.map((event, index) => {
+                  let n = true
+                  if (index > 0) {
+                      n = moment(event.date).format('YYYY-MM-DD') !== moment(sortedEvents[index-1].date).format('YYYY-MM-DD')
+                  }
+                  return (
+                      <Event
+                          key={event.now}
+                          event={event}
+                          deleteItem={this.deleteItem}
+                          updateEvent={this.updateEvent}
+                          isNew={n}
+                      />
+                  )
+                })}
           </Content>
       )
     }

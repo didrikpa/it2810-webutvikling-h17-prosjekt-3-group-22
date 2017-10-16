@@ -13,7 +13,6 @@ export default class CreateEvent extends Component {
         this.state = {
             text: '',
             where: '',
-            modalVisible: false,
             date: null,
             time: null
         }
@@ -27,8 +26,9 @@ export default class CreateEvent extends Component {
         this.setState({time: time})
     }
 
-    setModalVisible(visible) {
-        this.setState({modalVisible: visible});
+    handleClose = () => {
+        const{toggleModal} = this.props
+        toggleModal()
     }
 
     createEvent = () =>  {
@@ -43,17 +43,17 @@ export default class CreateEvent extends Component {
                time: null
            })
          }
-         this.setState({modalVisible: false});
      }
 
     render() {
         const { text, where, open, date, time } = this.state
+        const { toggleModal, isOpen } = this.props
         return(
           <View style={{margin: 22}}>
             <Modal
                 animationType="slide"
                 transparent={false}
-                visible={this.state.modalVisible}
+                visible={isOpen}
                 onRequestClose={() => {alert("Modal has been closed.")}}
             >
                 <Form>
@@ -63,6 +63,12 @@ export default class CreateEvent extends Component {
                    <Item last>
                      <Input placeholder="Where" onChangeText={(where) => this.setState({where})} value={where} />
                    </Item>
+                   <Item>
+                     <Input placeholder="Date" onChangeText={(date) => this.setState({date})} value={date} />
+                   </Item>
+                   <Item>
+                     <Input placeholder="Time" onChangeText={(time) => this.setState({time})} value={time} />
+                   </Item>
                 </Form>
                 <View style={{
                     flexDirection: 'row',
@@ -70,27 +76,17 @@ export default class CreateEvent extends Component {
                     alignItems: 'center',
                 }}>
                   <View>
-                      <Button info style={{padding: 10, margin: 30}} onPress={() => {
-                          this.createEvent()
-                      }}>
+                      <Button info style={{padding: 10, margin: 30}} onPress={this.createEvent}>
                           <Text>Create</Text>
                       </Button>
                   </View>
                   <View>
-                      <Button danger style={{padding: 10, margin: 30}} onPress={() => {
-                          this.setModalVisible(!this.state.modalVisible)
-                      }}>
+                      <Button danger style={{padding: 10, margin: 30}} onPress={this.handleClose}>
                           <Text>Close</Text>
                       </Button>
                   </View>
                 </View>
             </Modal>
-
-            <Button block info onPress={() => {
-              this.setModalVisible(true)
-            }}>
-              <Text>Add event</Text>
-            </Button>
           </View>
         )
     }
