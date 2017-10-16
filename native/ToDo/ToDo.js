@@ -51,7 +51,7 @@ class Todo extends Component<{}> {
                         <Grid>
                             <Col style={{height: 50}}>
                                 <Item>
-                                    <Icon name={todo.isStar ? 'star' : 'md-star'} color='yellow' onPress={this.markAsFavorite}/>
+                                    <Icon name={todo.isStar ? 'md-star' : 'star'} color='yellow' onPress={this.markAsFavorite}/>
                                 </Item>
                             </Col>
                             <Col style={{height: 50}}>
@@ -62,16 +62,20 @@ class Todo extends Component<{}> {
                             </Col>
                             <Col style={{height: 50}}>
                                 <Item>
-                                    <Button onPress={this.toggleEditModal} color="green">
+                                    <Button onPress={this.toggleEditModal} success>
                                         <Icon name='create'/>
                                     </Button>
-                                    <Button onPress={this.handleDelete} color="firebrick">
+                                    <Button onPress={this.handleDelete} danger>
                                         <Icon name='trash'/>
                                     </Button>
                                 </Item>
                             </Col>
                         </Grid>
-                        <EditTodoModal />
+                        <EditTodoModal toggleModal={this.toggleEditModal}
+                                       isOpen={editModalOpen}
+                                       onButtonSaveClick={onButtonClick}
+                                       handleDelete = {this.handleDelete}
+                                       content = {todo.text} />
                 </Content>
             </ListItem>
         )

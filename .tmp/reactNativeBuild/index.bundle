@@ -94573,7 +94573,7 @@ var TodoContainer = _wrapComponent('TodoContainer')(function (_Component) {
             for (var i = 0; i < todos.length; i++) {
                 if (todos[i] === todo) {
                     todos.splice(i, 1);
-                    todo.isStar ? todos.push(todo) : todos.splice(0, 0, todo);
+                    todo.isStar ? todos.splice(0, 0, todo) : todos.push(todo);
                     _this.updateState(todos);
                     break;
                 }
@@ -94595,7 +94595,7 @@ var TodoContainer = _wrapComponent('TodoContainer')(function (_Component) {
             var todos = this.state.todos;
 
             return _react3.default.createElement(
-                _nativeBase.Container,
+                _nativeBase.Content,
                 {
                     __source: {
                         fileName: _jsxFileName,
@@ -94620,7 +94620,7 @@ var TodoContainer = _wrapComponent('TodoContainer')(function (_Component) {
                             deleteItem: _this3.deleteItem, onButtonClick: _this3.onButtonClick,
                             updateToDos: _this3.updateToDos, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 105
+                                lineNumber: 104
                             }
                         });
                     })
@@ -94795,7 +94795,7 @@ var Todo = _wrapComponent('Todo')(function (_Component) {
                                         lineNumber: 53
                                     }
                                 },
-                                _react3.default.createElement(_nativeBase.Icon, { name: todo.isStar ? 'star' : 'md-star', color: 'yellow', onPress: this.markAsFavorite, __source: {
+                                _react3.default.createElement(_nativeBase.Icon, { name: todo.isStar ? 'md-star' : 'star', color: 'yellow', onPress: this.markAsFavorite, __source: {
                                         fileName: _jsxFileName,
                                         lineNumber: 54
                                     }
@@ -94850,7 +94850,7 @@ var Todo = _wrapComponent('Todo')(function (_Component) {
                                 },
                                 _react3.default.createElement(
                                     _nativeBase.Button,
-                                    { onPress: this.toggleEditModal, color: 'green', __source: {
+                                    { onPress: this.toggleEditModal, success: true, __source: {
                                             fileName: _jsxFileName,
                                             lineNumber: 65
                                         }
@@ -94863,7 +94863,7 @@ var Todo = _wrapComponent('Todo')(function (_Component) {
                                 ),
                                 _react3.default.createElement(
                                     _nativeBase.Button,
-                                    { onPress: this.handleDelete, color: 'firebrick', __source: {
+                                    { onPress: this.handleDelete, danger: true, __source: {
                                             fileName: _jsxFileName,
                                             lineNumber: 68
                                         }
@@ -94877,8 +94877,11 @@ var Todo = _wrapComponent('Todo')(function (_Component) {
                             )
                         )
                     ),
-                    _react3.default.createElement(_EditTodoModal2.default, {
-                        __source: {
+                    _react3.default.createElement(_EditTodoModal2.default, { toggleModal: this.toggleEditModal,
+                        isOpen: editModalOpen,
+                        onButtonSaveClick: onButtonClick,
+                        handleDelete: this.handleDelete,
+                        content: todo.text, __source: {
                             fileName: _jsxFileName,
                             lineNumber: 74
                         }
@@ -98897,6 +98900,8 @@ var _jsxFileName = 'C:\\git\\it2810-webutvikling-h17-prosjekt-3-group-22\\native
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _nativeBase = require(490          ); // 490 = native-base
+
 var _reactNative = require(12            ); // 12 = react-native
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -98929,119 +98934,152 @@ function _wrapComponent(id) {
 var EditTodoModal = _wrapComponent('EditTodoModal')(function (_Component) {
     _inherits(EditTodoModal, _Component);
 
-    function EditTodoModal() {
-        var _ref;
-
-        var _temp, _this, _ret;
-
+    function EditTodoModal(props) {
         _classCallCheck(this, EditTodoModal);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
+        var _this = _possibleConstructorReturn(this, (EditTodoModal.__proto__ || Object.getPrototypeOf(EditTodoModal)).call(this, props));
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditTodoModal.__proto__ || Object.getPrototypeOf(EditTodoModal)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            modalVisible: false
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+        _this.handleButtonSaveClick = function () {
+            var tempContent = _this.state.tempContent;
+
+            if (tempContent !== "") {
+                _this.props.onButtonSaveClick(tempContent);
+                _this.setState({
+                    tempContent: '',
+                    content: ''
+                });
+
+                _this.props.toggleModal();
+            }
+        };
+
+        _this.handleButtonEditClick = function () {
+            var handleDelete = _this.props.handleDelete;
+
+            handleDelete();
+            _this.handleButtonSaveClick();
+        };
+
+        _this.state = {
+            tempContent: _this.props.content,
+            content: _this.props.content,
+            date: _this.props.date
+        };
+        return _this;
     }
 
     _createClass(EditTodoModal, [{
-        key: 'setModalVisible',
-        value: function setModalVisible(visible) {
-            this.setState({ modalVisible: visible });
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
 
+            var _props = this.props,
+                toggleModal = _props.toggleModal,
+                isOpen = _props.isOpen,
+                onButtonSaveClick = _props.onButtonSaveClick,
+                content = _props.content;
+            var tempContent = this.state.tempContent;
+
             return _react3.default.createElement(
-                _reactNative.View,
-                { style: { marginTop: 22 }, __source: {
+                _reactNative.Modal,
+                {
+                    animationType: 'slide',
+                    transparent: false,
+                    visible: isOpen,
+                    onRequestClose: function onRequestClose() {
+                        toggleModal();
+                    },
+                    __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 16
+                        lineNumber: 40
                     }
                 },
                 _react3.default.createElement(
-                    _reactNative.Modal,
-                    {
-                        animationType: 'slide',
-                        transparent: false,
-                        visible: this.state.modalVisible,
-                        onRequestClose: function onRequestClose() {
-                            alert("Modal has been closed.");
-                        },
-                        __source: {
+                    _nativeBase.View,
+                    { style: { flex: 1 }, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 17
+                            lineNumber: 47
                         }
                     },
                     _react3.default.createElement(
-                        _reactNative.View,
-                        { style: { marginTop: 22 }, __source: {
+                        _nativeBase.Content,
+                        {
+                            __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 23
+                                lineNumber: 48
                             }
                         },
                         _react3.default.createElement(
-                            _reactNative.View,
+                            _nativeBase.Form,
                             {
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 24
+                                    lineNumber: 49
                                 }
                             },
                             _react3.default.createElement(
-                                _reactNative.Text,
-                                {
-                                    __source: {
+                                _nativeBase.View,
+                                { style: { flex: 1 }, __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 25
-                                    }
-                                },
-                                'Hello World!'
-                            ),
-                            _react3.default.createElement(
-                                _reactNative.TouchableHighlight,
-                                { onPress: function onPress() {
-                                        _this2.setModalVisible(!_this2.state.modalVisible);
-                                    }, __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 27
+                                        lineNumber: 50
                                     }
                                 },
                                 _react3.default.createElement(
-                                    _reactNative.Text,
-                                    {
-                                        __source: {
+                                    _nativeBase.Item,
+                                    { floatingLabel: true, __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 30
+                                            lineNumber: 51
                                         }
                                     },
-                                    'Hide Modal'
+                                    _react3.default.createElement(
+                                        _nativeBase.Label,
+                                        {
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 52
+                                            }
+                                        },
+                                        'Todo'
+                                    ),
+                                    _react3.default.createElement(_nativeBase.Input, {
+                                        onChangeText: function onChangeText(tempContent) {
+                                            return _this2.setState({ tempContent: tempContent });
+                                        },
+                                        value: tempContent,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 55
+                                        }
+                                    })
                                 )
                             )
                         )
                     )
                 ),
                 _react3.default.createElement(
-                    _reactNative.TouchableHighlight,
-                    { onPress: function onPress() {
-                            _this2.setModalVisible(true);
-                        }, __source: {
+                    _nativeBase.View,
+                    { style: { position: 'absolute', bottom: 0, width: '100%' }, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 36
+                            lineNumber: 65
                         }
                     },
                     _react3.default.createElement(
-                        _reactNative.Text,
-                        {
-                            __source: {
+                        _nativeBase.Button,
+                        { block: true, success: true, onPress: this.handleButtonEditClick, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 39
+                                lineNumber: 66
                             }
                         },
-                        'Show Modal'
+                        _react3.default.createElement(
+                            _nativeBase.Text,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 67
+                                }
+                            },
+                            'Save'
+                        )
                     )
                 )
             );
@@ -99165,7 +99203,7 @@ var TodoInput = _wrapComponent('TodoInput')(function (_Component) {
                     }),
                     _react3.default.createElement(
                         _nativeBase.Button,
-                        { onPress: this.onButtonClick, __source: {
+                        { onPress: this.onButtonClick, success: true, __source: {
                                 fileName: _jsxFileName,
                                 lineNumber: 36
                             }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Divider, List } from 'native-base'
+import { Content, Divider, List } from 'native-base'
 import { AsyncStorage } from 'react-native';
 import Todo from './Todo'
 import TodoInput from './TodoInput'
@@ -86,7 +86,7 @@ export default class TodoContainer extends Component<{}> {
         for(let i = 0; i < todos.length; i++) {
             if(todos[i] === todo){
                 todos.splice(i,1)
-                todo.isStar ? todos.push(todo) : todos.splice(0,0,todo)
+                todo.isStar ? todos.splice(0,0,todo) :  todos.push(todo)
                 this.updateState(todos)
                 break
             }
@@ -98,15 +98,14 @@ export default class TodoContainer extends Component<{}> {
     render() {
         const { todos } = this.state
         return(
-                <Container>
+                <Content>
                     <TodoInput onButtonClick={this.onButtonClick}/>
                     <List>
-
                     { todos.map((todo) => <Todo key={todo.date} todo={todo} checkBoxClick={this.checkBoxClick}
                                                 deleteItem={this.deleteItem} onButtonClick = {this.onButtonClick}
                                                 updateToDos = {this.updateToDos} />) }
                     </List>
-                </Container>
+                </Content>
         )
     }
 }
