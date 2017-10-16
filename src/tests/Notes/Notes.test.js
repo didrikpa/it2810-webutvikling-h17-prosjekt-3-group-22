@@ -1,6 +1,9 @@
 import React from 'react';
 import Notes from '../../components/Notes/Notes';
 import { mount } from 'enzyme';
+import ViewNoteModal from '../../components/Notes/ViewNoteModal'
+import EditNoteModal from '../../components/Notes/EditNoteModal'
+import DeleteModal from '../../components/DeleteModal'
 
 describe("Note", () => {
     let props;
@@ -12,7 +15,7 @@ describe("Note", () => {
             );
         }
         return mountedNote;
-    }
+    };
 
     beforeEach(() => {
         props = {
@@ -30,7 +33,7 @@ describe("Note", () => {
 
     describe("the rendered div", () => {
         it("contains everything else that gets rendered", () => {
-            const divs = lockScreen().find("div");
+            const divs = note().find("div");
             // When using .find, enzyme arranges the nodes in order such
             // that the outermost node is first in the list. So we can
             // use .first() to get the outermost div.
@@ -46,10 +49,6 @@ describe("Note", () => {
 
     it("always renders a `DeleteModal`", () => {
         expect(note().find(DeleteModal).length).toBe(1);
-    });
-
-    it("always renders a `Button`", () => {
-        expect(note().find(Button).length).toBe(1);
     });
 
     it("always renders a `ViewNoteModal`", () => {
