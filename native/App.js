@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Tab, Tabs } from 'native-base';
+import { Container } from 'native-base';
 import {
   Platform,
   StyleSheet,
