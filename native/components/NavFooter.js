@@ -9,10 +9,34 @@ export default class NavFooter extends Component {
 
         const { active } = this.props
 
+        const tabs = [{
+            name: 'Home',
+            icon: 'home',
+            scene: 'home',
+        },
+            {
+                name: 'Todos',
+                icon: 'list',
+                scene: 'todos',
+            },
+            {
+                name: 'Notes',
+                icon: 'clipboard',
+                scene: 'notes',
+            },
+            {
+                name: 'Events',
+                icon: 'calendar',
+                scene: 'events',
+            },
+        ];
+
 
         return (
             <Container>
-                { this.props.children }
+                <Content>
+                    { this.props.children }
+                </Content>
                 <Footer>
                     <FooterTab>
                         <Button

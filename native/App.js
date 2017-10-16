@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import { Container, Header, Content, Tab, Tabs } from 'native-base'
-import { Platform, StyleSheet, View } from 'react-native'
-import { Router } from 'react-native-router-flux'
+import { Container, Header, Content, Tab, Tabs, ScrollView, Footer } from 'native-base'
 
-import NavFooter from './NavFooter'
 import Routes from './Routes'
 
 export default class App extends Component {
