@@ -60,8 +60,7 @@ export default class EditTodoModal extends Component<{}>  {
                             </View>
                         </Form>
                     </Content>
-
-                </View>
+                 </View>
                 <View style={{position:'absolute',bottom:0, width:'100%'}}>
                     <Button block success onPress={this.handleButtonEditClick}>
                         <Text>Save</Text>
@@ -69,6 +68,7 @@ export default class EditTodoModal extends Component<{}>  {
 
                 </View>
             </Modal>
+            
         )
     }
 }
