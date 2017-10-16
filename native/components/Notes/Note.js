@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Button, Left, Body, Right, Icon, Content,View, Tab,Text,Segment, Tabs } from 'native-base';
+import { Button, Left, Body, Right, Icon, Content, View, Text, Segment } from 'native-base';
 
 export default class Note extends Component {
   state = { activeItem: 'home' }

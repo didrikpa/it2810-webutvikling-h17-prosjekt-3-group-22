@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Container,View, Header, Text, Content,Left,Right, Title, Body, Tab,Icon, Button, Tabs } from 'native-base';
-import { Modal, TouchableHighlight } from 'react-native'
-import Note from './Note'
+import { Content } from 'native-base';
 import HeaderMenu from '../HeaderMenu'
+import NewNoteModal from './NewNoteModal'
+import Note from './Note'
 
 export default class NoteContainer extends Component {
-  state = { activeItem: 'home' }
+  state = { activeItem: 'notes' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   constructor(props) {
@@ -41,7 +41,7 @@ export default class NoteContainer extends Component {
   }
 
   render() {
-    const { activeItem } = this.state
+    const { newModalOpen } = this.state
 
     return (
       <Content>
@@ -49,25 +49,11 @@ export default class NoteContainer extends Component {
         toggleModal={this.toggleNewModal}/>
 
 
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.newModalOpen}
-          onRequestClose={() => {alert("Modal has been closed.")}}
-        >
+        <NewNoteModal
+        toggleModal={this.toggleNewModal}
+        isOpen={ newModalOpen }/>
 
-          <View style={{marginTop: 22}}>
-            <View>
-              <Text>Hello World!</Text>
-              <Button transparent
-                      onPress={this.toggleNewModal}>
-                <Icon name='close' />
-              </Button>
-
-            </View>
-          </View>
-
-        </Modal>
+        <Note/>
       </Content>
     )
   }
