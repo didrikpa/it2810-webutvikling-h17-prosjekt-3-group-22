@@ -38,8 +38,6 @@ class Todo extends Component<{}> {
     }
 
 
-
-
     render() {
         const { date, editModalOpen} = this.state
         const { todo, onButtonClick} = this.props
@@ -85,5 +83,5 @@ class Todo extends Component<{}> {
         )
     }
 }
-
+//i need this to work
 export default Todo
