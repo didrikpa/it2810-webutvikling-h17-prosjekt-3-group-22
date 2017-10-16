@@ -3,27 +3,36 @@ import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text } fro
 
 
 export default class NavFooter extends Component {
+
+    state = { selectedTab: "home" }
+
     render() {
+
+        const { selectedTab } = this.state
+
         return (
             <Container>
-                <Header />
-                <Content />
+                <Content/>
                 <Footer>
                     <FooterTab>
-                        <Button vertical>
-                            <Icon name="home" />
+                        <Button vertical active={selectedTab === 'home'}
+                                onPress={() => this.setState({selectedTab: 'home'})}>
+                            <Icon name='home' />
                             <Text>Home</Text>
                         </Button>
-                        <Button vertical>
-                            <Icon name="list" />
+                        <Button vertical active={selectedTab === 'todos'}
+                                onPress={() => this.setState({selectedTab: 'todos'})}>
+                            <Icon name='list' />
                             <Text>Todos</Text>
                         </Button>
-                        <Button vertical active>
-                            <Icon active name="clipboard" />
+                        <Button vertical active={selectedTab === 'notes'}
+                                onPress={() => this.setState({selectedTab: 'notes'})}>
+                            <Icon active name='clipboard' />
                             <Text>Notes</Text>
                         </Button>
-                        <Button vertical>
-                            <Icon name="calendar" />
+                        <Button vertical active={selectedTab === 'events'}
+                                onPress={() => this.setState({selectedTab: 'events'})}>
+                            <Icon name='calendar' />
                             <Text>Events</Text>
                         </Button>
                     </FooterTab>
