@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
-import { Platform, StyleSheet } from 'react-native';
 
-import Navbar from './Navbar'
 import NavFooter from './NavFooter'
-import TitleHeader from './TitleHeader'
+
+import {
+  Platform,
+  StyleSheet,
+} from 'react-native';
+import Routes from './Routes'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -17,8 +20,7 @@ export default class App extends Component {
   render() {
     return (
       <Container>
-        <TitleHeader/>
-        <NavFooter/>
+        <Routes/>
       </Container>
     );
   }
