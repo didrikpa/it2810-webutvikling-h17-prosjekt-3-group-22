@@ -43,4 +43,42 @@ describe("Note", () => {
             expect(wrappingDiv.children()).toEqual(note().children());
         });
     });
+
+    it("always renders a `DeleteModal`", () => {
+        expect(note().find(DeleteModal).length).toBe(1);
+    });
+
+    it("always renders a `Button`", () => {
+        expect(note().find(Button).length).toBe(1);
+    });
+
+    it("always renders a `ViewNoteModal`", () => {
+        expect(note().find(ViewNoteModal).length).toBe(1);
+    });
+
+    it("always renders a `EditNoteModal`", () => {
+        expect(note().find(EditNoteModal).length).toBe(1);
+    });
+
+    describe("when `onButtonSaveClick` is defined", () => {
+        beforeEach(() => {
+            props.onButtonSaveClick = jest.fn();
+        });
+
+        it("sets the rendered `onButtonSaveClick`'s `onButtonSaveClick` prop to the same value as `onButtonSaveClick`", () => {
+            const editNoteModal = note().find(onButtonSaveClick);
+            expect(editNoteModal.props().onButtonSaveClick).toBe(props.onButtonSaveClick);
+        });
+    });
+
+    describe("when `onButtonSaveClick` is undefined", () => {
+        beforeEach(() => {
+            props.onButtonSaveClick = undefined;
+        });
+
+        it("sets the rendered `EditNoteModal`'s `onButtonSaveClick` prop to undefined'", () => {
+            const editNoteModal = note().find(EditNoteModal);
+            expect(editNoteModal.props().onButtonSaveClick).not.toBeDefined();
+        });
+    });
 });
