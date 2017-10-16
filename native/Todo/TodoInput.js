@@ -27,7 +27,6 @@ export default class TodoInput extends Component<{}> {
     }
 
     render() {
-        console.log("test")
         const { text } = this.state
         return(
             <Content>

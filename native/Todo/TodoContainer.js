@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Divider, List } from 'native-base'
-
+import { AsyncStorage } from 'react-native';
 import Todo from './Todo'
 import TodoInput from './TodoInput'
 import moment from "moment";
@@ -16,6 +16,7 @@ export default class TodoContainer extends Component<{}> {
 
     componentWillMount = async () => {
         //localStorage.clear()
+        console.log("test")
         let localTodos = JSON.parse(await AsyncStorage.getItem('todos'))
         this.setState({
             todos: localTodos || []

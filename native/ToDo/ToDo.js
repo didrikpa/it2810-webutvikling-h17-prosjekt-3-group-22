@@ -9,8 +9,6 @@ class Todo extends Component<{}> {
     constructor(props) {
         super(props)
 
-        console.log(props)
-
         this.state = {
             editModalOpen: false,
             date: this.props.todo.date,
