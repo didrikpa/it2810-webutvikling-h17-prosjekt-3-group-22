@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import { Content } from 'native-base';
+import { AsyncStorage } from 'react-native'
+import { Content, List } from 'native-base';
+import moment from 'moment'
+
 import HeaderMenu from '../HeaderMenu'
 import NewNoteModal from './NewNoteModal'
 import Note from './Note'
 
 export default class NoteContainer extends Component {
-  state = { activeItem: 'notes' }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   constructor(props) {
     super(props)
 
@@ -16,6 +17,25 @@ export default class NoteContainer extends Component {
       newModalOpen: false,
 
     }
+  }
+
+  componentWillMount = async () => {
+    //AsyncStorage.clear()
+    let localNotes = JSON.parse(await AsyncStorage.getItem('notes'))
+    this.setState({
+      notes: localNotes || []
+    })
+  }
+
+  updateLocalStorage = async () => {
+    const { notes } = this.state
+    await AsyncStorage.setItem('notes', JSON.stringify(notes))
+  }
+
+  updateState = (state) => {
+    this.setState(state, () => {
+      this.updateLocalStorage()
+    })
   }
 
   toggleNewModal = () => {
@@ -37,11 +57,25 @@ export default class NoteContainer extends Component {
       notes: notes,
       newModalOpen: false
     })
-
   }
 
+  deleteItem = (note) => {
+    let { notes } = this.state
+    const i = notes.indexOf(note)
+    if (i >= 0) {
+      notes.splice(i,1)
+      this.updateState({
+        notes: notes
+      })
+    } else {
+      console.error(`[NotesContainer](checkBoxClick) Couldn't find object at index ${i}`)
+    }
+  }
+
+
+
   render() {
-    const { newModalOpen } = this.state
+    const { newModalOpen, notes } = this.state
 
     return (
       <Content>
@@ -51,9 +85,19 @@ export default class NoteContainer extends Component {
 
         <NewNoteModal
         toggleModal={this.toggleNewModal}
+        onButtonSaveClick={this.onButtonSaveClick}
         isOpen={ newModalOpen }/>
 
-        <Note/>
+       <List>
+        {notes.sort((b,a) => {
+          return moment(a.date).unix() - moment(b.date).unix()}).map((note) =>
+          <Note
+            note={note}
+            key={note.date}
+            deleteItem={this.deleteItem}
+            />)}
+        </List>
+
       </Content>
     )
   }

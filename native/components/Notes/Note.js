@@ -1,13 +1,32 @@
 import React, { Component } from 'react'
-import { Button, Left, Body, Right, Icon, Content, View, Text, Segment } from 'native-base';
+import { Button, Left, Body, Right, Icon, Content, View, Text, ListItem, Item } from 'native-base';
 
 export default class Note extends Component {
-  state = { activeItem: 'home' }
+  constructor(props){
+    super(props)
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+    this.state = {
+      title: this.props.note.title,
+      content: this.props.note.content,
+      date: this.props.note.date
+    }
+
+    handleDelete = () => {
+      const { note, deleteItem } = this.props
+      console.log("fdhsfjsdlfjal")
+      deleteItem(note)
+    }
+
+    test = () => {
+      console.log("BUTTON PRESS")
+    }
+
+  }
   render() {
-    const { activeItem } = this.state
+    const { note } = this.props
+    const { title, content, date } = this.state
+
 
     const segmentStyle = {
       flexDirection:'row',
@@ -18,70 +37,33 @@ export default class Note extends Component {
     }
 
     return (
-      <Content>
-        <Segment>
-          <View style={segmentStyle}>
+        <ListItem>
 
             <Left>
-              <Text>Title</Text>
+              <Text>{note.title}</Text>
             </Left>
 
             <Body>
-              <Text>Date</Text>
+              <Text>{note.content}</Text>
             </Body>
 
             <Right>
-              <Button iconLeft transparent primary>
-                <Icon name='trash'
-                style={{color:'red'}}/>
+              <Button
+                iconLeft
+                primary
+                transparent
+                onPress={this.handleDelete}
+              >
+                <Icon
+                  name='trash'
+                  style={{color:'red'}}
+
+                />
 
               </Button>
             </Right>
-          </View>
-        </Segment>
+        </ListItem>
 
-        <Segment>
-          <View style={segmentStyle}>
-
-            <Left>
-              <Text>Title</Text>
-            </Left>
-
-            <Body>
-            <Text>Date</Text>
-            </Body>
-
-            <Right>
-              <Button iconLeft transparent primary>
-                <Icon name='trash'
-                      style={{color:'red'}}/>
-
-              </Button>
-            </Right>
-          </View>
-        </Segment>
-
-        <Segment>
-          <View style={segmentStyle}>
-
-            <Left>
-              <Text>Title</Text>
-            </Left>
-
-            <Body>
-            <Text>Date</Text>
-            </Body>
-
-            <Right>
-              <Button iconLeft transparent primary>
-                <Icon name='trash'
-                      style={{color:'red'}}/>
-
-              </Button>
-            </Right>
-          </View>
-        </Segment>
-      </Content>
     )
   }
 }

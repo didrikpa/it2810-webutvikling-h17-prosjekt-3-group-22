@@ -9,7 +9,6 @@ export default class DefaultHeader extends Component {
     const { title, toggleModal } = this.props
 
     return (
-      <Content>
         <Header>
           <Left>
             <Button transparent onPress={toggleModal} >
@@ -20,7 +19,6 @@ export default class DefaultHeader extends Component {
           <Title>{title}</Title>
           </Body>
         </Header>
-      </Content>
     )
   }
 }
