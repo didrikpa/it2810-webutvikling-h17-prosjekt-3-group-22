@@ -4,7 +4,7 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
-import Navbar from './Navbar'
+import Routes from './Routes'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -17,7 +17,7 @@ export default class App extends Component<{}> {
   render() {
     return (
       <Container>
-        <Navbar/>
+        <Routes/>
       </Container>
     );
   }
