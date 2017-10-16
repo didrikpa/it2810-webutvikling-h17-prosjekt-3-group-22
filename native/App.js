@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
-import {
-  Platform,
-  StyleSheet,
-} from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
+
 import Navbar from './Navbar'
+import NavFooter from './NavFooter'
+import TitleHeader from './TitleHeader'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -13,11 +13,12 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class App extends Component<{}> {
+export default class App extends Component {
   render() {
     return (
       <Container>
-        <Navbar/>
+        <TitleHeader/>
+        <NavFooter/>
       </Container>
     );
   }
