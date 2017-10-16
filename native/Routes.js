@@ -3,7 +3,7 @@ import { Text, View, Button } from 'react-native'
 import { Router, Stack, Scene, Actions } from 'react-native-router-flux'
 import { Container, Content } from 'native-base'
 import NoteContainer from './components/Notes/NoteContainer'
-
+import TodoContainer from './components/Todo/TodoContainer'
 import NavFooter from './components/NavFooter'
 import HomeComponent from './components/HomeComponent'
 
@@ -35,14 +35,11 @@ export default class Routes extends Component {
 }
 
 const Todos = () => (
-    <Container>
-        <Text>Todos!</Text>
-        <NavFooter active='todos' />
-    </Container>
+    <TodoContainer/>
 )
 
 const Notes = () => (
-<NoteContainer/>
+    <NoteContainer/>
 )
 
 const Events = () => (
