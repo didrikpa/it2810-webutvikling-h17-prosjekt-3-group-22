@@ -7,13 +7,13 @@ import NavFooter from './NavFooter'
 import Routes from './Routes'
 
 export default class App extends Component {
-	render() {
-		return (
+    render() {
+        return (
 			<Container>
-				<Routes/>
-			</Container>
-		)
-	}
+                <Routes/>
+            </Container>
+        )
+    }
 }
 
 
