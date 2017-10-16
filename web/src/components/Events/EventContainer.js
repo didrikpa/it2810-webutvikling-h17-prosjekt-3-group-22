@@ -79,7 +79,7 @@ export default class EventContainer extends Component {
     render () {
         const { events, month } = this.state
         const { now } = this.props
-        let sortedEvents = events.filter((event) => moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')).sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()}) 
+        let sortedEvents = events.filter((event) => moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')).sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()})
         return (
             <div>
                 <Navbar/>
@@ -106,7 +106,7 @@ export default class EventContainer extends Component {
                             }
                             return (
                                 <Event
-                                    key={event.createdAt}
+                                    key={event.now}
                                     event={event}
                                     deleteItem={this.deleteItem}
                                     updateEvent={this.updateEvent}
