@@ -83,5 +83,5 @@ class Todo extends Component<{}> {
         )
     }
 }
-//i need this to work
+
 export default Todo
