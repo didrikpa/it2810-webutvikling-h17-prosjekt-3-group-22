@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, Button } from 'react-native'
 import { Router, Stack, Scene, Actions } from 'react-native-router-flux'
 import { Container, Content } from 'native-base'
+import NoteContainer from './components/Notes/NoteContainer'
 
 import NavFooter from './components/NavFooter'
 import HomeComponent from './components/HomeComponent'
@@ -41,10 +42,7 @@ const Todos = () => (
 )
 
 const Notes = () => (
-    <Container>
-        <Text>Notes!</Text>
-        <NavFooter active='notes' />
-    </Container>
+<NoteContainer/>
 )
 
 const Events = () => (
