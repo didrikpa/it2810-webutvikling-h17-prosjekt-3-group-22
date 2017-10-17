@@ -5,13 +5,18 @@ import ViewNoteModal from '../../components/Notes/ViewNoteModal'
 import EditNoteModal from '../../components/Notes/EditNoteModal'
 import DeleteModal from '../../components/DeleteModal'
 
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
+Enzyme.configure({ adapter: new Adapter() });
+
 describe("Note", () => {
     let props;
     let mountedNote;
     const note = () => {
         if (!mountedNote) {
             mountedNote = mount(
-                <Notes {...props} />
+                <Notes {...props}/>
             );
         }
         return mountedNote;
@@ -19,9 +24,10 @@ describe("Note", () => {
 
     beforeEach(() => {
         props = {
-            note: undefined,
+            title: undefined,
+            content: undefined,
             onButtonSaveClick: undefined,
-
+            deleteItem: undefined,
         };
         mountedNote = undefined;
     });
