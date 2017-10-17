@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import React, {Component} from 'react'
+//import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import { Switch, Route } from 'react-router'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import NotFound from './components/NotFound'
@@ -15,19 +16,15 @@ moment.locale('en-gb');
 
 
 const App = () => (
-    <div>
-        <MuiThemeProvider>
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path='/' component={HomeContainer} />
-                    <Route exact path='/todos' component={TodoContainer} />
-                    <Route exact path='/notes' component={NoteContainer} />
-                    <Route exact path='/events' component={EventContainer} />
-                    <Route component={NotFound} />
-                </Switch>
-            </BrowserRouter>
-        </MuiThemeProvider>
-    </div>
+
+  <Switch>
+    <Route exact path='/' component={HomeContainer}/>
+    <Route exact path='/todos' component={TodoContainer}/>
+    <Route exact path='/notes' component={NoteContainer}/>
+    <Route exact path='/events' component={EventContainer}/>
+    <Route component={NotFound}/>
+  </Switch>
+
 )
 
 export default App

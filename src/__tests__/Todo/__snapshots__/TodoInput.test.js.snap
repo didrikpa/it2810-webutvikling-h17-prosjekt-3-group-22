@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Todo component should render as expected 1`] = `
+<div>
+  <Input
+    action={true}
+    fluid={true}
+    onChange={[Function]}
+    placeholder="Write your Todo..."
+    type="text"
+    value=""
+  >
+    <input />
+    <Button
+      as="button"
+      color="green"
+      icon="plus"
+      onClick={[Function]}
+    />
+  </Input>
+</div>
+`;
