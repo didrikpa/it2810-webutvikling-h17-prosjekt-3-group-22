@@ -5,32 +5,39 @@ import moment from 'moment'
 import EditTodoModal from "./EditTodoModal"
 
 
-class Todo extends Component<{}> {
+export default class Todo extends Component<{}> {
     constructor(props) {
         super(props)
 
+        //sets the state
         this.state = {
+            //Boolean used to open and close modal
             editModalOpen: false,
+            //Sets the date to props date
             date: this.props.todo.date,
         }
     }
 
+    //Handels checkbox click
     handleCheckBoxClick = () => {
         const { todo, checkBoxClick } = this.props
         checkBoxClick(todo)
     }
 
+    //Handles delete button, removes this item
     handleDelete = () => {
         const { todo, deleteItem } = this.props
         deleteItem(todo)
     }
 
-
+    //Toggele the modal window
     toggleEditModal = () => {
         this.setState({
             editModalOpen: !this.state.editModalOpen
         })
     }
+
+    //Sets this todo as a favorite
     markAsFavorite = () => {
         let { todo } = this.props
         todo.isStar = !todo.isStar
@@ -39,9 +46,9 @@ class Todo extends Component<{}> {
 
 
     render() {
+        //defines constants
         const { date, editModalOpen} = this.state
         const { todo, onButtonClick} = this.props
-        console.log(todo.checked , "this ibe")
         return(
             <ListItem style={{backgroundColor: todo.checked ? "#4BB543" : "white" }}>
                     <Content>
@@ -83,5 +90,3 @@ class Todo extends Component<{}> {
         )
     }
 }
-
-export default Todo

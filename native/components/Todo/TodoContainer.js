@@ -9,20 +9,21 @@ export default class TodoContainer extends Component<{}> {
     constructor(props) {
         super(props)
 
+        //Sets the state
         this.state = {
             todos: []
         }
     }
 
+    //Loads content from localStorage
     componentWillMount = async () => {
-        //localStorage.clear()
-        console.log("test")
         let localTodos = JSON.parse(await AsyncStorage.getItem('todos'))
         this.setState({
             todos: localTodos || []
         })
     }
 
+    //Handles the checkbox button in todo
     checkBoxClick = (todo) => {
         console.log("im running")
         const { todos } = this.state
@@ -38,7 +39,8 @@ export default class TodoContainer extends Component<{}> {
         
     }
 
-    onButtonClick = (text) => {
+    //Adds a new todo to the list, and updates localStorage
+    newTodo = (text) => {
         const { todos } = this.state
         let todo = {
             text: text,
@@ -52,6 +54,7 @@ export default class TodoContainer extends Component<{}> {
         })
     }
 
+    //Removes given todo
     deleteItem = (todo) => {
         let { todos } = this.state
         const i = todos.indexOf(todo)
@@ -65,6 +68,7 @@ export default class TodoContainer extends Component<{}> {
         }
     }
 
+    //Updates localStorage
     updateLocalStorage = async () => {
         const { todos } = this.state
         try {
@@ -74,13 +78,14 @@ export default class TodoContainer extends Component<{}> {
         }
     }
 
-
+    //Updates state
     updateState = (state) => {
         this.setState(state, () => {
             this.updateLocalStorage()
         })
     }
 
+    //Updates the todo list for a given todo
     updateToDos = (todo) => {
         const {todos} = this.state;
         for(let i = 0; i < todos.length; i++) {
@@ -91,18 +96,17 @@ export default class TodoContainer extends Component<{}> {
                 break
             }
         }
-        console.log(todos)
     }
 
-
     render() {
+        //define constants
         const { todos } = this.state
         return(
                 <Content>
                     <TodoInput onButtonClick={this.onButtonClick}/>
                     <List>
                     { todos.map((todo) => <Todo key={todo.date} todo={todo} checkBoxClick={this.checkBoxClick}
-                                                deleteItem={this.deleteItem} onButtonClick = {this.onButtonClick}
+                                                deleteItem={this.deleteItem} onButtonClick = {this.newTodo}
                                                 updateToDos = {this.updateToDos} />) }
                     </List>
                 </Content>
