@@ -54,10 +54,10 @@ class Todo extends Component<{}> {
                                     <Text style={{fontSize: 21, paddingBottom: 2}}>{ todo.text } </Text>
                                 </Row>
                                 <Row>
-                                    <Col>
+                                    <Col size={45}>
                                         <Text>{ moment(date).calendar()}</Text>
                                     </Col>
-                                    <Col>
+                                    <Col size={55}>
                                         <Item>
                                             <Button onPress={this.toggleEditModal} success>
                                                 <Icon name='create'/>
