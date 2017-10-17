@@ -7,7 +7,6 @@ import HeaderMenu from '../HeaderMenu'
 import NewNoteModal from './NewNoteModal'
 import FABNewNote from './FABNewNote'
 import Note from './Note'
-import NavFooter from '../NavFooter'
 
 export default class NoteContainer extends Component {
 
