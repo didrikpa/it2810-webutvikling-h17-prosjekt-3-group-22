@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import DatePicker from 'react-native-datepicker'
 import { Modal, Text, View } from 'react-native';
-import { Container, Header, Content, Button, Icon, Item, Input, Form } from 'native-base';
-
+import { Container, Header, Content, Button, Icon, Item, Input, Form, Grid, Col, H3} from 'native-base';
+import DefaultHeader from '../DefaultHeader'
 import moment from 'moment'
 
 export default class CreateEvent extends Component {
@@ -96,6 +96,8 @@ export default class CreateEvent extends Component {
                     }}
                     onDateChange={(date) => {this.setState({date: date})}}
                 />
+                    </Form>
+                </View>
                 <View style={{flex:1}}>
                     <Grid>
                         <Col>
