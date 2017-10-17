@@ -11,11 +11,13 @@ export default class TodoContainer extends Component {
     constructor(props) {
         super(props)
 
+        //init state
         this.state = {
             todos: []
         }
     }
 
+    //loads todo from localStorage
     componentWillMount = () => {
         //localStorage.clear()
         let localTodos = JSON.parse(localStorage.getItem('todos'))
@@ -24,6 +26,7 @@ export default class TodoContainer extends Component {
         })
     }
 
+    //handles checkbox click
     checkBoxClick = (todo) => {
         const { todos } = this.state
         const i = todos.indexOf(todo)
@@ -35,10 +38,11 @@ export default class TodoContainer extends Component {
         } else {
             console.error(`[TodoContainer](checkBoxClick) Couldn't find object at index ${i}`)
         }
-        
+
     }
 
-    onButtonClick = (text) => {
+    //Creates new todo and adds it to array
+    newTodo = (text) => {
         const { todos } = this.state
         let todo = {
             text: text,
@@ -52,6 +56,7 @@ export default class TodoContainer extends Component {
         })
     }
 
+    //removes todo
     deleteItem = (todo) => {
         let { todos } = this.state
         const i = todos.indexOf(todo)
@@ -65,18 +70,20 @@ export default class TodoContainer extends Component {
         }
     }
 
+    //updates localstorage
     updateLocalStorage = () => {
         const { todos } = this.state
         localStorage.setItem('todos', JSON.stringify(todos))
     }
 
-
+    //Updates state
     updateState = (state) => {
         this.setState(state, () => {
             this.updateLocalStorage()
         })
     }
 
+    //Updates the order of the todos
     updateToDos = (todo) => {
         const {todos} = this.state;
         console.log(todos)
@@ -90,11 +97,11 @@ export default class TodoContainer extends Component {
                 break
             }
         }
-        console.log(todos)
     }
 
 
     render() {
+        //define constants
         const { todos } = this.state
         return(
             <div>
@@ -103,7 +110,7 @@ export default class TodoContainer extends Component {
                     <Divider hidden />
                     <TodoInput onButtonClick={this.onButtonClick}/>
                     <Divider hidden/>
-                    { todos.map((todo) => <Todo key={todo.date} todo={todo} checkBoxClick={this.checkBoxClick} deleteItem={this.deleteItem} onButtonClick = {this.onButtonClick}  updateToDos = {this.updateToDos} />) }
+                    { todos.map((todo) => <Todo key={todo.date} todo={todo} checkBoxClick={this.checkBoxClick} deleteItem={this.deleteItem} onButtonClick = {this.newTodo}  updateToDos = {this.updateToDos} />) }
                 </Container>
                 <Divider hidden />
                 <Footer/>
