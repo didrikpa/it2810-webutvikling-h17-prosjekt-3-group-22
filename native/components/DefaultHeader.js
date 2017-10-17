@@ -9,7 +9,7 @@ export default class DefaultHeader extends Component {
     const { title, toggleModal } = this.props
 
     return (
-        <Header>
+        <Header style={{backgroundColor:'#1b1c1d'}}>
           <Left>
             <Button transparent onPress={toggleModal} >
               <Icon name='close' />

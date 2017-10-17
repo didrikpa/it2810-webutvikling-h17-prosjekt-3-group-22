@@ -5,7 +5,7 @@ import Todo from './Todo'
 import TodoInput from './TodoInput'
 import moment from "moment";
 
-export default class TodoContainer extends Component<{}> {
+export default class TodoContainer extends Component {
     constructor(props) {
         super(props)
 

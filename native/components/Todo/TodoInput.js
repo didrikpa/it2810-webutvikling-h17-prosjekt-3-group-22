@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Input, Button, Item, Content, Text } from 'native-base'
 import moment from 'moment'
 
-export default class TodoInput extends Component<{}> {
+export default class TodoInput extends Component {
     constructor(props) {
         super(props)
 

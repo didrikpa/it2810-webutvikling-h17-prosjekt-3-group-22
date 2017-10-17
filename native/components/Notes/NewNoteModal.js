@@ -11,7 +11,6 @@ export default class NewNoteModal extends Component {
     this.state = {
       title: '',
       content: '',
-      notes: [],
 
     }
   }

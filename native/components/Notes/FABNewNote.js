@@ -26,7 +26,7 @@ export default class Note extends Component {
             active={this.state.active}
             direction="up"
             containerStyle={{ }}
-            style={{ backgroundColor: '#5cb85c' }}
+            style={{ backgroundColor: '#21BA45' }}
             position="bottomRight"
             onPress={this.handleNewNote}>
             <Icon name="add"/>
