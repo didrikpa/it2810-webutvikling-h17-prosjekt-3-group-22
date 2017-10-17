@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, CheckBox, Button, Icon, Content, Text, ListItem, Item } from 'native-base'
+import { Segment, CheckBox, Button, Icon, Content, Text, ListItem, Item, Container } from 'native-base'
 import { Col, Grid, Row } from 'react-native-easy-grid';
 import moment from 'moment'
 import EditTodoModal from "./EditTodoModal"
@@ -43,10 +43,10 @@ class Todo extends Component<{}> {
         const { todo, onButtonClick} = this.props
         console.log(todo.checked , "this ibe")
         return(
-            <ListItem>
+            <ListItem style={{backgroundColor: todo.checked ? "#4BB543" : "white" }}>
                     <Content>
                         <Grid>
-                            <Col size={15} style={{height: 50 }}>
+                            <Col size={15}>
                                 <CheckBox onPress={this.handleCheckBoxClick} checked={todo.checked} />
                             </Col>
                             <Col size={85}>
@@ -54,10 +54,10 @@ class Todo extends Component<{}> {
                                     <Text style={{fontSize: 21, paddingBottom: 2}}>{ todo.text } </Text>
                                 </Row>
                                 <Row>
-                                    <Col style={{height: 50}}>
+                                    <Col>
                                         <Text>{ moment(date).calendar()}</Text>
                                     </Col>
-                                    <Col style={{height: 50}}>
+                                    <Col>
                                         <Item>
                                             <Button onPress={this.toggleEditModal} success>
                                                 <Icon name='create'/>

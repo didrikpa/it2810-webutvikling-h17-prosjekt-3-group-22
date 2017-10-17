@@ -29,7 +29,7 @@ export default class TodoInput extends Component<{}> {
     render() {
         const { text } = this.state
         return(
-            <Content>
+            <Content style={{padding:5}}>
                 <Item regular>
                     <Input placeholder='Write your Todo...' onChangeText={(text) => this.setState({text: text})}
                            value={text}/>

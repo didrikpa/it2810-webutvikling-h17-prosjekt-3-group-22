@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Label, Item, Input, Text, Content, Title ,Icon , Button, Form } from 'native-base';
+import { View, Label, Item, Input, Text, Content, Title ,Icon , Button, Form, H1 } from 'native-base';
 import { Modal } from 'react-native'
+import DefaultHeader from '../DefaultHeader'
 
 export default class EditTodoModal extends Component<{}>  {
 
@@ -10,7 +11,6 @@ export default class EditTodoModal extends Component<{}>  {
         this.state = {
             tempContent: this.props.content,
             content: this.props.content,
-            date: this.props.date
         }
     }
 
@@ -43,18 +43,17 @@ export default class EditTodoModal extends Component<{}>  {
                 visible={isOpen}
                 onRequestClose={() => {toggleModal()}}
             >
-
+                <DefaultHeader title={"Edit Todo"} toggleModal={toggleModal}/>
                 <View style={{flex:1}}>
-                    <Content >
+                    <Content>
                         <Form>
                             <View style={{flex:1}}>
-                                <Item floatingLabel>
-                                    <Label>
-                                        Todo
-                                    </Label>
+                                <H1>Write your todo here:</H1>
+                                <Item>
                                     <Input
                                         onChangeText={(tempContent) => this.setState({tempContent})}
                                         value={tempContent}
+                                        placeholde="Write your todo here"
                                     />
                                 </Item>
                             </View>
