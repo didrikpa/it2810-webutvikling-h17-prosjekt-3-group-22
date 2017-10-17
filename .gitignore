@@ -56,3 +56,7 @@ buck-out/
 .idea/
 package-lock.json
 
+
+native/\.eslintrc
+
+\.tmp/reactNativeBuild/
