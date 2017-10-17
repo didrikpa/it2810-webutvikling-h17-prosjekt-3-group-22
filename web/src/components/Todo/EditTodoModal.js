@@ -29,7 +29,7 @@ export default class EditToDoModal extends Component{
     }
 
     //Saves the changes made, on save button click
-    handleButtonSaveClick = () => {the
+    handleButtonSaveClick = () => {
         const { tempContent } = this.state
         if(tempContent !== "") {
             this.props.onButtonSaveClick(tempContent)

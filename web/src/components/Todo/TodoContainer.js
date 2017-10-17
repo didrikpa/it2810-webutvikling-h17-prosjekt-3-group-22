@@ -108,7 +108,7 @@ export default class TodoContainer extends Component {
                 <Navbar />
                 <Container text>
                     <Divider hidden />
-                    <TodoInput onButtonClick={this.onButtonClick}/>
+                    <TodoInput onButtonClick={this.newTodo}/>
                     <Divider hidden/>
                     { todos.map((todo) => <Todo key={todo.date} todo={todo} checkBoxClick={this.checkBoxClick} deleteItem={this.deleteItem} onButtonClick = {this.newTodo}  updateToDos = {this.updateToDos} />) }
                 </Container>
