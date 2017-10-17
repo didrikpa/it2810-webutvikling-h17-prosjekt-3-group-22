@@ -38,6 +38,12 @@ export default class EditNoteModal extends Component {
         })
     }
 
+    /**
+     * Handler for save button click.
+     * Checks if input fields are empty, if they are, give feedback to user (red input fields)
+     * Saves the given information from user as a new note and reset input fields
+     * Close modal
+     */
     handleButtonSaveClick = () => {
         const { tempTitle, tempContent } = this.state
 
@@ -66,6 +72,9 @@ export default class EditNoteModal extends Component {
         }
     }
 
+    /**
+     * Toggles title input error value on/off
+     */
     toggleErrorTitleInput = () => {
         const { titleError } = this.state
         this.setState({
@@ -73,6 +82,9 @@ export default class EditNoteModal extends Component {
         })
     }
 
+    /**
+     * Toggles title input error value on/off
+     */
     toggleErrorContentInput = () => {
         const { contentError } = this.state
         this.setState({
@@ -80,6 +92,11 @@ export default class EditNoteModal extends Component {
         })
     }
 
+    /**
+     * Handle for close button click
+     * Reset input fields
+     * Closes modal
+     */
     handleButtonClose = () => {
         const { title, content } = this.state
         this.setState({
@@ -90,6 +107,9 @@ export default class EditNoteModal extends Component {
     }
 
     render () {
+        /**
+         * Render nothing if model isOpen is false
+         */
         const { isOpen } = this.props
         const { tempTitle, tempContent, contentError, titleError, date } = this.state
 
@@ -97,56 +117,57 @@ export default class EditNoteModal extends Component {
             return null
         }
         return (
-      <Modal
-        open={isOpen}
-        size='tiny'
-        closeOnDimmerClick>
-        <Modal.Header>
+            <Modal
+                open={isOpen}
+                size='tiny'
+                closeOnDimmerClick>
+                <Modal.Header>
 
-          <Grid width={16} >
-            <Grid.Column width={10}>
-              <Input
-                error={titleError}
-                onChange={ this.handleTitleInput }
-                value={ tempTitle }
-                placeholder='Title ...'/>
-            </Grid.Column>
-            <Grid.Column width={6} textAlign="right" verticalAlign="middle" style={dateStyle}>
-              { date }
-            </Grid.Column>
+                    <Grid width={16} >
+                        <Grid.Column width={10}>
+                            <Input
+                                error={titleError}
+                                onChange={ this.handleTitleInput }
+                                value={ tempTitle }
+                                placeholder='Title ...'/>
+                        </Grid.Column>
+                        <Grid.Column width={6} textAlign="right" verticalAlign="middle" style={dateStyle}>
+                            { date }
 
-          </Grid>
+                        </Grid.Column>
 
-        </Modal.Header>
-        <Modal.Content scrolling>
+                    </Grid>
 
-          <Modal.Description>
-            <Form>
-            <Form.TextArea
-              error={contentError}
-              onChange={ this.handleContentInput }
-              value={ tempContent } size='small'
-              placeholder='Note text ...'
-              autoHeight={true}/>
-            </Form>
-          </Modal.Description>
+                </Modal.Header>
+                <Modal.Content scrolling>
 
-        </Modal.Content>
-        <Modal.Actions>
-          <Button.Group>
-          <Button
-            onClick={ this.handleButtonSaveClick }
-            color='green'>
-            Save
-          </Button>
-          <Button
-            onClick={this.handleButtonClose}
-            color='grey'>
-            Close
-          </Button>
-          </Button.Group>
-        </Modal.Actions>
-      </Modal>
+                    <Modal.Description>
+                        <Form>
+                            <Form.TextArea
+                                error={contentError}
+                                onChange={ this.handleContentInput }
+                                value={ tempContent } size='small'
+                                placeholder='Note text ...'
+                                autoHeight={true}/>
+                        </Form>
+                    </Modal.Description>
+
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button.Group>
+                        <Button
+                            onClick={ this.handleButtonSaveClick }
+                            color='green'>
+                            Save
+                        </Button>
+                        <Button
+                            onClick={this.handleButtonClose}
+                            color='grey'>
+                            Close
+                        </Button>
+                    </Button.Group>
+                </Modal.Actions>
+            </Modal>
         )
     }
 }

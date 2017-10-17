@@ -25,23 +25,35 @@ export default class Note extends Component {
         }
     }
 
+    /**
+    * Delete this note from local storage
+    */
     handleDelete = () => {
         const { note, deleteItem } = this.props
         deleteItem(note)
     }
 
+    /**
+    * Toggles view modal on/off
+    */
     toggleViewModal = () => {
         this.setState({
             viewModalOpen: !this.state.viewModalOpen
         })
     }
 
+  /**
+   * Toggles edit modal on/off
+   */
     toggleEditModal = () => {
         this.setState({
             editModalOpen: !this.state.editModalOpen
         })
     }
 
+  /**
+   * Toggles view modal on/off
+   */
     toggleDeleteModal = () => {
         this.setState({
             deleteModalOpen: !this.state.deleteModalOpen
@@ -54,59 +66,56 @@ export default class Note extends Component {
 
         return (
 
-    <div>
-      <Segment>
-        <Grid
-          columns='equal'
-          width={16}
-          verticalAlign="middle">
+            <div>
+                <Segment>
+                    <Grid
+                        columns='equal'
+                        width={16}
+                        verticalAlign="middle">
 
-          <Grid.Column width={9} onClick={this.toggleViewModal}>
-            {note.title}
-          </Grid.Column>
+                        <Grid.Column width={9} onClick={this.toggleViewModal}>
+                            {note.title}
+                            </Grid.Column>
 
-          <Grid.Column onClick={this.toggleViewModal} style={dateStyle}>
-            {moment(date).calendar()}
-          </Grid.Column>
+                        <Grid.Column onClick={this.toggleViewModal} style={dateStyle}>
+                            {moment(date).calendar()}
+                            </Grid.Column>
 
-          <Grid.Column>
-            <Button.Group floated='right'>
+                        <Grid.Column>
+                            <Button.Group floated='right'>
 
-              <DeleteModal
-              handleDelete = {this.handleDelete}
-              title={'Note'}/>
+                                <DeleteModal
+                                    handleDelete = {this.handleDelete}
+                                    title={'Note'}/>
 
-              <Button
-                color='grey'
-                icon='edit'
-                onClick={this.toggleEditModal}/>
+                                <Button
+                                    color='grey'
+                                    icon='edit'
+                                    onClick={this.toggleEditModal}/>
 
-            </Button.Group>
-          </Grid.Column>
+                            </Button.Group>
+                        </Grid.Column>
 
-        </Grid>
-      </Segment>
+                    </Grid>
+                </Segment>
 
-      <ViewNoteModal
-        isOpen={ viewModalOpen}
-        onClose={this.toggleViewModal}
-        title={title}
-        content={content}
-        date={moment(date).format('H:mm, MMM Do YYYY')}
+                <ViewNoteModal
+                    isOpen={ viewModalOpen}
+                    onClose={this.toggleViewModal}
+                    title={title}
+                    content={content}
+                    date={moment(date).format('H:mm, MMM Do YYYY')}/>
 
-      />
-
-      <EditNoteModal
-      isOpen={editModalOpen}
-      onClose={this.toggleEditModal}
-      onButtonSaveClick={onButtonSaveClick}
-      handleDelete={this.handleDelete}
-      title={title}
-      content={content}
-      date={moment(date).format('H:mm, MMM Do YYYY')}
-      />
-
-    </div>
+                <EditNoteModal
+                    isOpen={editModalOpen}
+                    onClose={this.toggleEditModal}
+                    onButtonSaveClick={onButtonSaveClick}
+                    handleDelete={this.handleDelete}
+                    title={title}
+                    content={content}
+                    date={moment(date).format('H:mm, MMM Do YYYY')}
+                />
+            </div>
         )
     }
 }

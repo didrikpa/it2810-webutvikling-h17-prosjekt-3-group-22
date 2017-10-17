@@ -30,6 +30,12 @@ export default class NewNoteModal extends Component {
         })
     }
 
+    /**
+     * Handler for save button click.
+     * Checks if input fields are empty, if they are, give feedback to user (red input fields)
+     * Saves the given information from user as a new note and reset input fields
+     * Close modal
+     */
     handleButtonSaveClick = () => {
         const { title, content } = this.state
 
@@ -53,6 +59,9 @@ export default class NewNoteModal extends Component {
         }
     }
 
+    /**
+     * Toggles title input error value on/off
+     */
     toggleErrorTitleInput = () => {
         const { titleError } = this.state
         this.setState({
@@ -60,6 +69,9 @@ export default class NewNoteModal extends Component {
         })
     }
 
+    /**
+     * Toggles content input error value on/off
+     */
     toggleErrorContentInput = () => {
         const { contentError } = this.state
         this.setState({
@@ -67,6 +79,11 @@ export default class NewNoteModal extends Component {
         })
     }
 
+    /**
+     * Handle for close button click
+     * Reset input fields
+     * Closes modal
+     */
     handleButtonClose = () => {
         this.setState({
             title: '',
@@ -76,6 +93,9 @@ export default class NewNoteModal extends Component {
     }
 
     render () {
+        /**
+         * Render nothing if model isOpen is false
+         */
         const { isOpen } = this.props
         const { title, content, titleError, contentError } = this.state
 
@@ -83,52 +103,51 @@ export default class NewNoteModal extends Component {
             return null
         }
         return (
-      <Modal
-        open={isOpen}
-        size='tiny'>
-        <Modal.Header>
+            <Modal
+                open={isOpen}
+                size='tiny'>
+                <Modal.Header>
 
-          <Grid width={16} >
-            <Grid.Column width={13} >
-              <Input
-                error={titleError}
-                onChange={ this.handleTitleInput }
-                value={ title }
-                placeholder='Title ...'/>
-            </Grid.Column>
+                    <Grid width={16} >
+                        <Grid.Column width={13} >
+                            <Input
+                                error={titleError}
+                                onChange={ this.handleTitleInput }
+                                value={ title }
+                                placeholder='Title ...'/>
+                        </Grid.Column>
+                    </Grid>
 
-          </Grid>
+                </Modal.Header>
+                <Modal.Content scrolling>
 
-        </Modal.Header>
-        <Modal.Content scrolling>
+                    <Modal.Description>
+                        <Form>
+                            <Form.TextArea
+                                error={contentError}
+                                onChange={ this.handleContentInput }
+                                value={ content }
+                                size='small'
+                                placeholder='Note text ...'
+                                autoHeight={true}/>
+                        </Form>
+                    </Modal.Description>
 
-          <Modal.Description>
-            <Form>
-            <Form.TextArea
-              error={contentError}
-              onChange={ this.handleContentInput }
-              value={ content }
-              size='small'
-              placeholder='Note text ...'
-              autoHeight={true}/>
-            </Form>
-          </Modal.Description>
-
-        </Modal.Content>
-        <Modal.Actions>
-          <Button.Group>
-          <Button
-            onClick={ this.handleButtonSaveClick }
-            color='green'>
-            Save
-          </Button>
-          <Button
-            onClick={this.handleButtonClose}
-            color='grey'>Close
-          </Button>
-          </Button.Group>
-        </Modal.Actions>
-      </Modal>
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button.Group>
+                        <Button
+                            onClick={ this.handleButtonSaveClick }
+                            color='green'>
+                            Save
+                        </Button>
+                        <Button
+                            onClick={this.handleButtonClose}
+                            color='grey'>Close
+                        </Button>
+                    </Button.Group>
+                </Modal.Actions>
+            </Modal>
         )
     }
 }
