@@ -10,12 +10,8 @@ export default class Event extends Component {
     constructor(props) {
         super(props)
     }
-/*
-    handleDelete = () => {
-        const { event, deleteItem } = this.props
-        deleteItem(event)
-    }
-
+    
+    /*
     handleEdit = (text, where, date) => {
         this.props.updateEvent(text, where, date)
     }*/

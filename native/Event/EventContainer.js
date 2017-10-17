@@ -95,7 +95,7 @@ export default class EventContainer extends Component {
                   marginTop: 10
               }}>
                   <View>
-                    <Button light>
+                    <Button light onPress={this.decrementMonth}>
                       <Icon name='arrow-back' />
                       <Text>Last</Text>
                     </Button>
@@ -104,7 +104,7 @@ export default class EventContainer extends Component {
                     <Text style={{ fontSize: 23}}>{month.format('MMMM')}</Text>
                   </View>
                   <View>
-                    <Button light>
+                    <Button light onPress={this.incrementMonth}>
                       <Text>Next</Text>
                       <Icon name='arrow-forward' />
                     </Button>
