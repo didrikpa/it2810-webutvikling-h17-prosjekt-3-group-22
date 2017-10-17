@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage, StyleSheet } from 'react-native'
 import { Container, Header, Content, Button, Text, View, Icon } from 'native-base';
 import moment from 'moment'
 
 import Event from './Event'
 import CreateEvent from './CreateEvent'
+import FABNewEvent from './FABNewEvent'
 
 export default class EventContainer extends Component {
     constructor(props) {
@@ -122,6 +123,7 @@ export default class EventContainer extends Component {
       let sortedEvents = events.filter((event) => moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')).sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()})
 
       return (
+        <View style={{flex:1, backgroundColor:"white"}}>
         <Content>
               <View style={{
                   flexDirection: 'row',
@@ -146,10 +148,6 @@ export default class EventContainer extends Component {
                   </View>
               </View>
 
-              <Button style={{marginTop: 30, marginLeft: 15, marginRight: 15}} block info onPress={this.toggleNewModal}>
-                  <Text>Add event</Text>
-              </Button>
-
               <CreateEvent
                   updateEvent={this.updateEvent}
                   toggleModal={this.toggleNewModal}
@@ -171,7 +169,34 @@ export default class EventContainer extends Component {
                       />
                   )
                 })}
+          { events.length ?
+            <Text style={styles.endText}>
+              End of your list
+            </Text> :
+            <Text style={styles.endText}>
+              No events
+            </Text>
+          }
           </Content>
+          <View>
+            <FABNewEvent toggleModal={this.toggleNewModal}/>
+          </View>
+        </View>
       )
     }
 }
+const styles = StyleSheet.create({
+
+  endText: {
+    flex:1,
+    justifyContent:'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    fontSize: 25,
+    color:'#999999',
+    marginBottom:25,
+    marginTop:30,
+
+  }
+
+})

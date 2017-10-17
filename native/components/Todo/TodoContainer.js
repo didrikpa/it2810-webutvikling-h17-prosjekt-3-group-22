@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Content, Divider, List } from 'native-base'
-import { AsyncStorage } from 'react-native';
+import { Content, Divider, List, Text } from 'native-base'
+import { AsyncStorage, StyleSheet } from 'react-native';
 import Todo from './Todo'
 import TodoInput from './TodoInput'
 import moment from "moment";
@@ -128,7 +128,31 @@ export default class TodoContainer extends Component {
                                                 deleteItem={this.deleteItem} onButtonClick = {this.newTodo}
                                                 updateToDos = {this.updateToDos} />) }
                     </List>
+                  { todos.length ?
+                    <Text style={styles.endText}>
+                        End of your list
+                    </Text> :
+                    <Text style={styles.endText}>
+                        No todos
+                    </Text>
+                  }
                 </Content>
         )
     }
+
 }
+const styles = StyleSheet.create({
+
+  endText: {
+    flex:1,
+    justifyContent:'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    fontSize: 25,
+    color:'#999999',
+    marginBottom:25,
+    marginTop:30,
+
+  }
+
+})
