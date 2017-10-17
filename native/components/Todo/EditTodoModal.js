@@ -16,7 +16,9 @@ export default class EditTodoModal extends Component  {
         }
     }
 
-    //Button handler for save button
+  /**
+   * Button handler for save button
+   */
     handleButtonSaveClick = () => {
         const { tempContent } = this.state
         //Checks that the content in not empty

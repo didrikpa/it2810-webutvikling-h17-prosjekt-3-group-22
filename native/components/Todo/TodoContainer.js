@@ -15,16 +15,21 @@ export default class TodoContainer extends Component {
         }
     }
 
-    //Loads content from localStorage
-    componentWillMount = async () => {
+  /**
+   * Loads content from localStorage
+   */
+  componentWillMount = async () => {
         let localTodos = JSON.parse(await AsyncStorage.getItem('todos'))
         this.setState({
             todos: localTodos || []
         })
     }
 
-    //Handles the checkbox button in todo
-    checkBoxClick = (todo) => {
+  /**
+   * Handles the checkbox button in todo
+   * @param todo
+   */
+  checkBoxClick = (todo) => {
         const { todos } = this.state
         const i = todos.indexOf(todo)
         if (i >= 0) {
@@ -38,8 +43,11 @@ export default class TodoContainer extends Component {
         
     }
 
-    //Adds a new todo to the list, and updates localStorage
-    newTodo = (text) => {
+  /**
+   * Adds a new todo to the list, and updates localStorage
+   * @param text
+   */
+  newTodo = (text) => {
         const { todos } = this.state
         let todo = {
             text: text,
@@ -53,8 +61,11 @@ export default class TodoContainer extends Component {
         })
     }
 
-    //Removes given todo
-    deleteItem = (todo) => {
+  /**
+   * Removes given todo
+   * @param todo
+   */
+  deleteItem = (todo) => {
         let { todos } = this.state
         const i = todos.indexOf(todo)
         if (i >= 0) {
@@ -67,8 +78,11 @@ export default class TodoContainer extends Component {
         }
     }
 
-    //Updates localStorage
-    updateLocalStorage = async () => {
+  /**
+   * Updates localStorage
+   * @returns {Promise.<void>}
+   */
+  updateLocalStorage = async () => {
         const { todos } = this.state
         try {
             await AsyncStorage.setItem('todos', JSON.stringify(todos));
@@ -77,15 +91,21 @@ export default class TodoContainer extends Component {
         }
     }
 
-    //Updates state
-    updateState = (state) => {
+  /**
+   * Updates state
+   * @param state
+   */
+  updateState = (state) => {
         this.setState(state, () => {
             this.updateLocalStorage()
         })
     }
 
-    //Updates the todo list for a given todo
-    updateToDos = (todo) => {
+  /**
+   * Updates the todo list for a given todo
+   * @param todo
+   */
+  updateToDos = (todo) => {
         const {todos} = this.state;
         for(let i = 0; i < todos.length; i++) {
             if(todos[i] === todo){
