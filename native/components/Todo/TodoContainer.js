@@ -103,7 +103,7 @@ export default class TodoContainer extends Component<{}> {
         const { todos } = this.state
         return(
                 <Content>
-                    <TodoInput onButtonClick={this.onButtonClick}/>
+                    <TodoInput onButtonClick={this.newTodo}/>
                     <List>
                     { todos.map((todo) => <Todo key={todo.date} todo={todo} checkBoxClick={this.checkBoxClick}
                                                 deleteItem={this.deleteItem} onButtonClick = {this.newTodo}

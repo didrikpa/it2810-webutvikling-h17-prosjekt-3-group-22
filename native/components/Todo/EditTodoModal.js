@@ -14,7 +14,7 @@ export default class EditTodoModal extends Component<{}>  {
         }
     }
 
-    //Helpfunction for handleButtonEditClick
+    //Button handler for save button
     handleButtonSaveClick = () => {
         const { tempContent } = this.state
         //Checks that the content in not empty
@@ -27,15 +27,9 @@ export default class EditTodoModal extends Component<{}>  {
             })
             //Hides the modal
             this.props.toggleModal()
-            //Calls the button save function in TodoContainer
-            this.handleButtonSaveClick()
+            //removes the old todo
+            this.props.handleDelete()
         }
-    }
-
-    //Button handler for save button
-    handleButtonSaveClick = () => {
-        const { handleDelete } = this.props
-        handleDelete()
     }
 
     render() {
