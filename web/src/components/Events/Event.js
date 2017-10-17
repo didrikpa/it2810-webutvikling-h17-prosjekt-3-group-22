@@ -6,42 +6,63 @@ import DeleteModal from '../DeleteModal'
 import EditModal from './EditModal'
 
 export default class Event extends Component {
-    constructor(props) {
-        super(props)
-    }
-
+    /**
+     * This method handles the deletion of the Event this Component represents.
+     * Uses the properties passed from the parent to remove itself.
+     */
     handleDelete = () => {
-        const { event, deleteItem } = this.props
-        deleteItem(event)
+        this.props.deleteItem(this.props.event)
     }
 
+    /**
+     * This method is used to trigger the parents' updateEvent() method.
+     * This mathod is called by the EditModal child of this Component.
+     * @param text Updated Description of this Component's event.
+     * @param where Updated Location of this Component's event.
+     * @param date Updated Date of this Component's event.
+     */
     handleEdit = (text, where, date) => {
         this.props.updateEvent(text, where, date)
     }
 
-    render() {
+    render = () => {
+        /**
+         * Fetch 'event' and 'isNew' from properties passed from parent.
+         * Format Date and Time stamps to human readable formats.
+         */
         const { event, isNew } = this.props
-        return(
+        const dayName = moment(event.date).format('dddd')
+        const dateNumber = moment(event.date).format('Do')
+        const time = moment(event.date).format('HH:mm')
+        return (
             <div>
-                {isNew ? 
-                    <div>
+                {/**
+                 * If isNew is true a new header is made for that date.
+                 */}
+                { isNew
+                    ? <div>
                         <Divider hidden/>
                         <Segment attached textAlign="center">
-                            <Header>{moment(event.date).format('dddd')} {moment(event.date).format('Do')}</Header>
+                            <Header>{ dayName } { dateNumber }</Header>
                         </Segment>
                     </div> : undefined
                 }
+
+                {/**
+                 * Displaing the event with text, location, date and
+                 * delete and edit - buttons
+                 */}
                 <Segment attached>
                     <Grid verticalAlign="middle">
                         <Grid.Row textAlign="center">
                             <Grid.Column width={4}>
-                                {event.text}
+                                { event.text }
                             </Grid.Column>
                             <Grid.Column width={5}>
-                                {event.where}
+                                { event.where }
                             </Grid.Column>
                             <Grid.Column width={4}>
-                                {moment(event.date).format('HH:mm')}
+                                { time }
                             </Grid.Column>
                             <Grid.Column width={3}>
                                 <Button.Group>
