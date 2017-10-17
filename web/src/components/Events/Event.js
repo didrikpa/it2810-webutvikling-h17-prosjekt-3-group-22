@@ -10,11 +10,17 @@ export default class Event extends Component {
         super(props)
     }
 
+    /**
+     * Delets the event using the DeleteModal importet
+     */
     handleDelete = () => {
         const { event, deleteItem } = this.props
         deleteItem(event)
     }
 
+    /**
+     * Calls the EditModal function updateEvent with the input
+     */
     handleEdit = (text, where, date) => {
         this.props.updateEvent(text, where, date)
     }
@@ -23,7 +29,11 @@ export default class Event extends Component {
         const { event, isNew } = this.props
         return(
             <div>
-                {isNew ? 
+
+                /**
+                 * If isNew is true a new header is made for that date.
+                 */
+                {isNew ?
                     <div>
                         <Divider hidden/>
                         <Segment attached textAlign="center">
@@ -31,6 +41,11 @@ export default class Event extends Component {
                         </Segment>
                     </div> : undefined
                 }
+
+                /**
+                 * Displaing the event with text, location, date and
+                 * delete and edit - buttons                
+                 */
                 <Segment attached>
                     <Grid verticalAlign="middle">
                         <Grid.Row textAlign="center">
