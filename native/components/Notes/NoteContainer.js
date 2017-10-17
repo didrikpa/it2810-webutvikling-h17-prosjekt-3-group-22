@@ -131,7 +131,6 @@ export default class NoteContainer extends Component {
               <View>
                   <FABNewNote toggleModal={this.toggleNewModal}/>
               </View>
-              <NavFooter/>
           </View>
       )
   }
