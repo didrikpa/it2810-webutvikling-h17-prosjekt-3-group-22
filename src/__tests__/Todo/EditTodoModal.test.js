@@ -8,19 +8,19 @@ import moment from 'moment'
 
 Enzyme.configure({ adapter: new Adapter() });
 
-test('Todo component should render as expected when isOpen is true', () => {
-  const tempContent = "Some text to check3";
-  const content = "Some text to check2";
+test('EditTodoModal component should render as expected when isOpen is true', () => {
 
-  const component = shallow(<EditTodoModal content={content} tempContent={tempContent} date={moment()} isOpen={true}/>);
+  const component = shallow(<EditTodoModal
+    content={"You should do this thing right now"}
+    date={moment('20171018')}
+    isOpen={true}/>);
+
   const tree = toJson(component);
-  console.log(tree);
   expect(tree).toMatchSnapshot();
 });
 
-test('Todo component should not render at all when isOpen is false', () => {
+test('EditTodoModal component should not render at all when isOpen is false', () => {
   const component = shallow(<EditTodoModal isOpen={false}/>);
   const tree = toJson(component);
-  console.log(tree);
   expect(tree).toMatchSnapshot();
 });

@@ -1,14 +1,30 @@
 import React from 'react';
-import Notes from '../../components/Notes/Notes';
-import { mount } from 'enzyme';
+import Note from '../../components/Notes/Notes';
+import { mount, shallow } from 'enzyme';
 import ViewNoteModal from '../../components/Notes/ViewNoteModal'
 import EditNoteModal from '../../components/Notes/EditNoteModal'
 import DeleteModal from '../../components/DeleteModal'
+import moment from 'moment'
+import toJson from 'enzyme-to-json'
+
 
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 Enzyme.configure({ adapter: new Adapter() });
+
+test('Note component should render as expected: ', () => {
+    const note = {
+        title: "Big title",
+        content: "Some notis",
+        date: moment('20171018')
+    }
+  const component = shallow(<Note
+    note={note}
+    key={note.date}/>);
+  const tree = toJson(component);
+  expect(tree).toMatchSnapshot();
+});
 
 describe("Note", () => {
     let props;

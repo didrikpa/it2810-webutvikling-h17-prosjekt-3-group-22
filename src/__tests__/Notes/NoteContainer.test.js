@@ -1,14 +1,21 @@
 import React from 'react';
-import NoteContainer from '../../components/Notes/NoteContainer';
-import { mount } from 'enzyme';
-import Enzyme from "enzyme"
+import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
-import Note from '../components/Notes./Notes';
+import toJson from 'enzyme-to-json'
+
+import NoteContainer from '../../components/Notes/NoteContainer';
 
 require("jest-localstorage-mock");
 
 
 Enzyme.configure({ adapter: new Adapter() });
+
+
+test('NoteContainer component should render as expected: ', () => {
+  const component = shallow(<NoteContainer />);
+  const tree = toJson(component);
+  expect(tree).toMatchSnapshot();
+});
 
 describe('noteContainer', () => {
     let props;
