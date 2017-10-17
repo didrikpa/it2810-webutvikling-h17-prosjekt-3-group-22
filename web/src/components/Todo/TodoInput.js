@@ -6,22 +6,21 @@ export default class TodoInput extends Component {
     constructor(props) {
         super(props)
 
+        //init state
         this.state = {
             text: '',
-
         }
-
-        this.onChange = this.onChange.bind(this)
-        this.onButtonClick = this.onButtonClick.bind(this)
     }
 
-    onChange(e, {value}) {
+    //Updates on change in the textfield
+    onChange = (e, {value}) => {
         this.setState({
             text: value
         })
     }
 
-    onButtonClick() {
+    //Saves the new text in todo
+    onButtonClick = ()  =>{
         const { text } = this.state
         if(text !== '') {
             this.props.onButtonClick(text)
@@ -34,7 +33,10 @@ export default class TodoInput extends Component {
     }
 
     render() {
+
+        //define constants
         const { text } = this.state
+
         return(
             <div>
                 <Input action fluid placeholder='Write your Todo...' onChange={this.onChange} value={text}>
