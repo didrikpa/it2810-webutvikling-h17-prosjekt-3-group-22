@@ -5,9 +5,8 @@ import moment from 'moment'
 import EditNoteModal from './EditNoteModal'
 
 export default class Note extends Component {
-  constructor(props){
-    super(props)
-
+  constructor(props) {
+      super(props)
 
     this.state = {
       title: this.props.note.title,
@@ -16,8 +15,6 @@ export default class Note extends Component {
       editModalOpen:false,
     }
   }
-
-
 
   handleDelete = () => {
       const { note, deleteItem } = this.props
