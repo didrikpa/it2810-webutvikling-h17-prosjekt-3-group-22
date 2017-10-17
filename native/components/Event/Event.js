@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { ListItem, Left, Right, Body, Text} from 'native-base';
+import { List, ListItem, Left, Right, Body, Text, Content} from 'native-base';
+import { StyleSheet, Style } from 'react-native';
 
 import moment from 'moment'
 /*
@@ -19,26 +20,26 @@ export default class Event extends Component {
     render() {
         const { event, isNew } = this.props
 
-        const segmentStyle = {
-          flexDirection:'row',
-          justifyContent:'space-between',
-          alignItems:'center',
-          flex: 1,
-          padding:10
-        }
-
         return(
-            <ListItem>
-                <Left>
-                    <Text>{event.text}</Text>
-                </Left>
-                <Body>
-                    <Text>{event.where}</Text>
-                </Body>
-                <Right>
-                    <Text>{moment(event.date).format('HH:mm')}</Text>
-                </Right>
-            </ListItem>
+            <List>
+                {isNew ?
+                    <ListItem itemDivider>
+                        <Text>{moment(event.date).format('dddd')}
+                        {moment(event.date).format('Do')}</Text>
+                    </ListItem> : undefined
+                }
+                <ListItem>
+                    <Left>
+                        <Text>{event.text}</Text>
+                    </Left>
+                    <Body>
+                        <Text>{event.where}</Text>
+                    </Body>
+                    <Right>
+                        <Text>{moment(event.date).format('HH:mm')}</Text>
+                    </Right>
+                </ListItem>
+            </List>
         )
     }
 }

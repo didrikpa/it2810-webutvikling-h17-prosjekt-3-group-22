@@ -111,7 +111,7 @@ export default class EventContainer extends Component {
                   </View>
               </View>
 
-              <Button style={{margin: 15}} block info onPress={this.toggleNewModal}>
+              <Button style={{marginTop: 30, marginLeft: 15, marginRight: 15}} block info onPress={this.toggleNewModal}>
                 <Text>Add event</Text>
               </Button>
 

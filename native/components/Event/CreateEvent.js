@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import DatePicker from 'react-native-datepicker'
-/*import DatePicker from 'material-ui/DatePicker'
-import TimePicker from 'material-ui/TimePicker'*/
 import { Modal, Text, View } from 'react-native';
 import { Container, Header, Content, Button, Icon, Item, Input, Form } from 'native-base';
 
@@ -59,30 +57,28 @@ export default class CreateEvent extends Component {
                    <Item last>
                      <Input placeholder="Where" onChangeText={(where) => this.setState({where})} value={where} />
                    </Item>
-                   <Item>
-                       <DatePicker
-                           style={{width: 200}}
-                           date={this.state.date}
-                           mode="datetime"
-                           placeholder="select date"
-                           format="YYYY-MM-DD HH:mm"
-                           confirmBtnText="Confirm"
-                           cancelBtnText="Cancel"
-                           customStyles={{
-                               dateIcon: {
-                                   position: 'absolute',
-                                   left: 0,
-                                   top: 4,
-                                   marginLeft: 0
-                               },
-                               dateInput: {
-                                   marginLeft: 36
-                               }
-                           }}
-                           onDateChange={(date) => {this.setState({date: date})}}
-                       />
-                   </Item>
                 </Form>
+                <DatePicker
+                    style={{width: 200}}
+                    date={this.state.date}
+                    mode="datetime"
+                    placeholder="select date"
+                    format="YYYY-MM-DD HH:mm"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    customStyles={{
+                        dateIcon: {
+                            position: 'absolute',
+                            left: 0,
+                            top: 4,
+                            marginLeft: 0
+                        },
+                        dateInput: {
+                            marginLeft: 36
+                        }
+                    }}
+                    onDateChange={(date) => {this.setState({date: date})}}
+                />
                 <View style={{
                     flexDirection: 'row',
                     justifyContent: 'center',
