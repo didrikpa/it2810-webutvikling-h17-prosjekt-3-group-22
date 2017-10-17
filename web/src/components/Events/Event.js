@@ -6,10 +6,6 @@ import DeleteModal from '../DeleteModal'
 import EditModal from './EditModal'
 
 export default class Event extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     handleDelete = () => {
         const { event, deleteItem } = this.props
         deleteItem(event)
@@ -19,12 +15,12 @@ export default class Event extends Component {
         this.props.updateEvent(text, where, date)
     }
 
-    render() {
+    render () {
         const { event, isNew } = this.props
-        return(
+        return (
             <div>
-                {isNew ? 
-                    <div>
+                {isNew
+                    ? <div>
                         <Divider hidden/>
                         <Segment attached textAlign="center">
                             <Header>{moment(event.date).format('dddd')} {moment(event.date).format('Do')}</Header>

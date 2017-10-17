@@ -8,7 +8,8 @@
     "start": "webpack-dev-server",
     "prod": "cd dist && python3 -m http.server 8083",
     "build": "webpack",
-    "build:prod": "webpack --config webpack.config.production.js && cp ./index.prod.html ./dist/index.html"
+    "build:prod": "webpack --config webpack.config.production.js && cp ./index.prod.html ./dist/index.html",
+    "lint": "./node_modules/.bin/eslint ."
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,11 @@
     "copyfiles": "^1.2.0",
     "cross-env": "^3.1.4",
     "css-loader": "^0.28.7",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
     "react-hot-loader": "^3.0.0-beta.6",
     "rimraf": "^2.6.0",
     "webpack": "^2.2.0",

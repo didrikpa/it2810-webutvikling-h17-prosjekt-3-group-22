@@ -2,41 +2,35 @@ import React, { Component } from 'react'
 import { Button, Modal, Grid, Form } from 'semantic-ui-react'
 
 const dateStyle = {
-  fontSize: "1rem",
-  color: "#999999"
+    fontSize: '1rem',
+    color: '#999999'
 }
 
-export default class ViewNoteModal extends Component{
-
-
-
-
-  handleButtonClose = () => {
-    this.props.onClose()
-
-  }
-
-  //Save title and content, reset and close Modal
-  onButtonClick(){
-    const { title, content } = this.state
-    this.props.onButtonClick(title, content)
-
-    //Render nothing if model isOpen is false
-    this.setState({
-      title: '',
-      content: ''
-    })
-    this.props.onClose()
-  }
-
-
-  render() {
-    const { isOpen, title, content, date } = this.props
-
-    if(!this.props.isOpen) {
-      return null;
+export default class ViewNoteModal extends Component {
+    handleButtonClose = () => {
+        this.props.onClose()
     }
-    return (
+
+  // Save title and content, reset and close Modal
+    onButtonClick () {
+        const { title, content } = this.state
+        this.props.onButtonClick(title, content)
+
+    // Render nothing if model isOpen is false
+        this.setState({
+            title: '',
+            content: ''
+        })
+        this.props.onClose()
+    }
+
+    render () {
+        const { isOpen, title, content, date } = this.props
+
+        if (!this.props.isOpen) {
+            return null
+        }
+        return (
       <Modal
         open={isOpen}
         size='tiny'>
@@ -69,6 +63,6 @@ export default class ViewNoteModal extends Component{
               >Close</Button>
         </Modal.Actions>
       </Modal>
-    )
-  }
+        )
+    }
 }

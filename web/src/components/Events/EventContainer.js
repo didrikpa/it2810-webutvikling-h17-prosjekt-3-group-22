@@ -1,15 +1,15 @@
+
 import React, { Component } from 'react'
-import { Divider, Grid, Header, Segment, Container, Button } from 'semantic-ui-react'
+import { Divider, Grid, Header, Container, Button } from 'semantic-ui-react'
 import moment from 'moment'
 
 import Event from './Event'
 import CreateEvent from './CreateEvent'
-import EditModal from './EditModal'
 import Navbar from '../Navbar'
-import Footer from "../Footer"
+import Footer from '../Footer'
 
 export default class EventContainer extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props)
 
         this.state = {
@@ -43,7 +43,7 @@ export default class EventContainer extends Component {
             text: text,
             where: where,
             now: moment(),
-            date: date,
+            date: date
         }
         events.push(event)
         this.updateState({
@@ -78,8 +78,7 @@ export default class EventContainer extends Component {
 
     render () {
         const { events, month } = this.state
-        const { now } = this.props
-        let sortedEvents = events.filter((event) => moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')).sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()}) 
+        let sortedEvents = events.filter((event) => moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')).sort((b, a) => { return moment(b.date).unix() - moment(a.date).unix() })
         return (
             <div>
                 <Navbar/>
@@ -102,7 +101,7 @@ export default class EventContainer extends Component {
                         {sortedEvents.map((event, index) => {
                             let n = true
                             if (index > 0) {
-                                n = moment(event.date).format('YYYY-MM-DD') !== moment(sortedEvents[index-1].date).format('YYYY-MM-DD')
+                                n = moment(event.date).format('YYYY-MM-DD') !== moment(sortedEvents[index - 1].date).format('YYYY-MM-DD')
                             }
                             return (
                                 <Event
