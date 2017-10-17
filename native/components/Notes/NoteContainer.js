@@ -98,9 +98,15 @@ export default class NoteContainer extends Component {
             onButtonSaveClick={this.onButtonSaveClick}
             />)}
         </List>
-        <Text style={styles.endText}>
-          End of your list
-        </Text>
+
+        { notes.length ?
+          <Text style={styles.endText}>
+            End of your list
+          </Text> :
+          <Text style={styles.endText}>
+            No notes
+          </Text>
+        }
       </Content>
         <View>
           <FABNewNote toggleModal={this.toggleNewModal}/>
