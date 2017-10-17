@@ -4,8 +4,7 @@
   "description": "PIMP",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "setupTestFrameworkScriptFile": "src/tests/Notes/localStorageMock.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -45,7 +44,8 @@
       "\\.css$": "identity-obj-proxy"
     },
     "setupFiles": [
-      "raf/polyfill"
+      "raf/polyfill",
+      "jest-localstorage-mock"
     ]
   },
   "dependencies": {
