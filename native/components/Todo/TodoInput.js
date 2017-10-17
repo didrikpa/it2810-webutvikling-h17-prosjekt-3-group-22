@@ -6,15 +6,16 @@ export default class TodoInput extends Component<{}> {
     constructor(props) {
         super(props)
 
+        //sets the state
         this.state = {
             text: '',
 
         }
 
-        this.onButtonClick = this.onButtonClick.bind(this)
     }
 
-    onButtonClick() {
+    //Calls the onButtonClick in the todoContainer, creates new todo
+    onButtonClick = () => {
         const { text } = this.state
         if(text !== '') {
             this.props.onButtonClick(text)
@@ -27,6 +28,7 @@ export default class TodoInput extends Component<{}> {
     }
 
     render() {
+        //Defines constants
         const { text } = this.state
         return(
             <Content style={{padding:5}}>
