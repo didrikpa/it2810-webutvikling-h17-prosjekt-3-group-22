@@ -3,7 +3,6 @@ import Enzyme, { shallow } from 'enzyme';
 import Todo from '../../components/Todo/EditTodoModal';
 import Adapter from 'enzyme-adapter-react-15'
 import toJson from 'enzyme-to-json'
-import moment from 'moment'
 
 Enzyme.configure({ adapter: new Adapter() });
 
