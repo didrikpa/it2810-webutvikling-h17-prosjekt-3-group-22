@@ -12,7 +12,7 @@ export default class DefaultHeader extends Component {
         <Header style={{backgroundColor:'#1b1c1d'}}>
           <Left>
             <Button transparent onPress={toggleModal} >
-              <Icon name='close' />
+              <Icon name='arrow-back' />
             </Button>
           </Left>
           <Body>
