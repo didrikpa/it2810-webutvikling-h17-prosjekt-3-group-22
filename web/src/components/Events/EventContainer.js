@@ -34,7 +34,7 @@ export default class EventContainer extends Component {
     }
 
     /**
-     * This method uses Moment.sj to subract a month to the current Month object in the state.
+     * This method uses Moment.js to subract a month to the current Month object in the state.
      */
     decrementMonth = () => {
         this.setState({
@@ -130,6 +130,11 @@ export default class EventContainer extends Component {
                 <Navbar/>
                 <Divider hidden/>
                 <Container text textAlign='center'>
+
+                    {/**
+                     * Displays the buttons for changing month and the month
+                     * for the events displays.
+                    */}
                     <Grid>
                         <Grid.Column width={3}>
                             <Button content='Last' icon='left arrow' labelPosition='left' onClick={this.decrementMonth}/>
@@ -142,8 +147,18 @@ export default class EventContainer extends Component {
                         </Grid.Column>
                     </Grid>
                     <Divider hidden/>
+
+                    {/**
+                     * The modal for creating an event
+                    */}
                     <CreateEvent updateEvent={this.updateEvent}/>
                     <div>
+
+                        {/**
+                         * Sorting the events by date and displaying them
+                         * Sending the isNew variable as true, if the new event
+                         * does not match any of the dates in the event-list
+                        */}
                         {sortedEvents.map((event, index) => {
                             let n = true
                             if (index > 0) {
@@ -151,7 +166,7 @@ export default class EventContainer extends Component {
                             }
                             return (
                                 <Event
-                                    key={event.date}
+                                    key={event.now}
                                     event={event}
                                     deleteItem={this.deleteItem}
                                     updateEvent={this.updateEvent}
