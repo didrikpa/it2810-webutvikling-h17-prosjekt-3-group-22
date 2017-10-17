@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native'
 import { Button, Left, Body, Right, Icon, Content, View, Text, ListItem, Item,Grid ,Col,Row } from 'native-base';
 import moment from 'moment'
 import EditNoteModal from './EditNoteModal'
+import ViewNoteModal from './ViewNoteModal'
 
 export default class Note extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class Note extends Component {
       content: this.props.note.content,
       date: this.props.note.date,
       editModalOpen:false,
+      viewModalOpen:false
     }
   }
 
@@ -28,9 +30,15 @@ export default class Note extends Component {
     })
   }
 
+  toggleViewModal = () => {
+    this.setState({
+      viewModalOpen: !this.state.viewModalOpen
+    })
+  }
+
   render() {
     const { note, onButtonSaveClick } = this.props
-    const { editModalOpen } = this.state
+    const { editModalOpen,viewModalOpen } = this.state
 
 
     const segmentStyle = {
@@ -42,7 +50,7 @@ export default class Note extends Component {
     }
 
     return (
-        <ListItem>
+        <ListItem onPress={this.toggleViewModal}>
             <Grid>
             <Col size={80}>
               <Row>
@@ -79,6 +87,15 @@ export default class Note extends Component {
             handleDelete={this.handleDelete}
             title={note.title}
             content={note.content}/>
+
+          <ViewNoteModal
+            isOpen={viewModalOpen}
+            toggleModal={this.toggleViewModal}
+            title={note.title}
+            content={note.content}
+            date={moment(note.date).calendar()}
+          />
+
         </ListItem>
 
     )

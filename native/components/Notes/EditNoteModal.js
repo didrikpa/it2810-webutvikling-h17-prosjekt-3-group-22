@@ -57,62 +57,67 @@ export default class NewNoteModal extends Component {
         >
 
           <DefaultHeader title={"Edit Note"} toggleModal={toggleModal}/>
-      <View style={{flex:1}}>
-          <Content >
-            <Form>
-              <View style={{flex:1}}>
-                <Item floatingLabel>
-                  <Label>
-                    Title
-                  </Label>
+          <View style={{flex:1}}>
+            <Content>
+              <Form>
+
+                <View style={{flex:1}}>
+                  <Item floatingLabel>
+                    <Label>
+                      Title
+                    </Label>
                     <Input
                       onChangeText={(tempTitle) => this.setState({tempTitle})}
-                      value={tempTitle}
+                      value={tempTitle}/>
+                  </Item>
+                </View>
 
-                    />
-                </Item>
-              </View>
+                <View style={{flex:2}}>
+                  <Item floatingLabel>
+                    <Label>
+                      Content
+                    </Label>
+                    <Input
+                      onChangeText={(tempContent) => this.setState({tempContent})}
+                      value={tempContent}
+                      multiline={true}
+                      style={{height:300}}/>
+                  </Item>
+                </View>
 
-              <View style={{flex:2}}>
-                <Item floatingLabel>
-                  <Label>
-                    Content
-                  </Label>
-                  <Input
-                    onChangeText={(tempContent) => this.setState({tempContent})}
-                    value={tempContent}
-                    multiline={true}
-                    style={{height:300}}/>
-                </Item>
-              </View>
-            </Form>
+              </Form>
 
-
-
-          </Content>
-
-      </View>
-          <Grid>
-            <Col>
-          <View style={{position:'absolute', bottom:0, width:'100%'}}>
-            <Button block
-                    success
-                    onPress={this.handleButtonSaveClick}
-                    style={{backgroundColor:"#21BA45"}}>
-              <Text>Add</Text>
-            </Button>
+            </Content>
           </View>
-            </Col>
-            <Col>
-          <View style={{position:'absolute', bottom:0, width:'100%'}}>
-          <Button block
-                  onPress={this.handleButtonClose}
-                  style={{backgroundColor:"#767676"}}>
-              <Text>Close</Text>
-            </Button>
+          <View style={{flex:1}}>
+            <Grid style={{backgroundColor:'red'}}>
+
+              <Col>
+                <View style={{position:'absolute', bottom:0, width:'100%'}}>
+                  <Button block
+                          success
+                          onPress={this.handleButtonSaveClick}
+                          style={{backgroundColor:"#21BA45"}}>
+                    <Text>
+                      Add
+                    </Text>
+                  </Button>
+                </View>
+              </Col>
+
+              <Col>
+                <View style={{position:'absolute', bottom:0, width:'100%'}}>
+                  <Button block
+                          onPress={this.handleButtonClose}
+                          style={{backgroundColor:"#767676"}}>
+                    <Text>Close</Text>
+                  </Button>
+                </View>
+              </Col>
+
+            </Grid>
           </View>
-            </Col>
-          </Grid>
+
         </Modal>
     )
   }
