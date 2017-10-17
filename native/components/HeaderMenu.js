@@ -1,31 +1,39 @@
 import React, { Component } from 'react'
-import { Container, Header, Content, Left ,Right, Title, Body, Icon, Button } from 'native-base';
+import { StyleSheet } from 'react-native'
+import { Container, Content, Left ,Right, Title, Body, Icon, Button, Header } from 'native-base';
+import { Actions } from 'react-native-router-flux'
+
 
 export default class HeaderMenu extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { title, toggleModal } = this.props
+    const { title } = this.props
 
     return (
       <Content>
-        <Header>
-          <Left>
+        <Header toolbarDefaultBg="black">
+          <Left style={{flex:1}}>
             <Button transparent >
-              <Icon name='arrow-back' />
+              <Icon name='arrow-back' onPress={ Actions.home }  style={styles.icon}/>
             </Button>
           </Left>
-          <Body>
-          <Title>{title}</Title>
+          <Body style={{flex:1}}>
+            <Title>{title}</Title>
           </Body>
-          <Right>
-            <Button transparent onPress={toggleModal}>
-              <Icon name='add' />
-            </Button>
-          </Right>
+            <Right style={{flex:1}}>
+            </Right>
         </Header>
       </Content>
     )
   }
 }
+
+
+const styles = StyleSheet.create({
+    icon: {
+        color: "white"
+    },
+
+})

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { StyleSheet } from 'react-native'
 import { Container, Header, Content,View, Footer, FooterTab, Button, Icon, Text } from 'native-base'
 
 import { Actions } from 'react-native-router-flux'
@@ -9,42 +10,19 @@ export default class NavFooter extends Component {
 
         const { active } = this.props
 
-        const tabs = [{
-            name: 'Home',
-            icon: 'home',
-            scene: 'home',
-        },
-            {
-                name: 'Todos',
-                icon: 'list',
-                scene: 'todos',
-            },
-            {
-                name: 'Notes',
-                icon: 'clipboard',
-                scene: 'notes',
-            },
-            {
-                name: 'Events',
-                icon: 'calendar',
-                scene: 'events',
-            },
-        ];
-
-
         return (
             <View>
                 <Content>
                     { this.props.children }
                 </Content>
                 <Footer>
-                    <FooterTab>
+                    <FooterTab style={styles.footerTab}>
                         <Button
                             vertical
                             active={active === 'home'}
                             onPress={Actions.home}
                         >
-                            <Icon name='home' />
+                            <Icon name='home' color="#e2e2e2"/>
                             <Text>Home</Text>
                         </Button>
                         <Button
@@ -52,7 +30,7 @@ export default class NavFooter extends Component {
                             active={active === 'todos'}
                             onPress={Actions.todos}
                         >
-                            <Icon name='list' />
+                            <Icon name='list' color="red"/>
                             <Text>Todos</Text>
                         </Button>
                         <Button
@@ -60,7 +38,7 @@ export default class NavFooter extends Component {
                             active={active === 'notes'}
                             onPress={Actions.notes}
                         >
-                            <Icon active name='clipboard' />
+                            <Icon active name='clipboard' color="#e2e2e2" />
                             <Text>Notes</Text>
                         </Button>
                         <Button
@@ -68,7 +46,7 @@ export default class NavFooter extends Component {
                             active={active === 'events'}
                             onPress={Actions.events}
                         >
-                            <Icon name='calendar' />
+                            <Icon name='calendar' color="#e2e2e2" />
                             <Text>Events</Text>
                         </Button>
                     </FooterTab>
@@ -77,3 +55,10 @@ export default class NavFooter extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+        footerTab: {
+            backgroundColor: "#1b1c1d"
+        }
+}
+)
