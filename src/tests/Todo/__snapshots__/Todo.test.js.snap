@@ -22,7 +22,7 @@ exports[`Todo component should render as expected 1`] = `
       <GridColumn
         width={4}
       >
-        Today at 10:32 AM
+        06/20/2012
       </GridColumn>
       <GridColumn
         width={1}
@@ -50,7 +50,7 @@ exports[`Todo component should render as expected 1`] = `
     </Grid>
   </Segment>
   <EditToDoModal
-    date="10:32 AM, Oct 17th 2017"
+    date="0:00 AM, Jun 20th 2012"
     handleDelete={[Function]}
     isOpen={false}
     onClose={[Function]}
