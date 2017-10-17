@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text } from 'native-base'
+import { Container, Header, Content,View, Footer, FooterTab, Button, Icon, Text } from 'native-base'
 
 import { Actions } from 'react-native-router-flux'
 
@@ -33,7 +33,7 @@ export default class NavFooter extends Component {
 
 
         return (
-            <Container>
+            <View>
                 <Content>
                     { this.props.children }
                 </Content>
@@ -73,7 +73,7 @@ export default class NavFooter extends Component {
                         </Button>
                     </FooterTab>
                 </Footer>
-            </Container>
+            </View>
         )
     }
 }

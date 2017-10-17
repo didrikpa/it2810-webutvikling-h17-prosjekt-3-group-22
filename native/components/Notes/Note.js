@@ -1,31 +1,44 @@
 import React, { Component } from 'react'
-import { Button, Left, Body, Right, Icon, Content, View, Text, ListItem, Item } from 'native-base';
+import { StyleSheet } from 'react-native'
+import { Button, Left, Body, Right, Icon, Content, View, Text, ListItem, Item,Grid ,Col,Row } from 'native-base';
+import moment from 'moment'
+import EditNoteModal from './EditNoteModal'
+import ViewNoteModal from './ViewNoteModal'
 
 export default class Note extends Component {
   constructor(props) {
       super(props)
 
-
-      this.state = {
-          title: this.props.note.title,
-          content: this.props.note.content,
-          date: this.props.note.date
-      }
+    this.state = {
+      title: this.props.note.title,
+      content: this.props.note.content,
+      date: this.props.note.date,
+      editModalOpen:false,
+      viewModalOpen:false
+    }
   }
-    handleDelete = () => {
+
+  handleDelete = () => {
       const { note, deleteItem } = this.props
       console.log("fdhsfjsdlfjal")
       deleteItem(note)
     }
 
-    test = () => {
-      console.log("BUTTON PRESS")
-    }
+  toggleEditModal = () => {
+    this.setState({
+      editModalOpen: !this.state.editModalOpen
+    })
+  }
 
+  toggleViewModal = () => {
+    this.setState({
+      viewModalOpen: !this.state.viewModalOpen
+    })
+  }
 
   render() {
-    const { note } = this.props
-    const { title, content, date } = this.state
+    const { note, onButtonSaveClick } = this.props
+    const { editModalOpen,viewModalOpen } = this.state
 
 
     const segmentStyle = {
@@ -37,33 +50,66 @@ export default class Note extends Component {
     }
 
     return (
-        <ListItem>
+        <ListItem onPress={this.toggleViewModal}>
+            <Grid>
+            <Col size={80}>
+              <Row>
+              <Text style={styles.titleStyle}>{note.title}</Text>
+              </Row>
+              <Row>
+              <Text style={styles.dateStyle}>{moment(note.date).calendar()}</Text>
+              </Row>
+            </Col>
 
-            <Left>
-              <Text>{note.title}</Text>
-            </Left>
 
-            <Body>
-              <Text>{note.content}</Text>
-            </Body>
-
-            <Right>
+            <Col size={25}>
+              <Row>
               <Button
-                iconLeft
-                primary
-                transparent
                 onPress={this.handleDelete}
-              >
+                style={{backgroundColor:"#db2828", paddingRight:4}}>
                 <Icon
-                  name='trash'
-                  style={{color:'red'}}
-
-                />
-
+                  name='close'
+                  style={{color:'white'}}/>
               </Button>
-            </Right>
+
+              <Button
+                      onPress={this.toggleEditModal}
+                      style={{backgroundColor:'#767676',marginLeft:-1}}>
+                <Icon name='create' style={{color:'white'}}/>
+              </Button>
+              </Row>
+            </Col>
+            </Grid>
+          <EditNoteModal
+            isOpen={editModalOpen}
+            toggleModal={this.toggleEditModal}
+            onButtonSaveClick={onButtonSaveClick}
+            handleDelete={this.handleDelete}
+            title={note.title}
+            content={note.content}/>
+
+          <ViewNoteModal
+            isOpen={viewModalOpen}
+            toggleModal={this.toggleViewModal}
+            title={note.title}
+            content={note.content}
+            date={moment(note.date).calendar()}
+          />
+
         </ListItem>
 
     )
   }
 }
+
+const styles = StyleSheet.create({
+
+  titleStyle: {
+    fontSize:21,
+  },
+
+  dateStyle: {
+    color:'#999999'
+  }
+
+})

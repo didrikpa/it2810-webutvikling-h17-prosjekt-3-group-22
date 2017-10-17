@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { AsyncStorage } from 'react-native'
-import { Content, List } from 'native-base';
+import { AsyncStorage, StyleSheet } from 'react-native'
+import { Content, List,View, Button, Text,Footer } from 'native-base';
 import moment from 'moment'
 
 import HeaderMenu from '../HeaderMenu'
 import NewNoteModal from './NewNoteModal'
+import FABNewNote from './FABNewNote'
 import Note from './Note'
+import NavFooter from '../NavFooter'
 
 export default class NoteContainer extends Component {
 
@@ -78,16 +80,14 @@ export default class NoteContainer extends Component {
     const { newModalOpen, notes } = this.state
 
     return (
-      <Content>
-        <HeaderMenu title={'Notes'}
-        toggleModal={this.toggleNewModal}/>
+      <View style={{flex:1, backgroundColor:"white"}}>
 
 
         <NewNoteModal
         toggleModal={this.toggleNewModal}
         onButtonSaveClick={this.onButtonSaveClick}
         isOpen={ newModalOpen }/>
-
+      <Content>
        <List>
         {notes.sort((b,a) => {
           return moment(a.date).unix() - moment(b.date).unix()}).map((note) =>
@@ -95,10 +95,41 @@ export default class NoteContainer extends Component {
             note={note}
             key={note.date}
             deleteItem={this.deleteItem}
+            onButtonSaveClick={this.onButtonSaveClick}
             />)}
         </List>
 
+        { notes.length ?
+          <Text style={styles.endText}>
+            End of your list
+          </Text> :
+          <Text style={styles.endText}>
+            No notes
+          </Text>
+        }
       </Content>
+        <View>
+          <FABNewNote toggleModal={this.toggleNewModal}/>
+        </View>
+        <NavFooter/>
+    </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+
+  endText: {
+    flex:1,
+    justifyContent:'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    fontSize: 25,
+    color:'#999999',
+    marginBottom:25,
+    marginTop:30,
+
+
+  }
+
+})
