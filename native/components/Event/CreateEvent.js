@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import DatePicker from 'react-native-datepicker'
 /*import DatePicker from 'material-ui/DatePicker'
 import TimePicker from 'material-ui/TimePicker'*/
 import { Modal, Text, View } from 'react-native';
@@ -13,8 +14,7 @@ export default class CreateEvent extends Component {
         this.state = {
             text: '',
             where: '',
-            date: null,
-            time: null
+            date: null
         }
     }
 
@@ -32,18 +32,14 @@ export default class CreateEvent extends Component {
     }
 
     createEvent = () =>  {
-        const { text, where, date, time } = this.state
-        let d2 = moment(moment(date).format('YYYY-MM-DD') + ' ' + moment(time).format('HH:mm'))
-        if(text !== '' && d2) {
-           this.props.updateEvent(text, where, d2)
+        const { text, where, date } = this.state
+           this.props.updateEvent(text, where, date)
            this.setState({
                text: '',
                where: '',
-               date: null,
-               time: null
+               date: date
            })
          }
-     }
 
     render() {
         const { text, where, open, date, time } = this.state
@@ -64,10 +60,27 @@ export default class CreateEvent extends Component {
                      <Input placeholder="Where" onChangeText={(where) => this.setState({where})} value={where} />
                    </Item>
                    <Item>
-                     <Input placeholder="Date" onChangeText={(date) => this.setState({date})} value={date} />
-                   </Item>
-                   <Item>
-                     <Input placeholder="Time" onChangeText={(time) => this.setState({time})} value={time} />
+                       <DatePicker
+                           style={{width: 200}}
+                           date={this.state.date}
+                           mode="datetime"
+                           placeholder="select date"
+                           format="YYYY-MM-DD HH:mm"
+                           confirmBtnText="Confirm"
+                           cancelBtnText="Cancel"
+                           customStyles={{
+                               dateIcon: {
+                                   position: 'absolute',
+                                   left: 0,
+                                   top: 4,
+                                   marginLeft: 0
+                               },
+                               dateInput: {
+                                   marginLeft: 36
+                               }
+                           }}
+                           onDateChange={(date) => {this.setState({date: date})}}
+                       />
                    </Item>
                 </Form>
                 <View style={{

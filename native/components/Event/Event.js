@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Header, Content, Button, Icon, Item, Input, Form } from 'native-base';
+import { ListItem, Left, Right, Body, Text} from 'native-base';
 
 import moment from 'moment'
 /*
