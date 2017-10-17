@@ -3,14 +3,14 @@ import { Menu, Container } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 export default class Navbar extends Component {
-  state = { activeItem: 'home' }
+    state = { activeItem: 'home' }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  render() {
-    const { activeItem } = this.state
+    render () {
+        const { activeItem } = this.state
 
-    return (
+        return (
       <Menu inverted size='massive'>
         <Container text>
           <Link to="/">
@@ -35,6 +35,6 @@ export default class Navbar extends Component {
           </Link>
         </Container>
       </Menu>
-    )
-  }
+        )
+    }
 }

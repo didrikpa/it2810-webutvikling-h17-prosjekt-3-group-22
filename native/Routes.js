@@ -4,6 +4,7 @@ import { Router, Stack, Scene, Actions } from 'react-native-router-flux'
 import { Container, Content } from 'native-base'
 import NoteContainer from './components/Notes/NoteContainer'
 import TodoContainer from './components/Todo/TodoContainer'
+import EventContainer from './components/Event/EventContainer'
 import NavFooter from './components/NavFooter'
 import HomeComponent from './components/HomeComponent'
 import HeaderMenu from "./components/HeaderMenu";
@@ -57,11 +58,7 @@ const Notes = () => (
 )
 
 const Events = () => (
-    <Container>
-        <Text>Events!</Text>
-        <Button title="Pop" onPress={Actions.pop}>Pop</Button>
-        <NavFooter active='events' />
-    </Container>
+    <EventContainer/>
 )
 
 const Home = () => (
@@ -76,16 +73,6 @@ const Master = ({ children }) => (
         {children}
     </View>
 )
-
-class BackButton extends Component {
-    render () {
-        return (
-            <Button>
-                <Icon name='home' onPress={ Actions.home }  style={styles.color}/>
-            </Button>
-        )
-    }
-}
 
 const styles = StyleSheet.create({
     navBar: {

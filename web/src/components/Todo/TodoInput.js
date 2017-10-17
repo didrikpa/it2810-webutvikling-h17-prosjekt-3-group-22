@@ -3,27 +3,26 @@ import { Input, Button } from 'semantic-ui-react'
 import moment from 'moment'
 
 export default class TodoInput extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props)
 
+        // init state
         this.state = {
-            text: '',
-
+            text: ''
         }
-
-        this.onChange = this.onChange.bind(this)
-        this.onButtonClick = this.onButtonClick.bind(this)
     }
 
-    onChange(e, {value}) {
+    // Updates on change in the textfield
+    onChange = (e, {value}) => {
         this.setState({
             text: value
         })
     }
 
-    onButtonClick() {
+    // Saves the new text in todo
+    onButtonClick = () => {
         const { text } = this.state
-        if(text !== '') {
+        if (text !== '') {
             this.props.onButtonClick(text)
             this.setState({
                 text: '',
@@ -33,9 +32,11 @@ export default class TodoInput extends Component {
         }
     }
 
-    render() {
+    render () {
+        // define constants
         const { text } = this.state
-        return(
+
+        return (
             <div>
                 <Input action fluid placeholder='Write your Todo...' onChange={this.onChange} value={text}>
                     <input />
