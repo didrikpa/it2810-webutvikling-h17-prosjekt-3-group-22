@@ -112,13 +112,13 @@ export default class EventContainer extends Component {
               </View>
 
               <Button style={{marginTop: 30, marginLeft: 15, marginRight: 15}} block info onPress={this.toggleNewModal}>
-                <Text>Add event</Text>
+                  <Text>Add event</Text>
               </Button>
 
               <CreateEvent
-                updateEvent={this.updateEvent}
-                toggleModal={this.toggleNewModal}
-                isOpen={newModalOpen}
+                  updateEvent={this.updateEvent}
+                  toggleModal={this.toggleNewModal}
+                  isOpen={newModalOpen}
               />
 
               {sortedEvents.map((event, index) => {
