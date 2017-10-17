@@ -3,7 +3,9 @@ import { View, Label, Item, Input, Text, Content, Title ,Icon , Button, Form, H1
 import { Modal } from 'react-native'
 import DefaultHeader from '../DefaultHeader'
 
-export default class EditTodoModal extends Component<{}>  {
+
+export default class EditTodoModal extends Component  {
+
     constructor(props) {
         super(props)
 

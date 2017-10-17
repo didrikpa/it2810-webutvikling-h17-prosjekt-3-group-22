@@ -95,13 +95,13 @@ export default class NoteContainer extends Component {
             note={note}
             key={note.date}
             deleteItem={this.deleteItem}
+            onButtonSaveClick={this.onButtonSaveClick}
             />)}
         </List>
         <Text style={styles.endText}>
           End of your list
         </Text>
       </Content>
-        <View/>
         <View>
           <FABNewNote toggleModal={this.toggleNewModal}/>
         </View>

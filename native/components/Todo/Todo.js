@@ -5,7 +5,9 @@ import moment from 'moment'
 import EditTodoModal from "./EditTodoModal"
 
 
-export default class Todo extends Component<{}> {
+
+class Todo extends Component {
+  
     constructor(props) {
         super(props)
 
