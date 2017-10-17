@@ -36,14 +36,22 @@ export default class Event extends Component {
         const time = moment(event.date).format('HH:mm')
         return (
             <div>
-                { isNew
-                    ? <div>
+                /**
+                 * If isNew is true a new header is made for that date.
+                 */
+                {isNew ?
+                    <div>
                         <Divider hidden/>
                         <Segment attached textAlign="center">
                             <Header>{ dayName } { dateNumber }</Header>
                         </Segment>
                     </div> : undefined
                 }
+
+                /**
+                 * Displaing the event with text, location, date and
+                 * delete and edit - buttons                
+                 */
                 <Segment attached>
                     <Grid verticalAlign="middle">
                         <Grid.Row textAlign="center">

@@ -124,6 +124,10 @@ export default class CreateEvent extends Component {
                             </Grid.Column>
                             <Grid.Column width={8}>
                                 <Header>Time</Header>
+
+                                    /**
+                                     * Displays the datepicker importet from material-ui
+                                     */
                                     <DatePicker onChange={this.handleDate} hintText="Date of event" />
                                     <TimePicker onChange={this.handleTime} format={'24hr'} hintText="Time of event" />
                             </Grid.Column>
