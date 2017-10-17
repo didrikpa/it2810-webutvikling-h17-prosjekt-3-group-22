@@ -25,7 +25,6 @@ export default class TodoContainer extends Component {
 
     //Handles the checkbox button in todo
     checkBoxClick = (todo) => {
-        console.log("im running")
         const { todos } = this.state
         const i = todos.indexOf(todo)
         if (i >= 0) {
