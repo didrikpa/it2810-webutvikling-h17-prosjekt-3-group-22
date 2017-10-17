@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Label, Item, Input, Text, Content, Title ,Icon , Button, Form } from 'native-base';
-import { Modal } from 'react-native'
+import { Modal, StyleSheet } from 'react-native'
 import DefaultHeader from '../DefaultHeader'
 
 export default class NewNoteModal extends Component {
@@ -12,7 +12,6 @@ export default class NewNoteModal extends Component {
       title: '',
       content: '',
       notes: [],
-
     }
   }
 
@@ -40,12 +39,11 @@ export default class NewNoteModal extends Component {
           visible={isOpen}
           onRequestClose={() => {alert("NewNoteModal has been closed.")}}
         >
-
           <DefaultHeader title={"New Note"} toggleModal={toggleModal}/>
-      <View style={{flex:1}}>
-          <Content >
+      <View style={styles.view}>
+          <Content>
             <Form>
-              <View style={{flex:1}}>
+              <View style={styles.view}>
                 <Item floatingLabel>
                   <Label>
                     Title
@@ -53,7 +51,7 @@ export default class NewNoteModal extends Component {
                     <Input
                       onChangeText={(title) => this.setState({title})}
                       value={title}
-
+                      style={styles.noteTitle}
                     />
                 </Item>
               </View>
@@ -67,23 +65,43 @@ export default class NewNoteModal extends Component {
                     onChangeText={(content) => this.setState({content})}
                     value={content}
                     multiline={true}
-                    style={{height:300}}/>
+                    style={styles.noteContent}/>
                 </Item>
               </View>
             </Form>
-
-
-
           </Content>
-
       </View>
-          <View style={{position:'absolute',bottom:0, width:'100%'}}>
-            <Button block success onPress={this.handleButtonSaveClick}>
-              <Text>Add</Text>
+          <View style={styles.addButtonView}>
+            <Button style={styles.addButton} block onPress={this.handleButtonSaveClick}>
+              <Text style={styles.addText}>add note</Text>
             </Button>
-
           </View>
         </Modal>
     )
   }
 }
+
+const styles = StyleSheet.create({
+    view: {
+        flex: 1,
+        marginTop: 7,
+        marginLeft: 7,
+        marginRight: 7,
+        backgroundColor: "#f5fcff"
+    },
+    addButtonView: {
+        position:'absolute',
+        bottom:0,
+        width:'100%'
+    },
+    noteContent: {
+        height: 200,
+        textAlignVertical: 'top',
+    },
+    addButton: {
+        backgroundColor: "#21ba45"
+    },
+    addText: {
+        fontSize: 20
+    }
+})
