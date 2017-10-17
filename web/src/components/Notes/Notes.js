@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment,Button, Grid } from 'semantic-ui-react'
+import { Segment, Button, Grid } from 'semantic-ui-react'
 import moment from 'moment'
 
 import ViewNoteModal from './ViewNoteModal'
@@ -7,56 +7,52 @@ import EditNoteModal from './EditNoteModal'
 import DeleteModal from '../DeleteModal'
 
 const dateStyle = {
-  fontSize: "1rem",
-  color: "#999999"
+    fontSize: '1rem',
+    color: '#999999'
 }
 
-export default class Note extends Component{
-  constructor(props){
-    super(props)
+export default class Note extends Component {
+    constructor (props) {
+        super(props)
 
-
-    this.state = {
-      viewModalOpen: false,
-      editModalOpen: false,
-      deleteModalOpen: false,
-      title: this.props.note.title,
-      content: this.props.note.content,
-      date: this.props.note.date
+        this.state = {
+            viewModalOpen: false,
+            editModalOpen: false,
+            deleteModalOpen: false,
+            title: this.props.note.title,
+            content: this.props.note.content,
+            date: this.props.note.date
+        }
     }
 
-  }
+    handleDelete = () => {
+        const { note, deleteItem } = this.props
+        deleteItem(note)
+    }
 
+    toggleViewModal = () => {
+        this.setState({
+            viewModalOpen: !this.state.viewModalOpen
+        })
+    }
 
-  handleDelete = () => {
-    const { note, deleteItem } = this.props
-    deleteItem(note)
-  }
+    toggleEditModal = () => {
+        this.setState({
+            editModalOpen: !this.state.editModalOpen
+        })
+    }
 
-  toggleViewModal = () => {
-    this.setState({
-      viewModalOpen: !this.state.viewModalOpen
-    })
-  }
+    toggleDeleteModal = () => {
+        this.setState({
+            deleteModalOpen: !this.state.deleteModalOpen
+        })
+    }
 
-  toggleEditModal = () => {
-    this.setState({
-      editModalOpen: !this.state.editModalOpen
-    })
-  }
+    render () {
+        const { note, onButtonSaveClick } = this.props
+        const { viewModalOpen, title, content, date, editModalOpen } = this.state
 
-  toggleDeleteModal = () => {
-    this.setState({
-      deleteModalOpen: !this.state.deleteModalOpen
-    })
-  }
-
-
-  render(){
-    const { note, onButtonSaveClick } = this.props
-    const { viewModalOpen, title, content, date, editModalOpen } = this.state
-
-    return (
+        return (
 
     <div>
       <Segment>
@@ -78,7 +74,7 @@ export default class Note extends Component{
 
               <DeleteModal
               handleDelete = {this.handleDelete}
-              title={"Note"}/>
+              title={'Note'}/>
 
               <Button
                 color='grey'
@@ -110,7 +106,7 @@ export default class Note extends Component{
       date={moment(date).format('H:mm, MMM Do YYYY')}
       />
 
-
     </div>
-    )}
+        )
+    }
 }

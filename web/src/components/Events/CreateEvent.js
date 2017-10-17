@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import DatePicker from 'material-ui/DatePicker'
 import TimePicker from 'material-ui/TimePicker'
-
 import moment from 'moment'
-
-import { Divider, Button, Header, Modal, Input, Container, Grid, Checkbox } from 'semantic-ui-react'
+import { Button, Header, Modal, Input, Grid, Checkbox } from 'semantic-ui-react'
 
 export default class CreateEvent extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props)
 
         this.state = {
@@ -51,28 +49,28 @@ export default class CreateEvent extends Component {
         this.setState({
             open: false
         }, () => {
-          console.log('closed')
-      } )
+            console.log('closed')
+        })
     }
 
-    createEvent = () =>  {
+    createEvent = () => {
         const { text, where, date, time } = this.state
         let d2 = moment(moment(date).format('YYYY-MM-DD') + ' ' + moment(time).format('HH:mm'))
-        if(text !== '' && d2) {
-           this.props.updateEvent(text, where, d2)
-           this.setState({
-               text: '',
-               where: '',
-               date: null,
-               time: null
-           })
-         }
-         this.handleClose()
-     }
+        if (text !== '' && d2) {
+            this.props.updateEvent(text, where, d2)
+            this.setState({
+                text: '',
+                where: '',
+                date: null,
+                time: null
+            })
+        }
+        this.handleClose()
+    }
 
-    render() {
-        const { text, where, open, date, time } = this.state
-        return(
+    render () {
+        const { text, where, open } = this.state
+        return (
             <div>
                 <Modal onClose={this.handleClose} closeOnDimmerClick open={open} trigger={
                   <Button attached="top" color='blue' onClick={this.handleOpen}>Add event</Button>

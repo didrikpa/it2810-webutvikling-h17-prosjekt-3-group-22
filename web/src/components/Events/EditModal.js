@@ -2,17 +2,16 @@ import React, { Component } from 'react'
 import DatePicker from 'material-ui/DatePicker'
 import TimePicker from 'material-ui/TimePicker'
 import moment from 'moment'
-
-import { Button, Modal, Icon, Grid, Header, Input, Checkbox } from 'semantic-ui-react'
+import { Button, Modal, Grid, Header, Input, Checkbox } from 'semantic-ui-react'
 
 export default class EditModal extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props)
         this.state = {
             text: props.event.text,
             where: props.event.where,
             date: props.event.date,
-            time: props.event.date,
+            time: props.event.date
         }
         this.state.open = false
     }
@@ -49,22 +48,22 @@ export default class EditModal extends Component {
         this.setState({
             open: false
         }, () => {
-          console.log('closed')
-      } )
+            console.log('closed')
+        })
     }
 
-    updateEvent = () =>  {
+    updateEvent = () => {
         const { text, where, date, time } = this.state
         let d2 = moment(moment(date).format('YYYY-MM-DD') + ' ' + moment(time).format('HH:mm'))
         if (text !== '' && d2) {
-           this.props.updateEvent(text, where, d2)
-         }
-         this.handleClose()
-         this.props.handleDelete()
-     }
+            this.props.updateEvent(text, where, d2)
+        }
+        this.handleClose()
+        this.props.handleDelete()
+    }
 
-    render() {
-        const { text, where, open, date, time} = this.state
+    render () {
+        const { text, where, open, date, time } = this.state
         let d = moment(date).toDate()
         let d1 = moment(time).toDate()
 

@@ -1,51 +1,49 @@
 import React, { Component } from 'react'
-import { Button, Input, Modal, Grid, Form, TextArea } from 'semantic-ui-react'
+import { Button, Modal, Grid, Form, TextArea } from 'semantic-ui-react'
 
-//Define style for grid
+// Define style for grid
 const dateStyle = {
-    fontSize: "1rem",
-    color: "#999999"
+    fontSize: '1rem',
+    color: '#999999'
 }
 
-export default class EditToDoModal extends Component{
-    constructor (props){
+export default class EditToDoModal extends Component {
+    constructor (props) {
         super(props)
 
-
-        //Init state
+        // Init state
         this.state = {
             tempContent: this.props.content,
             content: this.props.content,
             date: this.props.date
         }
-
     }
 
-    //Monitor tempContent input
+    // Monitor tempContent input
     handleContentInput = (e, {value}) => {
         this.setState({
             tempContent: value
         })
     }
 
-    //Saves the changes made, on save button click
+    // Saves the changes made, on save button click
     handleButtonSaveClick = () => {
         const { tempContent } = this.state
-        if(tempContent !== "") {
+        if (tempContent !== '') {
             this.props.onButtonSaveClick(tempContent)
             this.setState({
                 tempContent: '',
                 text: ''
             })
 
-            //Close the window
+            // Close the window
             this.props.onClose()
-            //delete old todo
+            // delete old todo
             this.props.handleDelete()
         }
     }
 
-    //closes the window, no change
+    // closes the window, no change
     handleButtonClose = () => {
         const { content } = this.state
         this.setState({
@@ -54,16 +52,14 @@ export default class EditToDoModal extends Component{
         this.props.onClose()
     }
 
-
-    render() {
-        //define constants
+    render () {
+        // define constants
         const { isOpen } = this.props
-        const {  tempContent, date } = this.state
+        const { tempContent, date } = this.state
 
-
-        //checks if the window is open or not
-        if(!this.props.isOpen) {
-            return null;
+        // checks if the window is open or not
+        if (!this.props.isOpen) {
+            return null
         }
         return (
             <Modal
