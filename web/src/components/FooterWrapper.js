@@ -19,11 +19,11 @@ const phantom = {
     width: '100%'
 }
 
-const FooterWrapper = () => (
+const FooterWrapper = ({ children }) => (
     <div>
         <div style={phantom} />
         <div style={style}>
-            {this.props.children}
+            {children}
         </div>
     </div>
 )
