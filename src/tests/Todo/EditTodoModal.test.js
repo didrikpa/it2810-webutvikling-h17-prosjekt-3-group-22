@@ -1,2 +1,3 @@
-const editTodoModal = require('../../components/Todo/.EditTodoModal');
+
+const editTodoModal = require('../../components/Todo/EditTodoModal');
 
