@@ -58,7 +58,10 @@ const Notes = () => (
 )
 
 const Events = () => (
-    <EventContainer/>
+    <Container>
+        <EventContainer/>
+        <NavFooter active="events"/>
+    </Container>
 )
 
 const Home = () => (
