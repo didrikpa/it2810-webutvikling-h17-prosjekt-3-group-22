@@ -9,6 +9,7 @@ export default class CreateEvent extends Component {
     constructor(props) {
         super(props)
 
+        // init state
         this.state = {
             text: this.props.text,
             where: this.props.where,
@@ -17,29 +18,42 @@ export default class CreateEvent extends Component {
         }
     }
 
+  /**
+   * Updates the date, onChange
+   * @param event
+   * @param date
+   */
     handleDate = (event, date) => {
         this.setState({date: date})
     }
 
-    handleTime = (event, time) => {
-        this.setState({time: time})
-    }
-
-    handleClose = () => {
+  /**
+   * Closes the modal
+   */
+  handleClose = () => {
         const{toggleModal} = this.props
         toggleModal()
     }
 
-    updateEvent = () =>  {
+  /**
+   * Updates the event
+   */
+  updateEvent = () =>  {
         const { text, where, date } = this.state
+
+        //Checks that date and text have a value
         if (text !== '' && date) {
+            //creates a new event
             this.props.updateEvent(text, where, date)
         }
+        //Closes the app
         this.handleClose()
+        //Deletes the old version
         this.props.handleDelete()
     }
 
     render() {
+        //define constants
         const { text, where, open, date, time } = this.state
         const { toggleModal, updateEvent, handleDelete, isOpen } = this.props
 

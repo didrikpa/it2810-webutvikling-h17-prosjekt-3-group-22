@@ -9,6 +9,7 @@ export default class CreateEvent extends Component {
     constructor(props) {
         super(props)
 
+        // init state
         this.state = {
             text: '',
             where: '',
@@ -16,20 +17,27 @@ export default class CreateEvent extends Component {
         }
     }
 
+  /**
+   * Updates the date on change
+   * @param event
+   * @param date
+   */
     handleDate = (event, date) => {
         this.setState({date: date})
     }
 
-    handleTime = (event, time) => {
-        this.setState({time: time})
-    }
-
-    handleClose = () => {
+  /**
+   * Closes the createEventModal(this)
+   */
+  handleClose = () => {
         const{toggleModal} = this.props
         toggleModal()
     }
 
-    createEvent = () =>  {
+  /**
+   * Creates a new event
+   */
+  createEvent = () =>  {
         const { text, where, date } = this.state
         this.props.updateEvent(text, where, date)
         this.setState({
@@ -40,8 +48,10 @@ export default class CreateEvent extends Component {
     }
 
     render() {
+        //Define constants
         const { text, where, open, date, time } = this.state
         const { toggleModal, isOpen } = this.props
+
         return(
           <View style={{margin: 22}}>
             <Modal

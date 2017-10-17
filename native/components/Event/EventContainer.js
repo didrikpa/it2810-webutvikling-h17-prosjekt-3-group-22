@@ -10,6 +10,7 @@ export default class EventContainer extends Component {
     constructor(props) {
         super(props)
 
+        // init state
         this.state = {
             events: [],
             month: moment(),
@@ -17,25 +18,40 @@ export default class EventContainer extends Component {
         }
     }
 
-    componentWillMount = async () => {
+  /**
+   * Loads event from localStorage
+   */
+  componentWillMount = async () => {
         let localEvents = JSON.parse(await AsyncStorage.getItem('events'))
         this.setState({
             events: localEvents || []
         })
     }
 
-    decrementMonth = () => {
+  /**
+   * Sets the month variable one month back
+   */
+  decrementMonth = () => {
         this.setState({
             month: this.state.month.subtract(1, 'month')
         })
     }
 
-    incrementMonth = () => {
+  /**
+   * Sets the month variable one month forward
+   */
+  incrementMonth = () => {
         this.setState({
             month: this.state.month.add(1, 'month')
         })
     }
 
+  /**
+   * Creates a event with the parameters given
+   * @param text
+   * @param where
+   * @param date
+   */
     updateEvent = (text, where, date) => {
         let { events } = this.state
         let event = {
@@ -51,7 +67,11 @@ export default class EventContainer extends Component {
         })
     }
 
-    deleteItem = (event) => {
+  /**
+   * Delete given event
+   * @param event
+   */
+  deleteItem = (event) => {
         let { events } = this.state
         const i = events.indexOf(event)
         if (i >= 0) {
@@ -64,28 +84,43 @@ export default class EventContainer extends Component {
         }
     }
 
-    updateLocalStorage = async () => {
+  /**
+   * updates localStorage
+   * @returns {Promise.<void>}
+   */
+  updateLocalStorage = async () => {
         const { events } = this.state
-        await AsyncStorage.clear()
         await AsyncStorage.setItem('events', JSON.stringify(events))
     }
 
-    updateState = (state) => {
+  /**
+   * Updates the state of the program
+   * @param state
+   */
+  updateState = (state) => {
         this.setState(state, () => {
             this.updateLocalStorage()
         })
     }
 
-    toggleNewModal = () => {
+  /**
+   * Shows or hides the createEventModal
+   */
+  toggleNewModal = () => {
       this.setState({
         newModalOpen: !this.state.newModalOpen
       })
     }
 
     render() {
+
+    //Defines constants
       const { events, month, newModalOpen  } = this.state
       const { now } = this.props
+
+      //Sorts the list of events
       let sortedEvents = events.filter((event) => moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')).sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()})
+
       return (
         <Content>
               <View style={{
