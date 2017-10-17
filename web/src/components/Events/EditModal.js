@@ -17,6 +17,9 @@ export default class EditModal extends Component {
         this.state.open = false
     }
 
+    /**
+     * These functions has the same goal as the functions in CreateEvent
+     */
     onChange = (e, {value}) => {
         this.setState({
             text: value
@@ -53,6 +56,10 @@ export default class EditModal extends Component {
       } )
     }
 
+    /**
+     * Creates a new event with the new input and deletes the old event.
+     * Closes the modal
+     */
     updateEvent = () =>  {
         const { text, where, date, time } = this.state
         let d2 = moment(moment(date).format('YYYY-MM-DD') + ' ' + moment(time).format('HH:mm'))

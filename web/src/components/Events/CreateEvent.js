@@ -19,26 +19,41 @@ export default class CreateEvent extends Component {
         }
     }
 
+    /**
+     * Changing the text when typing
+     */
     onChange = (e, {value}) => {
         this.setState({
             text: value
         })
     }
 
+    /**
+     * Changing the date when the date is changed
+     */
     handleDate = (event, date) => {
         this.setState({date: date})
     }
 
+    /**
+     * Changing the time when the time is changed
+     */
     handleTime = (event, time) => {
         this.setState({time: time})
     }
 
+    /**
+     * Changing the location when "where" is changed
+     */
     onLocationChange = (e, {value}) => {
         this.setState({
             where: value
         })
     }
 
+    /**
+     * Handle opening the modal for creating the event
+     */
     handleOpen = () => {
         this.setState({
             open: true
@@ -47,6 +62,9 @@ export default class CreateEvent extends Component {
         })
     }
 
+    /**
+     * Handle closing the modal for creating the event
+     */
     handleClose = () => {
         this.setState({
             open: false
@@ -55,6 +73,10 @@ export default class CreateEvent extends Component {
       } )
     }
 
+    /**
+     * Calls the updateEvent function in EventContainer, clears all input fields if
+     * the text and date fields are filled in and then closes the modal.
+     */
     createEvent = () =>  {
         const { text, where, date, time } = this.state
         let d2 = moment(moment(date).format('YYYY-MM-DD') + ' ' + moment(time).format('HH:mm'))
@@ -100,6 +122,10 @@ export default class CreateEvent extends Component {
                             </Grid.Column>
                             <Grid.Column width={8}>
                                 <Header>Time</Header>
+
+                                    /**
+                                     * Displays the datepicker importet from material-ui
+                                     */
                                     <DatePicker onChange={this.handleDate} hintText="Date of event" />
                                     <TimePicker onChange={this.handleTime} format={'24hr'} hintText="Time of event" />
                             </Grid.Column>
