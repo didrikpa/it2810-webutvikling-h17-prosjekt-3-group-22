@@ -111,7 +111,6 @@ export default class EventContainer extends Component {
          * Fetch 'events' and 'month' from Component State.
          */
         const { events, month } = this.state
-        const { now } = this.props
 
         /**
          * To display the events we need to filter and sort them.
@@ -132,10 +131,10 @@ export default class EventContainer extends Component {
                 <Divider hidden/>
                 <Container text textAlign='center'>
 
-                    /**
+                    {/**
                      * Displays the buttons for changing month and the month
-                     * for the events displays.                    
-                     */
+                     * for the events displays.
+                    */}
                     <Grid>
                         <Grid.Column width={3}>
                             <Button content='Last' icon='left arrow' labelPosition='left' onClick={this.decrementMonth}/>
@@ -149,17 +148,17 @@ export default class EventContainer extends Component {
                     </Grid>
                     <Divider hidden/>
 
-                    /**
+                    {/**
                      * The modal for creating an event
-                     */
+                    */}
                     <CreateEvent updateEvent={this.updateEvent}/>
                     <div>
 
-                        /**
+                        {/**
                          * Sorting the events by date and displaying them
                          * Sending the isNew variable as true, if the new event
                          * does not match any of the dates in the event-list
-                         */
+                        */}
                         {sortedEvents.map((event, index) => {
                             let n = true
                             if (index > 0) {
