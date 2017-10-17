@@ -87,7 +87,7 @@ export default class EventContainer extends Component {
       const { now } = this.props
       let sortedEvents = events.filter((event) => moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')).sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()})
       return (
-          <Content>
+        <Content>
               <View style={{
                   flexDirection: 'row',
                   justifyContent: 'space-around',
@@ -110,14 +110,17 @@ export default class EventContainer extends Component {
                     </Button>
                   </View>
               </View>
+
               <Button style={{margin: 15}} block info onPress={this.toggleNewModal}>
                 <Text>Add event</Text>
               </Button>
+
               <CreateEvent
                 updateEvent={this.updateEvent}
                 toggleModal={this.toggleNewModal}
                 isOpen={newModalOpen}
               />
+
               {sortedEvents.map((event, index) => {
                   let n = true
                   if (index > 0) {
