@@ -5,23 +5,18 @@ export default class Note extends Component {
   constructor(props) {
       super(props)
 
-
-      this.state = {
-          title: this.props.note.title,
-          content: this.props.note.content,
-          date: this.props.note.date
-      }
+    this.state = {
+      title: this.props.note.title,
+      content: this.props.note.content,
+      date: this.props.note.date
+    }
   }
-    handleDelete = () => {
+
+  handleDelete = () => {
       const { note, deleteItem } = this.props
       console.log("fdhsfjsdlfjal")
       deleteItem(note)
     }
-
-    test = () => {
-      console.log("BUTTON PRESS")
-    }
-
 
   render() {
     const { note } = this.props
