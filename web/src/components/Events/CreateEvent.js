@@ -17,42 +17,68 @@ export default class CreateEvent extends Component {
         }
     }
 
+    /**
+     * This method handles the input from the Description element and sets the Component state equal to it.
+     * @param e The event that triggered the method.
+     * @param value Value of the input field.
+     */
     onChange = (e, {value}) => {
         this.setState({
             text: value
         })
     }
 
+    /**
+     * This method handles the change of the Date field and sets the Component state based on it.
+     * @param e The event that triggered the method.
+     * @param date Value of the Date field.
+     */
     handleDate = (event, date) => {
         this.setState({date: date})
     }
 
+    /**
+     * This method handles the change of the Time field and sets the Component state based on it.
+     * @param e The event that triggered the method.
+     * @param time Value of the Time field.
+     */
     handleTime = (event, time) => {
         this.setState({time: time})
     }
 
+    /**
+     * This method handles the change of the Location field and sets the Component state based on it.
+     * @param e The event that triggered the method.
+     * @param value Value of the Location field.
+     */
     onLocationChange = (e, {value}) => {
         this.setState({
             where: value
         })
     }
 
+    /**
+     * This method is used to trigger opening this Modal.
+     */
     handleOpen = () => {
-        this.setState({
-            open: true
-        }, () => {
-            console.log('open')
-        })
+        this.setState({ open: true })
     }
 
+    /**
+     * This method is used to trigger closing this Modal.
+     */
     handleClose = () => {
-        this.setState({
-            open: false
-        }, () => {
-            console.log('closed')
-        })
+        this.setState({ open: false })
     }
 
+    /**
+     * This method is used to gather the state on this Component trigger an updateEvent() method passed from the parent.
+     * First it gathers the the needed variables from the Component state.
+     * Then it collects the Date and Time into a single Moment.js object.
+     * If the Description is not empty and the time exists, the updateEvent() method from the parent is called.
+     * The State of this Component is then cleared from the modal because the Event is created.
+     * Then the Modal is closed.
+     */
     createEvent = () => {
         const { text, where, date, time } = this.state
         let d2 = moment(moment(date).format('YYYY-MM-DD') + ' ' + moment(time).format('HH:mm'))
