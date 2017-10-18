@@ -121,6 +121,16 @@ export default class NoteContainer extends Component {
                         key={note.date}
                         deleteItem={this.deleteItem}
                         onButtonSaveClick={this.onButtonSaveClick}/>)}
+
+                    { notes.length ?
+                        <Header as='h3' block textAlign='center'>
+                            End of your list
+                        </Header> :
+                        <Header as='h3' block textAlign='center'>
+                            No notes
+                        </Header>
+                    }
+
                 </Container>
             </div>
         )
