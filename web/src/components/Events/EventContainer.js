@@ -181,6 +181,12 @@ export default class EventContainer extends Component {
                             )
                         })}
                     </div>
+                    { sortedEvents.length ?
+                        undefined :
+                        <Header as='h3' block textAlign='center'>
+                            You have no events this month
+                        </Header>
+                    }
                     <Divider hidden/>
                 </Container>
             </div>

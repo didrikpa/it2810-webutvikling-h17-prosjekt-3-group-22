@@ -112,9 +112,7 @@ export default class TodoContainer extends Component {
                         updateToDos = {this.updateToDos} />) }
 
                     { todos.length ?
-                        <Header as='h3' block textAlign='center'>
-                            End of your list
-                        </Header> :
+                        undefined :
                         <Header as='h3' block textAlign='center'>
                             You have no todos
                         </Header>

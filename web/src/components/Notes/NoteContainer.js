@@ -123,9 +123,7 @@ export default class NoteContainer extends Component {
                         onButtonSaveClick={this.onButtonSaveClick}/>)}
 
                     { notes.length ?
-                        <Header as='h3' block textAlign='center'>
-                            End of your list
-                        </Header> :
+                        undefined:
                         <Header as='h3' block textAlign='center'>
                             You have no notes
                         </Header>
