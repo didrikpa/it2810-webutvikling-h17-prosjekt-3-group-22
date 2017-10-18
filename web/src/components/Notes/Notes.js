@@ -86,6 +86,7 @@ export default class Note extends Component {
 
                                 <Button
                                     icon='edit'
+                                    color='grey'
                                     onClick={this.toggleEditModal}/>
 
                                 <DeleteModal

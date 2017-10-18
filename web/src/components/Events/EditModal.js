@@ -101,6 +101,7 @@ export default class EditModal extends Component {
             <Modal onClose={this.handleClose} closeOnDimmerClick open={open} trigger={
                 <Button
                     icon='edit'
+                    color='grey'
                     onClick={this.handleOpen}
                     floated='right'/>
             }>
