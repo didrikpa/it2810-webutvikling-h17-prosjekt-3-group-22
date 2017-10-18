@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Divider } from 'semantic-ui-react'
+import { Container, Divider, Header, Grid } from 'semantic-ui-react'
 import moment from 'moment'
 
 import Todo from './Todo'
@@ -100,8 +100,12 @@ export default class TodoContainer extends Component {
             <div>
                 <Divider hidden />
                 <Container text>
-                    <Divider hidden />
-                    <TodoInput onButtonClick={this.newTodo}/>
+                    <Grid.Column>
+                        <Grid.Row width={10}>
+                            <Header as='h1' floated='left'>Your todos</Header>
+                            <TodoInput onButtonClick={this.newTodo}/>
+                        </Grid.Row>
+                    </Grid.Column>
                     <Divider hidden/>
                     { todos.map((todo) =>
                         < Todo key={todo.date}
@@ -110,6 +114,14 @@ export default class TodoContainer extends Component {
                         deleteItem={this.deleteItem}
                         onButtonClick = {this.newTodo}
                         updateToDos = {this.updateToDos} />) }
+
+                    { todos.length ?
+                        undefined :
+                        <Header as='h3' block textAlign='center'>
+                            You have no todos
+                        </Header>
+                    }
+
                 </Container>
                 <Divider hidden />
             </div>
