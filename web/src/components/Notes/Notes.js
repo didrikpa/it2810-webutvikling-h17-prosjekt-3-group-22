@@ -84,14 +84,13 @@ export default class Note extends Component {
                         <Grid.Column>
                             <Button.Group floated='right'>
 
+                                <Button
+                                    icon='edit'
+                                    onClick={this.toggleEditModal}/>
+
                                 <DeleteModal
                                     handleDelete = {this.handleDelete}
                                     title={'Note'}/>
-
-                                <Button
-                                    color='grey'
-                                    icon='edit'
-                                    onClick={this.toggleEditModal}/>
 
                             </Button.Group>
                         </Grid.Column>

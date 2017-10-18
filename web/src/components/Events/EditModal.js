@@ -87,8 +87,8 @@ export default class EditModal extends Component {
         let d2 = moment(moment(date).format('YYYY-MM-DD') + ' ' + moment(time).format('HH:mm'))
         if (text !== '' && d2) {
             this.props.updateEvent(text, where, d2)
+            this.handleClose()
         }
-        this.handleClose()
         this.props.handleDelete()
     }
 
@@ -99,14 +99,22 @@ export default class EditModal extends Component {
 
         return (
             <Modal onClose={this.handleClose} closeOnDimmerClick open={open} trigger={
-                <Button icon='edit' onClick={this.handleOpen} floated='right'/>
+                <Button
+                    icon='edit'
+                    onClick={this.handleOpen}
+                    floated='right'/>
             }>
                 <Modal.Content>
                 <Grid>
                 <Grid.Row>
                     <Grid.Column width={13}>
                         <Header>Description</Header>
-                        <Input action fluid placeholder='Description...' onChange={this.onChange} value={text}>
+                        <Input
+                            action
+                            fluid
+                            placeholder='Description...'
+                            onChange={this.onChange}
+                            value={text}>
                             <input />
                         </Input>
                     </Grid.Column>
@@ -118,20 +126,43 @@ export default class EditModal extends Component {
                 <Grid.Row>
                     <Grid.Column width={8}>
                         <Header>Where</Header>
-                        <Input action fluid placeholder='Where...' onChange={this.onLocationChange} value={where}>
+                        <Input
+                            action
+                            fluid
+                            placeholder='Where...'
+                            onChange={this.onLocationChange}
+                            value={where}>
                             <input />
                         </Input>
                     </Grid.Column>
                     <Grid.Column width={8}>
                         <Header>Time</Header>
-                            <DatePicker onChange={this.handleDate} defaultDate={d} hintText="Date of event" />
-                            <TimePicker onChange={this.handleTime} defaultTime={d1} format={'24hr'} hintText="Time of event" />
+                            <DatePicker
+                                onChange={this.handleDate}
+                                defaultDate={d}
+                                hintText="Date of event" />
+                            <TimePicker
+                                onChange={this.handleTime}
+                                defaultTime={d1}
+                                format={'24hr'}
+                                hintText="Time of event" />
                     </Grid.Column>
                 </Grid.Row>
                 </Grid>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button color='blue' icon='edit' labelPosition='left' content='Save' onClick={this.updateEvent}/>
+                    <Button.Group>
+                        <Button
+                            onClick={ this.updateEvent }
+                            color='green'>
+                            Save
+                        </Button>
+                        <Button
+                            onClick={this.handleClose}
+                            color='grey'>
+                            Close
+                        </Button>
+                    </Button.Group>
                 </Modal.Actions>
             </Modal>
         )

@@ -66,8 +66,15 @@ export default class Event extends Component {
                             </Grid.Column>
                             <Grid.Column width={3}>
                                 <Button.Group>
-                                    <EditModal event={event} updateEvent={this.handleEdit} handleDelete={this.handleDelete}/>
-                                    <DeleteModal handleDelete={this.handleDelete} title="Event"/>
+                                    <EditModal
+                                        event={event}
+                                        updateEvent={this.handleEdit}
+                                        handleDelete={this.handleDelete}
+                                        color='grey'
+                                        icon='edit'/>
+                                    <DeleteModal
+                                        handleDelete = {this.handleDelete}
+                                        title={'Event'}/>
                                 </Button.Group>
                             </Grid.Column>
                         </Grid.Row>

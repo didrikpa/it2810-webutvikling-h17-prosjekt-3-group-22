@@ -4,6 +4,11 @@ import moment from 'moment'
 import EditToDoModal from './EditTodoModal'
 import DeleteModal from '../DeleteModal'
 
+const dateStyle = {
+    fontSize: '1rem',
+    color: '#999999'
+}
+
 class Todo extends Component {
     constructor (props) {
         super(props)
@@ -48,24 +53,38 @@ class Todo extends Component {
 
         return (
             <div>
-                <Segment color={todo.checked ? 'green' : undefined} inverted={todo.checked}>
+                <Segment
+                    color={todo.checked ? 'green' : undefined}
+                    inverted={todo.checked}>
                     <Grid verticalAlign="middle">
                         <Grid.Column width={1}>
-                            <Icon name={todo.isStar ? 'star' : 'empty star'} color='yellow' onClick={this.markAsFavorite}/>
+                            <Icon
+                                name={todo.isStar ? 'star' : 'empty star'}
+                                color='yellow'
+                                onClick={this.markAsFavorite}/>
                         </Grid.Column>
                         <Grid.Column width={7}>
                             { todo.text }
                         </Grid.Column>
-                        <Grid.Column width={4} onClick={this.toggleViewModal}>
+                        <Grid.Column
+                            width={4}
+                            onClick={this.toggleViewModal}
+                            style={dateStyle}>
                             { moment(date).calendar()}
                         </Grid.Column>
                         <Grid.Column width={1}>
-                            <Checkbox onClick={this.handleCheckBoxClick} defaultChecked={todo.checked} />
+                            <Checkbox
+                                onClick={this.handleCheckBoxClick}
+                                defaultChecked={todo.checked} />
                         </Grid.Column>
                         <Grid.Column width={2}>
                             <Button.Group>
-                                <DeleteModal handleDelete={this.handleDelete} />
-                                <Button icon="edit" color="grey" onClick={this.toggleEditModal}/>
+                                <Button
+                                    icon="edit"
+                                    onClick={this.toggleEditModal}/>
+                                <DeleteModal
+                                    handleDelete={this.handleDelete}
+                                    title={'Todo'} />
                             </Button.Group>
                         </Grid.Column>
 
