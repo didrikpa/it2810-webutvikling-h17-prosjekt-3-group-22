@@ -137,13 +137,21 @@ export default class EventContainer extends Component {
                     */}
                     <Grid>
                         <Grid.Column width={3}>
-                            <Button content='Last' icon='left arrow' labelPosition='left' onClick={this.decrementMonth}/>
+                            <Button
+                                content='Last'
+                                icon='left arrow'
+                                labelPosition='left'
+                                onClick={this.decrementMonth}/>
                         </Grid.Column>
                         <Grid.Column width={10}>
                             <Header as='h1' >{month.format('MMMM')}</Header>
                         </Grid.Column>
                         <Grid.Column width={3}>
-                            <Button content='Next' icon='right arrow' labelPosition='right' onClick={this.incrementMonth}/>
+                            <Button
+                                content='Next'
+                                icon='right arrow'
+                                labelPosition='right'
+                                onClick={this.incrementMonth}/>
                         </Grid.Column>
                     </Grid>
                     <Divider hidden/>
@@ -162,7 +170,8 @@ export default class EventContainer extends Component {
                         {sortedEvents.map((event, index) => {
                             let n = true
                             if (index > 0) {
-                                n = moment(event.date).format('YYYY-MM-DD') !== moment(sortedEvents[index - 1].date).format('YYYY-MM-DD')
+                                n = (moment(event.date).format('YYYY-MM-DD') !==
+                                moment(sortedEvents[index - 1].date).format('YYYY-MM-DD'))
                             }
                             return (
                                 <Event
