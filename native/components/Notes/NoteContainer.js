@@ -107,6 +107,7 @@ export default class NoteContainer extends Component {
                   toggleModal={this.toggleNewModal}
                   onButtonSaveClick={this.onButtonSaveClick}
                   isOpen={ newModalOpen }/>
+
               <Content>
                   <List>
                       {notes.sort((b,a) => {

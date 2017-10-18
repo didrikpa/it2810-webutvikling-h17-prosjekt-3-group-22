@@ -20,27 +20,37 @@ export default class Todo extends Component {
         }
     }
 
-    //Handels checkbox click
-    handleCheckBoxClick = () => {
+  /**
+   * Handels checkbox click
+   */
+  handleCheckBoxClick = () => {
         const { todo, checkBoxClick } = this.props
         checkBoxClick(todo)
     }
 
-    //Handles delete button, removes this item
-    handleDelete = () => {
+  /**
+   * Handles delete button, removes this item
+   */
+  handleDelete = () => {
         const { todo, deleteItem } = this.props
         deleteItem(todo)
     }
 
-    //Toggele the modal window
-    toggleEditModal = () => {
+
+  /**
+   * Toggele the modal window
+   */
+  toggleEditModal = () => {
         this.setState({
             editModalOpen: !this.state.editModalOpen
         })
     }
 
-    //Sets this todo as a favorite
-    markAsFavorite = () => {
+
+  /**
+   * Sets this todo as a favorite
+   */
+  markAsFavorite = () => {
         let { todo } = this.props
         todo.isStar = !todo.isStar
         this.props.updateToDos(todo)

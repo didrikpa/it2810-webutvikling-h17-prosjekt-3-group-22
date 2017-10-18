@@ -14,8 +14,10 @@ export default class TodoInput extends Component {
 
     }
 
-    //Calls the onButtonClick in the todoContainer, creates new todo
-    onButtonClick = () => {
+  /**
+   * Calls the onButtonClick in the todoContainer, creates new todo
+   */
+  onButtonClick = () => {
         const { text } = this.state
         if(text !== '') {
             this.props.onButtonClick(text)

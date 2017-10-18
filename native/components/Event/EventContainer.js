@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage, StyleSheet } from 'react-native'
 import { Container, Header, Content, Button, Text, View, Icon } from 'native-base';
 import moment from 'moment'
 
 import Event from './Event'
 import CreateEvent from './CreateEvent'
+import FABNewEvent from './FABNewEvent'
 
 export default class EventContainer extends Component {
     constructor(props) {
         super(props)
 
+        // init state
         this.state = {
             events: [],
             month: moment(),
@@ -17,25 +19,40 @@ export default class EventContainer extends Component {
         }
     }
 
-    componentWillMount = async () => {
+  /**
+   * Loads event from localStorage
+   */
+  componentWillMount = async () => {
         let localEvents = JSON.parse(await AsyncStorage.getItem('events'))
         this.setState({
             events: localEvents || []
         })
     }
 
-    decrementMonth = () => {
+  /**
+   * Sets the month variable one month back
+   */
+  decrementMonth = () => {
         this.setState({
             month: this.state.month.subtract(1, 'month')
         })
     }
 
-    incrementMonth = () => {
+  /**
+   * Sets the month variable one month forward
+   */
+  incrementMonth = () => {
         this.setState({
             month: this.state.month.add(1, 'month')
         })
     }
 
+  /**
+   * Creates a event with the parameters given
+   * @param text
+   * @param where
+   * @param date
+   */
     updateEvent = (text, where, date) => {
         let { events } = this.state
         let event = {
@@ -51,7 +68,11 @@ export default class EventContainer extends Component {
         })
     }
 
-    deleteItem = (event) => {
+  /**
+   * Delete given event
+   * @param event
+   */
+  deleteItem = (event) => {
         let { events } = this.state
         const i = events.indexOf(event)
         if (i >= 0) {
@@ -64,29 +85,45 @@ export default class EventContainer extends Component {
         }
     }
 
-    updateLocalStorage = async () => {
+  /**
+   * updates localStorage
+   * @returns {Promise.<void>}
+   */
+  updateLocalStorage = async () => {
         const { events } = this.state
-        await AsyncStorage.clear()
         await AsyncStorage.setItem('events', JSON.stringify(events))
     }
 
-    updateState = (state) => {
+  /**
+   * Updates the state of the program
+   * @param state
+   */
+  updateState = (state) => {
         this.setState(state, () => {
             this.updateLocalStorage()
         })
     }
 
-    toggleNewModal = () => {
+  /**
+   * Shows or hides the createEventModal
+   */
+  toggleNewModal = () => {
       this.setState({
         newModalOpen: !this.state.newModalOpen
       })
     }
 
     render() {
+
+    //Defines constants
       const { events, month, newModalOpen  } = this.state
       const { now } = this.props
+
+      //Sorts the list of events
       let sortedEvents = events.filter((event) => moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')).sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()})
+
       return (
+        <View style={{flex:1, backgroundColor:"white"}}>
         <Content>
               <View style={{
                   flexDirection: 'row',
@@ -111,10 +148,6 @@ export default class EventContainer extends Component {
                   </View>
               </View>
 
-              <Button style={{marginTop: 30, marginLeft: 15, marginRight: 15}} block info onPress={this.toggleNewModal}>
-                  <Text>Add event</Text>
-              </Button>
-
               <CreateEvent
                   updateEvent={this.updateEvent}
                   toggleModal={this.toggleNewModal}
@@ -136,7 +169,34 @@ export default class EventContainer extends Component {
                       />
                   )
                 })}
+          { events.length ?
+            <Text style={styles.endText}>
+              End of your list
+            </Text> :
+            <Text style={styles.endText}>
+              No events
+            </Text>
+          }
           </Content>
+          <View>
+            <FABNewEvent toggleModal={this.toggleNewModal}/>
+          </View>
+        </View>
       )
     }
 }
+const styles = StyleSheet.create({
+
+  endText: {
+    flex:1,
+    justifyContent:'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    fontSize: 25,
+    color:'#999999',
+    marginBottom:25,
+    marginTop:30,
+
+  }
+
+})

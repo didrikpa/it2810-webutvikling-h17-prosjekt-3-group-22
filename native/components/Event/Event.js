@@ -10,23 +10,31 @@ export default class Event extends Component {
     constructor(props) {
         super(props)
 
+        //init state
         this.state ={
             editModalOpen: false,
         }
     }
 
-    handleDelete = () => {
+  /**
+   * Calls the delete function in the EventContainer
+   */
+  handleDelete = () => {
         const { event, deleteItem } = this.props
         deleteItem(event)
     }
 
-    toggleEditModal = () => {
+  /**
+   * Opens and closes the editEventModal
+   */
+  toggleEditModal = () => {
         this.setState({
             editModalOpen: !this.state.editModalOpen
         })
     }
 
     render() {
+      //define constants
         const { event, isNew, updateEvent } = this.props
         const { editModalOpen } = this.state
 
