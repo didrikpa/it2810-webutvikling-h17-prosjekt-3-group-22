@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { AsyncStorage, StyleSheet } from 'react-native'
+import { AsyncStorage } from 'react-native'
 import { Content, List, View, Text, } from 'native-base';
 import moment from 'moment'
 
 import NewNoteModal from './NewNoteModal'
 import FABNewItem from '../FABNewItem'
 import Note from './Note'
+import { noteCont } from '../../styles'
 
 export default class NoteContainer extends Component {
 
@@ -99,8 +100,7 @@ export default class NoteContainer extends Component {
       const { newModalOpen, notes } = this.state
 
       return (
-          <View style={{flex:1, backgroundColor:"white"}}>
-
+          <View style={noteCont.outerView}>
 
               <NewNoteModal
                   toggleModal={this.toggleNewModal}
@@ -119,10 +119,10 @@ export default class NoteContainer extends Component {
                               </List>
 
                   { notes.length ?
-                      <Text style={styles.endText}>
+                      <Text style={noteCont.endText}>
                           End of your list
                       </Text> :
-                      <Text style={styles.endText}>
+                      <Text style={noteCont.endText}>
                           No notes
                       </Text>
                   }
@@ -135,18 +135,3 @@ export default class NoteContainer extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-
-    endText: {
-        flex:1,
-        justifyContent:'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        fontSize: 25,
-        color:'#999999',
-        marginBottom:25,
-        marginTop:30,
-
-    }
-
-})

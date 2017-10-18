@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
 import { Button, Icon, Text, ListItem, Item ,Grid ,Col,Row } from 'native-base';
 import moment from 'moment'
 import EditNoteModal from './EditNoteModal'
 import ViewNoteModal from './ViewNoteModal'
 import DeleteModal from '../DeleteModal'
+import { noteStyle} from '../../styles'
 
 export default class Note extends Component {
     constructor(props) {
@@ -65,12 +65,12 @@ export default class Note extends Component {
                 <Grid>
                     <Col size={80}>
                         <Row>
-                            <Text style={styles.titleStyle}>
+                            <Text style={noteStyle.titleStyle}>
                                 {note.title}
                             </Text>
                         </Row>
                         <Row>
-                            <Text style={styles.dateStyle}>
+                            <Text style={noteStyle.dateStyle}>
                                 {moment(note.date).calendar()}
                             </Text>
                         </Row>
@@ -81,7 +81,7 @@ export default class Note extends Component {
                         <Row>
                             <Button
                                 onPress={this.toggleDeleteModal}
-                                style={{backgroundColor:"#db2828", paddingRight:4}}>
+                                style={noteStyle.closeButton}>
                                 <Icon
                                     name='close'
                                     style={{color:'white'}}/>
@@ -89,7 +89,7 @@ export default class Note extends Component {
 
                             <Button
                                 onPress={this.toggleEditModal}
-                                style={{backgroundColor:'#767676',marginLeft:-1}}>
+                                style={noteStyle.createButton}>
                                 <Icon name='create' style={{color:'white'}}/>
                             </Button>
                         </Row>
@@ -125,17 +125,3 @@ export default class Note extends Component {
     }
 }
 
-/**
- * Css styling for title and date
- */
-const styles = StyleSheet.create({
-
-    titleStyle: {
-        fontSize:21,
-    },
-
-    dateStyle: {
-        color:'#999999'
-    }
-
-})
