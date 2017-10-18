@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
-import { List, ListItem, Left, Right, Body, Text, Content, Button, Icon, Grid, Col, Row} from 'native-base';
+import { List, ListItem, Left, Right, Body, Text, Content, Button, Icon, Grid,
+  Col, Row} from 'native-base';
 
 import moment from 'moment'
 
@@ -42,8 +43,9 @@ export default class Event extends Component {
             <List>
                 {isNew ?
                     <ListItem itemDivider>
-                        <Text>{moment(event.date).format('dddd')}
-                        {moment(event.date).format('Do')}</Text>
+                        <Text>
+                        {moment(event.date).format('dddd')} {moment(event.date).format('Do')}
+                        </Text>
                     </ListItem> : undefined
                 }
                 <ListItem>
