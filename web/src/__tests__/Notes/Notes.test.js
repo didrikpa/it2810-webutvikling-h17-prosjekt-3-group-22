@@ -6,7 +6,7 @@ import EditNoteModal from '../../components/Notes/EditNoteModal'
 import DeleteModal from '../../components/DeleteModal'
 
 import Enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import Adapter from "enzyme-adapter-react-15";
 
 Enzyme.configure({ adapter: new Adapter() });
 
