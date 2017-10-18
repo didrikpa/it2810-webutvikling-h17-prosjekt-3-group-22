@@ -67,12 +67,19 @@ export default class Todo extends Component {
             <ListItem style={{backgroundColor: todo.checked ? "#4BB543" : "white" }}>
                     <Content>
                         <Grid>
-                            <Col size={15}>
-                                <CheckBox
-                                    onPress={this.handleCheckBoxClick}
-                                    checked={todo.checked} />
+                            <Col size={29}>
+                                <Row>
+                                    <CheckBox
+                                        onPress={this.handleCheckBoxClick}
+                                        style={styles.todoStyle}
+                                        checked={todo.checked} />
+                                    <Icon
+                                        name={todo.isStar ? 'md-star' : 'star'}
+                                        style={styles.starStyle}
+                                        onPress={this.markAsFavorite}/>
+                                </Row>
                             </Col>
-                            <Col size={85}>
+                            <Col size={76} style={{marginRight: 10}}>
                                 <Row>
                                     <Text
                                         style={{fontSize: 21, paddingBottom: 2}}>
@@ -80,50 +87,58 @@ export default class Todo extends Component {
                                     </Text>
                                 </Row>
                                 <Row>
-                                    <Col size={45}>
-                                        <Text>
-                                            { moment(date).calendar()}
-                                        </Text>
-                                    </Col>
-                                    <Col size={55}>
-                                        <Item>
-                                            <Button
-                                                onPress={this.handleDelete}
-                                                style={{
-                                                    backgroundColor:"#db2828",
-                                                    paddingRight:4}}>
-                                                <Icon
-                                                    name='close'
-                                                    style={{color:'white'}}
-                                                />
-                                            </Button>
-                                            <Button
-                                                onPress={this.toggleEditModal}
-                                                style={{
-                                                    backgroundColor:'#767676',
-                                                    marginLeft:-1}}>
-                                                <Icon
-                                                    name='create'
-                                                    style={{color:'white'}}/>
-                                            </Button>
-                                            <Button
-                                                onPress={this.markAsFavorite}
-                                                warning>
-                                                <Icon
-                                                    name={todo.isStar ? 'md-star' : 'star'}/>
-                                            </Button>
-                                        </Item>
-                                    </Col>
+                                    <Text>
+                                        { moment(date).calendar()}
+                                    </Text>
                                 </Row>
                             </Col>
-                          </Grid>
-                        <EditTodoModal toggleModal={this.toggleEditModal}
-                             isOpen={editModalOpen}
-                             onButtonSaveClick={onButtonClick}
-                             handleDelete = {this.handleDelete}
-                             content = {todo.text} />
+                            <Col size={39}>
+                                <Item>
+                                    <Button
+                                        onPress={this.handleDelete}
+                                        style={{
+                                            backgroundColor:"#db2828",
+                                            paddingRight:4}}>
+                                        <Icon
+                                            name='close'
+                                            style={{color:'white'}}
+                                        />
+                                    </Button>
+                                    <Button
+                                        onPress={this.toggleEditModal}
+                                        style={{
+                                            backgroundColor:'#767676',
+                                            marginLeft:-1}}>
+                                        <Icon
+                                            name='create'
+                                            style={{color:'white'}}/>
+                                    </Button>
+                                </Item>
+                            </Col>
+                      </Grid>
+                      <EditTodoModal toggleModal={this.toggleEditModal}
+                           isOpen={editModalOpen}
+                           onButtonSaveClick={onButtonClick}
+                           handleDelete = {this.handleDelete}
+                           content = {todo.text} />
                 </Content>
             </ListItem>
         )
     }
 }
+
+const styles = StyleSheet.create({
+
+    todoStyle: {
+        justifyContent : 'center',
+        alignItems: 'center',
+        marginTop: 20
+    },
+
+    starStyle: {
+        color:'yellow',
+        marginLeft: 18,
+        marginTop: 15
+    }
+
+})
