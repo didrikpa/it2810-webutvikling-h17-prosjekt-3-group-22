@@ -5,26 +5,34 @@ export default class NewNoteModal extends Component {
     constructor (props) {
         super(props)
 
+        /**
+         * Set initial state to empty Note, because this Component only creates new Notes.
+         */
         this.state = {
             title: '',
             content: '',
             titleError: false,
             contentError: false
         }
-
-        this.handleTitleInput = this.handleTitleInput.bind(this)
-        this.handleContentInput = this.handleContentInput.bind(this)
     }
 
-  // Monitor title input
-    handleTitleInput (e, {value}) {
+    /**
+     * This method handles changes in the Title field and mirror them to state.
+     * @param e The event cwhcih triggered this method.
+     * @param value The value of the Title field.
+     */
+    handleTitleInput = (e, {value}) => {
         this.setState({
             title: value
         })
     }
 
-  // Monitor content input
-    handleContentInput (e, {value}) {
+    /**
+     * This method handles changes in the Content field and mirror them to state.
+     * @param e The event cwhcih triggered this method.
+     * @param value The value of the Content field.
+     */
+    handleContentInput = (e, {value}) => {
         this.setState({
             content: value
         })
@@ -94,11 +102,15 @@ export default class NewNoteModal extends Component {
 
     render () {
         /**
-         * Render nothing if model isOpen is false
+         * Fetch 'isOpen' from props passed from parent.
+         * Fetch 'title', 'content', 'titleError' and 'contentError' from state.
          */
         const { isOpen } = this.props
         const { title, content, titleError, contentError } = this.state
 
+        /**
+         * Render nothing if model isOpen is false.
+         */
         if (!this.props.isOpen) {
             return null
         }
@@ -107,20 +119,18 @@ export default class NewNoteModal extends Component {
                 open={isOpen}
                 size='tiny'>
                 <Modal.Header>
-
                     <Grid width={16} >
                         <Grid.Column width={13} >
                             <Input
                                 error={titleError}
                                 onChange={ this.handleTitleInput }
                                 value={ title }
-                                placeholder='Title ...'/>
+                                placeholder='Title ...'
+                            />
                         </Grid.Column>
                     </Grid>
-
                 </Modal.Header>
                 <Modal.Content scrolling>
-
                     <Modal.Description>
                         <Form>
                             <Form.TextArea
@@ -129,21 +139,23 @@ export default class NewNoteModal extends Component {
                                 value={ content }
                                 size='small'
                                 placeholder='Note text ...'
-                                autoHeight={true}/>
+                                autoHeight={true}
+                            />
                         </Form>
                     </Modal.Description>
-
                 </Modal.Content>
                 <Modal.Actions>
                     <Button.Group>
                         <Button
                             onClick={ this.handleButtonSaveClick }
-                            color='green'>
+                            color='green'
+                        >
                             Save
                         </Button>
                         <Button
                             onClick={this.handleButtonClose}
-                            color='grey'>
+                            color='grey'
+                        >
                             Close
                         </Button>
                     </Button.Group>
