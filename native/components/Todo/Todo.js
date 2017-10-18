@@ -146,7 +146,6 @@ export default class Todo extends Component {
 const styles = StyleSheet.create({
 
     todoStyle: {
-        alignItems: 'center',
         marginTop: 20
     },
 
