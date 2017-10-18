@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
-import { Button, Left, Body, Right, Icon, Content, View, Text, ListItem, Item,Grid ,Col,Row } from 'native-base';
+import { Button, Icon, Text, ListItem, Item ,Grid ,Col,Row } from 'native-base';
 import moment from 'moment'
 import EditNoteModal from './EditNoteModal'
 import ViewNoteModal from './ViewNoteModal'
