@@ -75,7 +75,7 @@ export default class Todo extends Component {
             <ListItem style={{backgroundColor: todo.checked ? "#4BB543" : "white" }}>
                 <Content>
                     <Grid>
-                        <Col size={29}>
+                        <Col size={35}>
                             <Row>
                                 <CheckBox
                                     onPress={this.handleCheckBoxClick}
@@ -87,7 +87,7 @@ export default class Todo extends Component {
                                     onPress={this.markAsFavorite}/>
                             </Row>
                         </Col>
-                        <Col size={76} style={{marginRight: 10}}>
+                        <Col size={74} style={{marginRight: 10}}>
                             <Row>
                                 <Text
                                     style={{fontSize: 21, paddingBottom: 2}}>
@@ -100,8 +100,8 @@ export default class Todo extends Component {
                                 </Text>
                             </Row>
                         </Col>
-                        <Col size={39}>
-                            <Item>
+                        <Col size={42}>
+                            <Row>
                                 <Button
                                     onPress={this.toggleDeleteModal}
                                     style={{
@@ -121,7 +121,7 @@ export default class Todo extends Component {
                                         name='create'
                                         style={{color:'white'}}/>
                                 </Button>
-                            </Item>
+                            </Row>
                         </Col>
                     </Grid>
                     <EditTodoModal toggleModal={this.toggleEditModal}
@@ -146,14 +146,12 @@ export default class Todo extends Component {
 const styles = StyleSheet.create({
 
     todoStyle: {
-        justifyContent : 'center',
-        alignItems: 'center',
         marginTop: 20
     },
 
     starStyle: {
-        color:'yellow',
-        marginLeft: 18,
+        color: "#fbbd08",
+        marginLeft: 28,
         marginTop: 15
     }
 

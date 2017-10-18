@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Label, Item, Input, Content, Form, Grid, Col } from 'native-base';
 import { Modal,Text,TouchableHighlight } from 'react-native'
 import DefaultHeader from '../DefaultHeader'
+import {views, button, noteEditMod } from '../../styles'
 
 export default class NewNoteModal extends Component {
 
@@ -121,6 +122,7 @@ export default class NewNoteModal extends Component {
                     </TouchableHighlight>
                         </Col>
                         <Col>
+
                             <TouchableHighlight
                                 onPress={this.handleButtonClose}
                                 style={{
@@ -136,6 +138,7 @@ export default class NewNoteModal extends Component {
                                     CLOSE
                                 </Text>
                             </TouchableHighlight>
+
                         </Col>
                     </Grid>
                 </View>

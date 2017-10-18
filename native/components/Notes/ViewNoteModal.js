@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, Content, Title , Button, Grid, Col } from 'native-base';
-import { Modal, StyleSheet } from 'react-native'
+import { Modal } from 'react-native'
 import DefaultHeader from '../DefaultHeader'
+import {noteVwMod, views, button } from '../../styles'
 
 export default class ViewNoteModal extends Component {
 
@@ -17,21 +18,21 @@ export default class ViewNoteModal extends Component {
                 onRequestClose={() => {alert("EditNoteModal has been closed.")}}>
 
                 <DefaultHeader title={title} toggleModal={toggleModal}/>
-                <View style={{flex:1}}>
+                <View style={views.flex1}>
                     <Content>
                         <Grid>
 
                             <Col size={75}>
-                                <View style={{flex:1}}>
-                                    <Text style={styles.titleStyle}>
+                                <View style={views.flex1}>
+                                    <Text style={noteVwMod.titleStyle}>
                                         {title}
                                     </Text>
                                 </View>
                             </Col>
 
                             <Col size={26}>
-                                <View style={{flex:1}}>
-                                    <Text style={styles.dateStyle}>
+                                <View style={views.flex1}>
+                                    <Text style={noteVwMod.dateStyle}>
                                         {date}
 
                                         </Text>
@@ -40,10 +41,10 @@ export default class ViewNoteModal extends Component {
                         </Grid>
 
                         <View
-                            style={styles.borderStyle}/>
+                            style={noteVwMod.borderStyle}/>
 
                         <View style={{flex:2}}>
-                            <Text style={styles.contentStyle}>
+                            <Text style={noteVwMod.contentStyle}>
                                 {content}
                             </Text>
                         </View>
@@ -51,11 +52,11 @@ export default class ViewNoteModal extends Component {
                     </Content>
                 </View>
 
-                <View style={{position:'absolute',bottom:0, width:'100%'}}>
+                <View style={views.buttonView}>
                     <Button
                         block
                         onPress={toggleModal}
-                        style={{backgroundColor:'#767676'}}>
+                        style={button.closeColor}>
                         <Text>Close</Text>
                     </Button>
                 </View>
@@ -64,37 +65,3 @@ export default class ViewNoteModal extends Component {
         )
     }
 }
-
-
-const styles = StyleSheet.create({
-
-    contentStyle: {
-        fontSize:18,
-        paddingLeft:25,
-        paddingRight:25,
-        paddingTop:10,
-        paddingBottom:50,
-    },
-
-    dateStyle: {
-        fontSize:12,
-        color:'#999999',
-        paddingRight:25,
-        paddingTop:10,
-        paddingBottom:10,
-    },
-
-    titleStyle:{
-        fontWeight:'bold',
-        fontSize:24,
-        paddingLeft:25,
-        paddingBottom:10,
-        paddingTop:10,
-
-    },
-
-    borderStyle:{
-        borderBottomColor: '#999999',
-        borderBottomWidth: 1,
-    }
-})
