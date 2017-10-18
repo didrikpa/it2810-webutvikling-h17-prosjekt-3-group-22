@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DatePicker from 'react-native-datepicker'
 import { Modal, Text, View } from 'react-native';
-import { Container, Header, Content, Button, Icon, Item, Input, Form ,Grid ,Col, H3 } from 'native-base';
+import { Header, Button, Icon, Item, Input, Form, Grid, Col, H3 } from 'native-base';
 import DefaultHeader from '../DefaultHeader'
 
 import moment from 'moment'
@@ -67,11 +67,17 @@ export default class CreateEvent extends Component {
                 <Form>
                     <H3>Event name:</H3>
                    <Item>
-                     <Input placeholder="Description" onChangeText={(text) => this.setState({text})} value={text} />
+                     <Input
+                        placeholder="Description"
+                        onChangeText={(text) => this.setState({text})}
+                        value={text} />
                    </Item>
                     <H3>Where is the event:</H3>
                    <Item last>
-                     <Input placeholder="Where" onChangeText={(where) => this.setState({where})} value={where} />
+                     <Input
+                        placeholder="Where"
+                        onChangeText={(where) => this.setState({where})}
+                        value={where} />
                    </Item>
 
                 </Form>
@@ -102,7 +108,10 @@ export default class CreateEvent extends Component {
                 <View style={{flex:1}}>
                     <Grid>
                         <Col>
-                            <View style={{position:'absolute', bottom:0, width:'100%'}}>
+                            <View style={{
+                                position:'absolute',
+                                bottom:0,
+                                width:'100%'}}>
                                 <Button block
                                         success
                                         onPress={this.createEvent}
@@ -115,7 +124,10 @@ export default class CreateEvent extends Component {
                         </Col>
 
                         <Col>
-                            <View style={{position:'absolute', bottom:0, width:'100%'}}>
+                            <View style={{
+                                position:'absolute',
+                                bottom:0,
+                                width:'100%'}}>
                                 <Button block
                                         onPress={this.handleClose}
                                         style={{backgroundColor:"#767676"}}>

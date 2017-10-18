@@ -139,7 +139,8 @@ export default class EventContainer extends Component {
                                 content='Last'
                                 icon='left arrow'
                                 labelPosition='left'
-                                onClick={this.decrementMonth}/>
+                                onClick={this.decrementMonth}
+                                color='grey'/>
                         </Grid.Column>
                         <Grid.Column width={10}>
                             <Header as='h1' >{month.format('MMMM')}</Header>
@@ -149,7 +150,8 @@ export default class EventContainer extends Component {
                                 content='Next'
                                 icon='right arrow'
                                 labelPosition='right'
-                                onClick={this.incrementMonth}/>
+                                onClick={this.incrementMonth}
+                                color='grey'/>
                         </Grid.Column>
                     </Grid>
                     <Divider hidden/>
@@ -168,8 +170,8 @@ export default class EventContainer extends Component {
                         {sortedEvents.map((event, index) => {
                             let n = true
                             if (index > 0) {
-                                n = (moment(event.date).format('YYYY-MM-DD') !==
-                                moment(sortedEvents[index - 1].date).format('YYYY-MM-DD'))
+                                n = ((moment(event.date).format('YYYY-MM-DD') !==
+                                moment(sortedEvents[index - 1].date).format('YYYY-MM-DD')))
                             }
                             return (
                                 <Event
@@ -182,6 +184,12 @@ export default class EventContainer extends Component {
                             )
                         })}
                     </div>
+                    { sortedEvents.length ?
+                        undefined :
+                        <Header as='h3' block textAlign='center'>
+                            You have no events this month
+                        </Header>
+                    }
                     <Divider hidden/>
                 </Container>
             </div>

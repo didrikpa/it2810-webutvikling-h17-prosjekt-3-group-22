@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
-import { List, ListItem, Left, Right, Body, Text, Content, Button, Icon, Grid,
-  Col, Row} from 'native-base';
+import { List, ListItem, Left, Right, Body, Text, Button, Icon, Grid, Col, Row} from 'native-base';
 
 import moment from 'moment'
 
 import EditModal from './EditModal'
+import DeleteModal from '../DeleteModal'
+
 
 export default class Event extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ export default class Event extends Component {
         //init state
         this.state ={
             editModalOpen: false,
+            deleteModalOpen:false
         }
     }
 
@@ -34,13 +36,22 @@ export default class Event extends Component {
         })
     }
 
+    /**
+     * Opens and closes the deleteModal
+     */
+    toggleDeleteModal = () => {
+        this.setState({
+            deleteModalOpen: !this.state.deleteModalOpen
+        })
+    }
+
     render() {
       //define constants
-        const { event, isNew, updateEvent } = this.props
-        const { editModalOpen } = this.state
+        const { event, isNew, updateEvent, deleteItem } = this.props
+        const { editModalOpen, deleteModalOpen } = this.state
 
         return(
-            <List>
+            <List style={{marginTop: 10}}>
                 {isNew ?
                     <ListItem itemDivider>
                         <Text>
@@ -71,13 +82,15 @@ export default class Event extends Component {
                           <Col size={25}>
                               <Row>
                               <Button
-                                  onPress={this.handleDelete}
+                                  onPress={this.toggleDeleteModal}
                                   style={{backgroundColor:"#db2828", paddingRight:4}}>
                                   <Icon name='close' style={{color:'white'}}/>
                               </Button>
                               <Button
                                   onPress={this.toggleEditModal}
-                                  style={{backgroundColor:'#767676',marginLeft:-1}}>
+                                  style={{
+                                      backgroundColor:'#767676',
+                                      marginLeft:-1}}>
                                   <Icon name='create' style={{color:'white'}}/>
                               </Button>
                               </Row>
@@ -91,6 +104,16 @@ export default class Event extends Component {
                         text={event.text}
                         date={event.date}
                         where={event.where}/>
+
+                    <DeleteModal
+                        isOpen={deleteModalOpen}
+                        toggleModal={this.toggleDeleteModal}
+                        deleteFunction={deleteItem}
+                        object={event}
+                        title={event.text}
+                        headerTitle={"event"}
+                    />
+
                 </ListItem>
             </List>
         )

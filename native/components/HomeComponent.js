@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import { Container } from 'native-base'
+import { homeComp} from '../styles'
+
+/**
+ * Home screen. Short info about project.
+ * Detects OS and gives info accordingly.
+ */
 
 const instructions = Platform.select({
     ios: 'Your device: iOS.\n' +
@@ -11,22 +17,22 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class App extends Component {
+export default class HomeComponent extends Component {
     render() {
         return (
             <Container>
-            <View style={styles.container}>
-                <Text style={styles.welcome}>
+            <View style={homeComp.view}>
+                <Text style={homeComp.welcome}>
                     Personal Information Manager Project
                 </Text>
-                <Text style={styles.welcome}>
+                <Text style={homeComp.group}>
                     Group 22
                 </Text>
-                <Text style={styles.instructions}>
+                <Text style={homeComp.message}>
                     The PIMP is made as a group project in
                     the course IT2810 Web Development at NTNU.
                 </Text>
-                <Text style={styles.instructions}>
+                <Text style={homeComp.instructions}>
                     {instructions}
                 </Text>
             </View>
@@ -34,22 +40,3 @@ export default class App extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-});

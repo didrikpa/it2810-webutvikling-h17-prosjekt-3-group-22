@@ -51,7 +51,7 @@ class DeleteModal extends Component {
                 </Modal.Content>
                 <Modal.Actions>
                     <Button negative icon='x' labelPosition='left' content='Delete' onClick={handleDelete}/>
-                    <Button content='No' onClick={this.handleClose}/>
+                    <Button content='No' onClick={this.handleClose} color='grey'/>
                 </Modal.Actions>
             </Modal>
         )
