@@ -41,7 +41,7 @@ export default class TodoInput extends Component {
                         value={text}
                     />
                 <Button onPress={this.onButtonClick} success>
-                    <Text>New ToDO</Text>
+                    <Text>NEW TODO</Text>
                 </Button>
                 </Item>
             </Content>
