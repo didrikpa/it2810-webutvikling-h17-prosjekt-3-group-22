@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
-import { Container, Header, Content,View, Footer, FooterTab, Button, Icon, Text } from 'native-base'
-
+import { StyleProvider, Container, Header, Content,View, Footer, FooterTab, Button, Icon, Text } from 'native-base'
 import { Actions } from 'react-native-router-flux'
+
+import { navFooter } from '../styles'
+
+/**
+ * Navigation bar at bottom. Acts as footer.
+ * Contains a container with props.children, and a Footer
+ * from Native Base.
+ * The Footer has FooterTabs acting as tabs, and buttons with icons within.
+ */
 
 export default class NavFooter extends Component {
 
@@ -16,37 +23,41 @@ export default class NavFooter extends Component {
                     { this.props.children }
                 </Content>
                 <Footer>
-                    <FooterTab style={styles.footerTab}>
+                    <FooterTab style={navFooter.footerTab}>
                         <Button
+                            style={navFooter.button}
                             vertical
                             active={active === 'home'}
                             onPress={Actions.home}
                         >
-                            <Icon name='home' color="#e2e2e2"/>
+                            <Icon name='home'/>
                             <Text>Home</Text>
                         </Button>
                         <Button
+                            style={navFooter.button}
                             vertical
                             active={active === 'todos'}
                             onPress={Actions.todos}
                         >
-                            <Icon name='list' color="red"/>
+                            <Icon name='list'/>
                             <Text>Todos</Text>
                         </Button>
                         <Button
+                            style={navFooter.button}
                             vertical
                             active={active === 'notes'}
                             onPress={Actions.notes}
                         >
-                            <Icon active name='clipboard' color="#e2e2e2" />
+                            <Icon active name='clipboard' />
                             <Text>Notes</Text>
                         </Button>
                         <Button
+                            style={navFooter.button}
                             vertical
                             active={active === 'events'}
                             onPress={Actions.events}
                         >
-                            <Icon name='calendar' color="#e2e2e2" />
+                            <Icon name='calendar' />
                             <Text>Events</Text>
                         </Button>
                     </FooterTab>
@@ -55,10 +66,3 @@ export default class NavFooter extends Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-        footerTab: {
-            backgroundColor: "#1b1c1d"
-        }
-}
-)
