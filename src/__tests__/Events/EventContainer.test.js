@@ -8,7 +8,6 @@ Enzyme.configure({ adapter: new Adapter() });
 
 test('Todo component should render as expected', () => {
   const component = shallow(<EventContainer/>);
-  console.log(component);
   const tree = toJson(component);
   expect(tree).toMatchSnapshot();
 });

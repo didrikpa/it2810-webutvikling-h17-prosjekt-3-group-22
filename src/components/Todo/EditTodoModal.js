@@ -16,6 +16,7 @@ export default class EditToDoModal extends Component{
       date: this.props.date
     }
 
+
     this.handleContentInput = this.handleContentInput.bind(this)
 
   }

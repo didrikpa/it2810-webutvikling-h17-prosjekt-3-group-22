@@ -9,7 +9,6 @@ Enzyme.configure({ adapter: new Adapter() });
 test('HomeContainer component should render as expected', () => {
   const component = shallow(<HomeContainer />);
   const tree = toJson(component);
-  console.log(tree);
   expect(tree).toMatchSnapshot();
 });
 

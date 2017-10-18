@@ -1,6 +1,5 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router'
-import App from '../../App';
 import Adapter from 'enzyme-adapter-react-15'
 import Enzyme, { mount } from 'enzyme';
 
@@ -9,6 +8,7 @@ import TodoContainer from '../../components/Todo/TodoContainer';
 import NoteContainer from "../../components/Notes/NoteContainer";
 import EventContainer from "../../components/Events/EventContainer";
 import NotFound from "../../components/NotFound";
+import App from '../../App';
 
 Enzyme.configure({ adapter: new Adapter() });
 
