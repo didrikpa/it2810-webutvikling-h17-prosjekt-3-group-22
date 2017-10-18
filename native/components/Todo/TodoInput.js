@@ -38,7 +38,7 @@ export default class TodoInput extends Component {
                     <Input placeholder='Write your Todo...' onChangeText={(text) => this.setState({text: text})}
                            value={text}/>
                 <Button onPress={this.onButtonClick} success>
-                    <Text>New ToDO</Text>
+                    <Text>NEW TODO</Text>
                 </Button>
                 </Item>
             </Content>

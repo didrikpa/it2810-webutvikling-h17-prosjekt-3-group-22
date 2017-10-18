@@ -4,6 +4,7 @@ import { Button, Icon, Text, ListItem, Item ,Grid ,Col,Row } from 'native-base';
 import moment from 'moment'
 import EditNoteModal from './EditNoteModal'
 import ViewNoteModal from './ViewNoteModal'
+import DeleteModal from '../DeleteModal'
 
 export default class Note extends Component {
     constructor(props) {
@@ -14,7 +15,8 @@ export default class Note extends Component {
             content: this.props.note.content,
             date: this.props.note.date,
             editModalOpen:false,
-            viewModalOpen:false
+            viewModalOpen:false,
+            deleteModalOpen:false
         }
     }
 
@@ -36,6 +38,15 @@ export default class Note extends Component {
     }
 
     /**
+     * Toggles delete modal on/off
+     */
+    toggleDeleteModal = () => {
+        this.setState({
+            deleteModalOpen: !this.state.deleteModalOpen
+        })
+    }
+
+    /**
      * Toggles view modal on/off
      */
     toggleViewModal = () => {
@@ -45,8 +56,8 @@ export default class Note extends Component {
     }
 
     render() {
-        const { note, onButtonSaveClick } = this.props
-        const { editModalOpen,viewModalOpen } = this.state
+        const { note, onButtonSaveClick, deleteItem } = this.props
+        const { editModalOpen, viewModalOpen, deleteModalOpen } = this.state
 
 
         return (
@@ -65,7 +76,7 @@ export default class Note extends Component {
                     <Col size={25}>
                         <Row>
                             <Button
-                                onPress={this.handleDelete}
+                                onPress={this.toggleDeleteModal}
                                 style={{backgroundColor:"#db2828", paddingRight:4}}>
                                 <Icon
                                     name='close'
@@ -94,6 +105,16 @@ export default class Note extends Component {
                     title={note.title}
                     content={note.content}
                     date={moment(note.date).calendar()}/>
+
+
+                <DeleteModal
+                    isOpen={deleteModalOpen}
+                    toggleModal={this.toggleDeleteModal}
+                    deleteFunction={deleteItem}
+                    object={note}
+                    title={note.title}
+                    headerTitle={"note"}
+                />
 
             </ListItem>
         )

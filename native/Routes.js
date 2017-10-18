@@ -7,7 +7,6 @@ import TodoContainer from './components/Todo/TodoContainer'
 import EventContainer from './components/Event/EventContainer'
 import NavFooter from './components/NavFooter'
 import HomeComponent from './components/HomeComponent'
-import HeaderMenu from "./components/HeaderMenu";
 
 export default class Routes extends Component {
     render = () => {

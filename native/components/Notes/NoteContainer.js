@@ -3,7 +3,6 @@ import { AsyncStorage, StyleSheet } from 'react-native'
 import { Content, List, View, Text, } from 'native-base';
 import moment from 'moment'
 
-import HeaderMenu from '../HeaderMenu'
 import NewNoteModal from './NewNoteModal'
 import FABNewNote from './FABNewNote'
 import Note from './Note'
