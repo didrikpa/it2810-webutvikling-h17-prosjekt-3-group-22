@@ -1,25 +1,27 @@
 import React, { Component } from 'react'
 import { View,Content, Label, Grid, Col, Button, Text } from 'native-base';
-import { Modal, StyleSheet } from 'react-native'
+import { Modal } from 'react-native'
 import DefaultHeader from './DefaultHeader'
 
 export default class NewNoteModal extends Component {
 
-
-
-
+    /**
+     * Handle for close button.
+     * Closes modal
+     */
     handleButtonCloseClick = () => {
         const { toggleModal } = this.props
         toggleModal()
-
     }
 
+    /**
+     * Handle for delete button.
+     * Deletes given object and closes modal
+     */
     handleButtonDeleteClick = () => {
         const { deleteFunction, object } = this.props
         deleteFunction(object)
         this.handleButtonCloseClick()
-
-
     }
 
 
@@ -31,7 +33,7 @@ export default class NewNoteModal extends Component {
                 animationType="slide"
                 transparent={false}
                 visible={isOpen}
-                onRequestClose={() => {alert("NewNoteModal has been closed.")}}>
+                onRequestClose={() => {alert("DeleteModal has been closed.")}}>
 
                 <DefaultHeader title={`Delete ${headerTitle}`} toggleModal={this.handleButtonCloseClick}/>
                 <View style={{
@@ -39,14 +41,14 @@ export default class NewNoteModal extends Component {
                     flexDirection: 'column',
                     justifyContent: 'center',
                     alignItems: 'center'}}>
-                            <Label style={{
-                                fontSize:30,
-                            }}>
+
+                            <Label style={{fontSize:30,}}>
                                 Delete this {headerTitle}? {'\n'}
                             </Label>
-                                <Label style={{fontSize:20, fontWeight:'bold', paddingTop:20}}>'{ title }'</Label>
 
-
+                    <Label style={{fontSize:20, fontWeight:'bold', paddingTop:20}}>
+                        '{ title }'
+                    </Label>
                 </View>
                 <Grid>
 
@@ -80,28 +82,3 @@ export default class NewNoteModal extends Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    view: {
-        flex: 1,
-        marginTop: 7,
-        marginLeft: 7,
-        marginRight: 7,
-        backgroundColor: "#f5fcff"
-    },
-    addButtonView: {
-        position:'absolute',
-        bottom:0,
-        width:'100%',
-    },
-    noteContent: {
-        height: 200,
-        textAlignVertical: 'top',
-    },
-    addButton: {
-        backgroundColor: "#21ba45"
-    },
-    addText: {
-        fontSize: 20
-    }
-})
