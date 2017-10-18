@@ -40,7 +40,7 @@ export default class Event extends Component {
         const { editModalOpen } = this.state
 
         return(
-            <List>
+            <List style={{marginTop: 10}}>
                 {isNew ?
                     <ListItem itemDivider>
                         <Text>
