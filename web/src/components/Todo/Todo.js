@@ -4,11 +4,6 @@ import moment from 'moment'
 import EditToDoModal from './EditTodoModal'
 import DeleteModal from '../DeleteModal'
 
-const dateStyle = {
-    fontSize: '1rem',
-    color: '#999999'
-}
-
 class Todo extends Component {
     constructor (props) {
         super(props)
@@ -68,8 +63,7 @@ class Todo extends Component {
                         </Grid.Column>
                         <Grid.Column
                             width={4}
-                            onClick={this.toggleViewModal}
-                            style={dateStyle}>
+                            onClick={this.toggleViewModal}>
                             { moment(date).calendar()}
                         </Grid.Column>
                         <Grid.Column width={1}>
