@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
-import { List, ListItem, Left, Right, Body, Text, Content, Button, Icon, Grid,
-  Col, Row} from 'native-base';
+import { List, ListItem, Left, Right, Body, Text, Button, Icon, Grid, Col, Row} from 'native-base';
 
 import moment from 'moment'
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { AsyncStorage, StyleSheet } from 'react-native'
-import { Container, Header, Content, Button, Text, View,
-  Icon } from 'native-base';
+import { Content, Button, Text, View, Icon } from 'native-base';
 import moment from 'moment'
 
 import Event from './Event'
