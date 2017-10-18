@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import DatePicker from 'material-ui/DatePicker'
 import TimePicker from 'material-ui/TimePicker'
 import moment from 'moment'
-import { Button, Header, Modal, Input, Grid, Checkbox } from 'semantic-ui-react'
+import { Button, Header, Modal, Input, Grid } from 'semantic-ui-react'
 
 export default class CreateEvent extends Component {
     constructor (props) {
