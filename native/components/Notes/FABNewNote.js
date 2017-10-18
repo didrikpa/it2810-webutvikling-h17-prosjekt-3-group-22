@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Content,Container, Header, View, Icon, Button, Fab } from 'native-base';
+import { Content,Container, Header, View, Icon, Button,
+  Fab } from 'native-base';
 
 export default class Note extends Component {
 

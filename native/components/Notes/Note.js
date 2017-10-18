@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
-import { Button, Left, Body, Right, Icon, Content, View, Text, ListItem, Item,Grid ,Col,Row } from 'native-base';
+import { Button, Left, Body, Right, Icon, Content, View, Text, ListItem,
+  Item,Grid ,Col,Row } from 'native-base';
 import moment from 'moment'
 import EditNoteModal from './EditNoteModal'
 import ViewNoteModal from './ViewNoteModal'
@@ -54,10 +55,14 @@ export default class Note extends Component {
                 <Grid>
                     <Col size={80}>
                         <Row>
-                            <Text style={styles.titleStyle}>{note.title}</Text>
+                            <Text style={styles.titleStyle}>
+                                {note.title}
+                            </Text>
                         </Row>
                         <Row>
-                            <Text style={styles.dateStyle}>{moment(note.date).calendar()}</Text>
+                            <Text style={styles.dateStyle}>
+                                {moment(note.date).calendar()}
+                            </Text>
                         </Row>
                     </Col>
 

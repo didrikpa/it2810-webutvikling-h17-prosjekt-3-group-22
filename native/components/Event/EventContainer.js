@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AsyncStorage, StyleSheet } from 'react-native'
-import { Container, Header, Content, Button, Text, View, Icon } from 'native-base';
+import { Container, Header, Content, Button, Text, View,
+  Icon } from 'native-base';
 import moment from 'moment'
 
 import Event from './Event'
@@ -114,13 +115,21 @@ export default class EventContainer extends Component {
     }
 
     render() {
-
-    //Defines constants
       const { events, month, newModalOpen  } = this.state
       const { now } = this.props
 
-      //Sorts the list of events
-      let sortedEvents = events.filter((event) => moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')).sort((b,a) => { return moment(b.date).unix() - moment(a.date).unix()})
+      {/**
+       * To display the events we need to filter and sort them.
+       * First we filter the events on the month.
+       * We only want to display the events happening the month selected in the Component State.
+       * Then we sort the events we are left with on the absolute timestamp in ascending order.
+       */}
+      let sortedEvents = events
+          .filter((event) => {
+              return moment(event.date).format('YYYY-MM') === month.format('YYYY-MM')
+          }).sort((b, a) => {
+              return moment(b.date).unix() - moment(a.date).unix()
+          })
 
       return (
         <View style={{flex:1, backgroundColor:"white"}}>
@@ -157,7 +166,8 @@ export default class EventContainer extends Component {
               {sortedEvents.map((event, index) => {
                   let n = true
                   if (index > 0) {
-                      n = moment(event.date).format('YYYY-MM-DD') !== moment(sortedEvents[index-1].date).format('YYYY-MM-DD')
+                      n = (moment(event.date).format('YYYY-MM-DD') !==
+                      moment(sortedEvents[index-1].date).format('YYYY-MM-DD'))
                   }
                   return (
                       <Event

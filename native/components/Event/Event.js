@@ -72,12 +72,16 @@ export default class Event extends Component {
                               <Row>
                               <Button
                                   onPress={this.handleDelete}
-                                  style={{backgroundColor:"#db2828", paddingRight:4}}>
+                                  style={{
+                                      backgroundColor:"#db2828",
+                                      paddingRight:4}}>
                                   <Icon name='close' style={{color:'white'}}/>
                               </Button>
                               <Button
                                   onPress={this.toggleEditModal}
-                                  style={{backgroundColor:'#767676',marginLeft:-1}}>
+                                  style={{
+                                      backgroundColor:'#767676',
+                                      marginLeft:-1}}>
                                   <Icon name='create' style={{color:'white'}}/>
                               </Button>
                               </Row>
