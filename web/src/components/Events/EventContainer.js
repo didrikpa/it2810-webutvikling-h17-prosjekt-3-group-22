@@ -4,8 +4,6 @@ import moment from 'moment'
 
 import Event from './Event'
 import CreateEvent from './CreateEvent'
-import Navbar from '../Navbar'
-import Footer from '../Footer'
 
 export default class EventContainer extends Component {
     constructor (props) {
@@ -127,7 +125,6 @@ export default class EventContainer extends Component {
 
         return (
             <div>
-                <Navbar/>
                 <Divider hidden/>
                 <Container text textAlign='center'>
 
@@ -186,7 +183,6 @@ export default class EventContainer extends Component {
                     </div>
                     <Divider hidden/>
                 </Container>
-                <Footer/>
             </div>
         )
     }
