@@ -2,10 +2,18 @@ import React from 'react'
 import { Grid, Container, Divider } from 'semantic-ui-react'
 import FooterWrapper from './FooterWrapper'
 
+/**
+ * Define local CSS for this Component.
+ */
 const fontStyle = {
     color: '#5f5f5f'
 }
 
+/**
+ * Define Footer as a 'dumb' Component.
+ * Because the Component doesn't have any built in logic,
+ * it is only defined as a function which returns JSX.
+ */
 const Footer = () => (
     <FooterWrapper>
         <Grid columns={1}>
