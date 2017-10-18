@@ -65,10 +65,14 @@ export default class Note extends Component {
                 <Grid>
                     <Col size={80}>
                         <Row>
-                            <Text style={styles.titleStyle}>{note.title}</Text>
+                            <Text style={styles.titleStyle}>
+                                {note.title}
+                            </Text>
                         </Row>
                         <Row>
-                            <Text style={styles.dateStyle}>{moment(note.date).calendar()}</Text>
+                            <Text style={styles.dateStyle}>
+                                {moment(note.date).calendar()}
+                            </Text>
                         </Row>
                     </Col>
 

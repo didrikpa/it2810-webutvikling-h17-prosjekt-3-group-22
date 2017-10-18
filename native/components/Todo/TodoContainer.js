@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Content, Divider, List, Text } from 'native-base'
+import { Content, List, Text } from 'native-base'
 import { AsyncStorage, StyleSheet } from 'react-native';
 import Todo from './Todo'
 import TodoInput from './TodoInput'
@@ -40,7 +40,7 @@ export default class TodoContainer extends Component {
         } else {
             console.error(`[TodoContainer](checkBoxClick) Couldn't find object at index ${i}`)
         }
-        
+
     }
 
   /**
@@ -124,9 +124,15 @@ export default class TodoContainer extends Component {
                 <Content>
                     <TodoInput onButtonClick={this.newTodo}/>
                     <List>
-                    { todos.map((todo) => <Todo key={todo.date} todo={todo} checkBoxClick={this.checkBoxClick}
-                                                deleteItem={this.deleteItem} onButtonClick = {this.newTodo}
-                                                updateToDos = {this.updateToDos} />) }
+                    { todos.map((todo) => (
+                        <Todo key={todo.date}
+                            todo={todo}
+                            checkBoxClick={this.checkBoxClick}
+                            deleteItem={this.deleteItem}
+                            onButtonClick = {this.newTodo}
+                            updateToDos = {this.updateToDos}
+                        />)
+                    )}
                     </List>
                   { todos.length ?
                     <Text style={styles.endText}>

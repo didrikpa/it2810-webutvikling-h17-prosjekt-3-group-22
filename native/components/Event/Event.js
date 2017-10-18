@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
-import { List, ListItem, Left, Right, Body, Text, Content, Button, Icon, Grid,
-  Col, Row} from 'native-base';
+import { List, ListItem, Left, Right, Body, Text, Button, Icon, Grid, Col, Row} from 'native-base';
 
 import moment from 'moment'
 
@@ -52,7 +51,7 @@ export default class Event extends Component {
         const { editModalOpen, deleteModalOpen } = this.state
 
         return(
-            <List>
+            <List style={{marginTop: 10}}>
                 {isNew ?
                     <ListItem itemDivider>
                         <Text>
@@ -89,7 +88,9 @@ export default class Event extends Component {
                               </Button>
                               <Button
                                   onPress={this.toggleEditModal}
-                                  style={{backgroundColor:'#767676',marginLeft:-1}}>
+                                  style={{
+                                      backgroundColor:'#767676',
+                                      marginLeft:-1}}>
                                   <Icon name='create' style={{color:'white'}}/>
                               </Button>
                               </Row>
