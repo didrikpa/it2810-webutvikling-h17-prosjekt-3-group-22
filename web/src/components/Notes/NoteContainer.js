@@ -99,7 +99,7 @@ export default class NoteContainer extends Component {
                 <Container text>
                     <Grid width={16}>
                         <Grid.Column width={14}>
-                            <Header as='h1'>Your notes:</Header>
+                            <Header as='h1'>Your notes</Header>
                         </Grid.Column>
                         <Grid.Column width={2} floated='right'>
                             <Button

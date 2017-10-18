@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Divider, Header } from 'semantic-ui-react'
+import { Container, Divider, Header, Grid } from 'semantic-ui-react'
 import moment from 'moment'
 
 import Todo from './Todo'
@@ -100,8 +100,12 @@ export default class TodoContainer extends Component {
             <div>
                 <Divider hidden />
                 <Container text>
-                    <Divider hidden />
-                    <TodoInput onButtonClick={this.newTodo}/>
+                    <Grid.Column>
+                        <Grid.Row width={10}>
+                            <Header as='h1' floated='left'>Your todos</Header>
+                            <TodoInput onButtonClick={this.newTodo}/>
+                        </Grid.Row>
+                    </Grid.Column>
                     <Divider hidden/>
                     { todos.map((todo) =>
                         < Todo key={todo.date}
