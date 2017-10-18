@@ -169,14 +169,14 @@ export default class EventContainer extends Component {
                       />
                   )
                 })}
-          { events.length ?
-            <Text style={styles.endText}>
-              End of your list
-            </Text> :
-            <Text style={styles.endText}>
-              No events
-            </Text>
-          }
+                { sortedEvents.length ?
+                  <Text style={styles.endText}>
+                      End of your list
+                  </Text> :
+                  <Text style={styles.endText}>
+                      No events
+                  </Text>
+                }
           </Content>
           <View>
             <FABNewEvent toggleModal={this.toggleNewModal}/>
