@@ -5,6 +5,8 @@ import { List, ListItem, Left, Right, Body, Text, Button, Icon, Grid, Col, Row} 
 import moment from 'moment'
 
 import EditModal from './EditModal'
+import DeleteModal from '../DeleteModal'
+
 
 export default class Event extends Component {
     constructor(props) {
@@ -13,6 +15,7 @@ export default class Event extends Component {
         //init state
         this.state ={
             editModalOpen: false,
+            deleteModalOpen:false
         }
     }
 
@@ -33,10 +36,19 @@ export default class Event extends Component {
         })
     }
 
+    /**
+     * Opens and closes the deleteModal
+     */
+    toggleDeleteModal = () => {
+        this.setState({
+            deleteModalOpen: !this.state.deleteModalOpen
+        })
+    }
+
     render() {
       //define constants
-        const { event, isNew, updateEvent } = this.props
-        const { editModalOpen } = this.state
+        const { event, isNew, updateEvent, deleteItem } = this.props
+        const { editModalOpen, deleteModalOpen } = this.state
 
         return(
             <List style={{marginTop: 10}}>
@@ -70,10 +82,8 @@ export default class Event extends Component {
                           <Col size={25}>
                               <Row>
                               <Button
-                                  onPress={this.handleDelete}
-                                  style={{
-                                      backgroundColor:"#db2828",
-                                      paddingRight:4}}>
+                                  onPress={this.toggleDeleteModal}
+                                  style={{backgroundColor:"#db2828", paddingRight:4}}>
                                   <Icon name='close' style={{color:'white'}}/>
                               </Button>
                               <Button
@@ -94,6 +104,16 @@ export default class Event extends Component {
                         text={event.text}
                         date={event.date}
                         where={event.where}/>
+
+                    <DeleteModal
+                        isOpen={deleteModalOpen}
+                        toggleModal={this.toggleDeleteModal}
+                        deleteFunction={deleteItem}
+                        object={event}
+                        title={event.text}
+                        headerTitle={"event"}
+                    />
+
                 </ListItem>
             </List>
         )

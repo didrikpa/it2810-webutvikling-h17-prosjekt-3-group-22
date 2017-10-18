@@ -4,7 +4,7 @@ import { Col, Grid, Row } from 'react-native-easy-grid';
 import { StyleSheet } from 'react-native'
 import moment from 'moment'
 import EditTodoModal from "./EditTodoModal"
-
+import DeleteModal from '../DeleteModal'
 
 
 export default class Todo extends Component {
@@ -14,8 +14,9 @@ export default class Todo extends Component {
 
         //sets the state
         this.state = {
-            //Boolean used to open and close modal
+            //Booleans used to open and close modals
             editModalOpen: false,
+            deleteModalOpen: false,
             //Sets the date to props date
             date: this.props.todo.date,
         }
@@ -37,13 +38,21 @@ export default class Todo extends Component {
         deleteItem(todo)
     }
 
-
     /**
      * Toggele the modal window
      */
     toggleEditModal = () => {
         this.setState({
             editModalOpen: !this.state.editModalOpen
+        })
+    }
+
+    /**
+     * Toggle delete modal on/off
+     */
+    toggleDeleteModal = () => {
+        this.setState({
+            deleteModalOpen: !this.state.deleteModalOpen
         })
     }
 
@@ -60,66 +69,74 @@ export default class Todo extends Component {
 
     render() {
         //defines constants
-        const { date, editModalOpen} = this.state
-        const { todo, onButtonClick} = this.props
+        const { date, editModalOpen, deleteModalOpen } = this.state
+        const { todo, onButtonClick, deleteItem } = this.props
         return(
             <ListItem style={{backgroundColor: todo.checked ? "#4BB543" : "white" }}>
-                    <Content>
-                        <Grid>
-                            <Col size={29}>
-                                <Row>
-                                    <CheckBox
-                                        onPress={this.handleCheckBoxClick}
-                                        style={styles.todoStyle}
-                                        checked={todo.checked} />
+                <Content>
+                    <Grid>
+                        <Col size={29}>
+                            <Row>
+                                <CheckBox
+                                    onPress={this.handleCheckBoxClick}
+                                    style={styles.todoStyle}
+                                    checked={todo.checked} />
+                                <Icon
+                                    name={todo.isStar ? 'md-star' : 'star'}
+                                    style={styles.starStyle}
+                                    onPress={this.markAsFavorite}/>
+                            </Row>
+                        </Col>
+                        <Col size={76} style={{marginRight: 10}}>
+                            <Row>
+                                <Text
+                                    style={{fontSize: 21, paddingBottom: 2}}>
+                                    { todo.text }
+                                </Text>
+                            </Row>
+                            <Row>
+                                <Text>
+                                    { moment(date).calendar()}
+                                </Text>
+                            </Row>
+                        </Col>
+                        <Col size={39}>
+                            <Item>
+                                <Button
+                                    onPress={this.toggleDeleteModal}
+                                    style={{
+                                        backgroundColor:"#db2828",
+                                        paddingRight:4}}>
                                     <Icon
-                                        name={todo.isStar ? 'md-star' : 'star'}
-                                        style={styles.starStyle}
-                                        onPress={this.markAsFavorite}/>
-                                </Row>
-                            </Col>
-                            <Col size={76} style={{marginRight: 10}}>
-                                <Row>
-                                    <Text
-                                        style={{fontSize: 21, paddingBottom: 2}}>
-                                        { todo.text }
-                                    </Text>
-                                </Row>
-                                <Row>
-                                    <Text>
-                                        { moment(date).calendar()}
-                                    </Text>
-                                </Row>
-                            </Col>
-                            <Col size={39}>
-                                <Item>
-                                    <Button
-                                        onPress={this.handleDelete}
-                                        style={{
-                                            backgroundColor:"#db2828",
-                                            paddingRight:4}}>
-                                        <Icon
-                                            name='close'
-                                            style={{color:'white'}}
-                                        />
-                                    </Button>
-                                    <Button
-                                        onPress={this.toggleEditModal}
-                                        style={{
-                                            backgroundColor:'#767676',
-                                            marginLeft:-1}}>
-                                        <Icon
-                                            name='create'
-                                            style={{color:'white'}}/>
-                                    </Button>
-                                </Item>
-                            </Col>
-                      </Grid>
-                      <EditTodoModal toggleModal={this.toggleEditModal}
-                           isOpen={editModalOpen}
-                           onButtonSaveClick={onButtonClick}
-                           handleDelete = {this.handleDelete}
-                           content = {todo.text} />
+                                        name='close'
+                                        style={{color:'white'}}
+                                    />
+                                </Button>
+                                <Button
+                                    onPress={this.toggleEditModal}
+                                    style={{
+                                        backgroundColor:'#767676',
+                                        marginLeft:-1}}>
+                                    <Icon
+                                        name='create'
+                                        style={{color:'white'}}/>
+                                </Button>
+                            </Item>
+                        </Col>
+                    </Grid>
+                    <EditTodoModal toggleModal={this.toggleEditModal}
+                        isOpen={editModalOpen}
+                        onButtonSaveClick={onButtonClick}
+                        handleDelete = {this.handleDelete}
+                        content = {todo.text} />
+                    <DeleteModal
+                        isOpen={deleteModalOpen}
+                        toggleModal={this.toggleDeleteModal}
+                        deleteFunction={deleteItem}
+                        object={todo}
+                        title={todo.text}
+                        headerTitle={"todo"}
+                    />
                 </Content>
             </ListItem>
         )

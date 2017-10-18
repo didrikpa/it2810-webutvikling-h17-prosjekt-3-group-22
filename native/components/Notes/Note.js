@@ -29,7 +29,7 @@ export default class Note extends Component {
     }
 
     /**
-     * Toggles edit modal on/off
+     * Toggle edit modal on/off
      */
     toggleEditModal = () => {
         this.setState({
@@ -38,7 +38,7 @@ export default class Note extends Component {
     }
 
     /**
-     * Toggles delete modal on/off
+     * Toggle delete modal on/off
      */
     toggleDeleteModal = () => {
         this.setState({
@@ -47,7 +47,7 @@ export default class Note extends Component {
     }
 
     /**
-     * Toggles view modal on/off
+     * Toggle view modal on/off
      */
     toggleViewModal = () => {
         this.setState({
