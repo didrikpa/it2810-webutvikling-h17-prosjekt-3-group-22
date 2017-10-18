@@ -15,9 +15,7 @@ test('EditModal component should render as expected: ', () => {
     date: moment('20171018'),
     time: moment('10:14')
   };
-
   const component = shallow(<EditModal event={event}/>);
-
   const tree = toJson(component);
   expect(tree).toMatchSnapshot();
 });
