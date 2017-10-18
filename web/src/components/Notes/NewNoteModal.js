@@ -143,7 +143,8 @@ export default class NewNoteModal extends Component {
                         </Button>
                         <Button
                             onClick={this.handleButtonClose}
-                            color='grey'>Close
+                            color='grey'>
+                            Close
                         </Button>
                     </Button.Group>
                 </Modal.Actions>

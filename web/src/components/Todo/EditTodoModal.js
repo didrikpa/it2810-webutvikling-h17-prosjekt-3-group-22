@@ -70,7 +70,11 @@ export default class EditToDoModal extends Component {
                         <Grid.Column width={10}>
                             Edit your todo:
                         </Grid.Column>
-                        <Grid.Column width={6} textAlign="right" verticalAlign="middle" style={dateStyle}>
+                        <Grid.Column
+                            width={6}
+                            textAlign="right"
+                            verticalAlign="middle"
+                            style={dateStyle}>
                             { date }
                         </Grid.Column>
                     </Grid>

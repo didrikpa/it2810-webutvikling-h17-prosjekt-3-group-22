@@ -85,11 +85,8 @@ export default class TodoContainer extends Component {
     // Updates the order of the todos
     updateToDos = (todo) => {
         const {todos} = this.state
-        console.log(todos)
-        console.log(todo)
         for (let i = 0; i < todos.length; i++) {
             if (todos[i] === todo) {
-                console.log('test')
                 todos.splice(i, 1)
                 todo.isStar ? todos.splice(0, 0, todo) : todos.push(todo)
                 this.updateState(todos)
@@ -108,7 +105,13 @@ export default class TodoContainer extends Component {
                     <Divider hidden />
                     <TodoInput onButtonClick={this.newTodo}/>
                     <Divider hidden/>
-                    { todos.map((todo) => <Todo key={todo.date} todo={todo} checkBoxClick={this.checkBoxClick} deleteItem={this.deleteItem} onButtonClick = {this.newTodo} updateToDos = {this.updateToDos} />) }
+                    { todos.map((todo) =>
+                        < Todo key={todo.date}
+                        todo={todo}
+                        checkBoxClick={this.checkBoxClick}
+                        deleteItem={this.deleteItem}
+                        onButtonClick = {this.newTodo}
+                        updateToDos = {this.updateToDos} />) }
                 </Container>
                 <Divider hidden />
                 <Footer/>

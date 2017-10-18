@@ -34,7 +34,7 @@ export default class EventContainer extends Component {
     }
 
     /**
-     * This method uses Moment.sj to subract a month to the current Month object in the state.
+     * This method uses Moment.js to subract a month to the current Month object in the state.
      */
     decrementMonth = () => {
         this.setState({
@@ -130,28 +130,52 @@ export default class EventContainer extends Component {
                 <Navbar/>
                 <Divider hidden/>
                 <Container text textAlign='center'>
+
+                    {/**
+                     * Displays the buttons for changing month and the month
+                     * for the events displays.
+                    */}
                     <Grid>
                         <Grid.Column width={3}>
-                            <Button content='Last' icon='left arrow' labelPosition='left' onClick={this.decrementMonth}/>
+                            <Button
+                                content='Last'
+                                icon='left arrow'
+                                labelPosition='left'
+                                onClick={this.decrementMonth}/>
                         </Grid.Column>
                         <Grid.Column width={10}>
                             <Header as='h1' >{month.format('MMMM')}</Header>
                         </Grid.Column>
                         <Grid.Column width={3}>
-                            <Button content='Next' icon='right arrow' labelPosition='right' onClick={this.incrementMonth}/>
+                            <Button
+                                content='Next'
+                                icon='right arrow'
+                                labelPosition='right'
+                                onClick={this.incrementMonth}/>
                         </Grid.Column>
                     </Grid>
                     <Divider hidden/>
+
+                    {/**
+                     * The modal for creating an event
+                    */}
                     <CreateEvent updateEvent={this.updateEvent}/>
                     <div>
+
+                        {/**
+                         * Sorting the events by date and displaying them
+                         * Sending the isNew variable as true, if the new event
+                         * does not match any of the dates in the event-list
+                        */}
                         {sortedEvents.map((event, index) => {
                             let n = true
                             if (index > 0) {
-                                n = moment(event.date).format('YYYY-MM-DD') !== moment(sortedEvents[index - 1].date).format('YYYY-MM-DD')
+                                n = (moment(event.date).format('YYYY-MM-DD') !==
+                                moment(sortedEvents[index - 1].date).format('YYYY-MM-DD'))
                             }
                             return (
                                 <Event
-                                    key={event.date}
+                                    key={event.now}
                                     event={event}
                                     deleteItem={this.deleteItem}
                                     updateEvent={this.updateEvent}

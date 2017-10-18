@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { Segment, CheckBox, Button, Icon, Content, Text, ListItem, Item, Container } from 'native-base'
 import { Col, Grid, Row } from 'react-native-easy-grid';
+import { StyleSheet } from 'react-native'
 import moment from 'moment'
 import EditTodoModal from "./EditTodoModal"
 
 
 
-class Todo extends Component {
+export default class Todo extends Component {
   
     constructor(props) {
         super(props)
@@ -20,27 +21,37 @@ class Todo extends Component {
         }
     }
 
-    //Handels checkbox click
-    handleCheckBoxClick = () => {
+  /**
+   * Handels checkbox click
+   */
+  handleCheckBoxClick = () => {
         const { todo, checkBoxClick } = this.props
         checkBoxClick(todo)
     }
 
-    //Handles delete button, removes this item
-    handleDelete = () => {
+  /**
+   * Handles delete button, removes this item
+   */
+  handleDelete = () => {
         const { todo, deleteItem } = this.props
         deleteItem(todo)
     }
 
-    //Toggele the modal window
-    toggleEditModal = () => {
+
+  /**
+   * Toggele the modal window
+   */
+  toggleEditModal = () => {
         this.setState({
             editModalOpen: !this.state.editModalOpen
         })
     }
 
-    //Sets this todo as a favorite
-    markAsFavorite = () => {
+
+  /**
+   * Sets this todo as a favorite
+   */
+  markAsFavorite = () => {
         let { todo } = this.props
         todo.isStar = !todo.isStar
         this.props.updateToDos(todo)
@@ -64,15 +75,22 @@ class Todo extends Component {
                                 </Row>
                                 <Row>
                                     <Col size={45}>
-                                        <Text>{ moment(date).calendar()}</Text>
+                                        <Text style={styles.dateStyle}>{ moment(date).calendar()}</Text>
                                     </Col>
                                     <Col size={55}>
                                         <Item>
-                                            <Button onPress={this.toggleEditModal} success>
-                                                <Icon name='create'/>
+                                            <Button
+                                                onPress={this.handleDelete}
+                                                style={{backgroundColor:"#db2828", paddingRight:4}}>
+                                                <Icon
+                                                    name='close'
+                                                    style={{color:'white'}}
+                                                />
                                             </Button>
-                                            <Button onPress={this.handleDelete} danger>
-                                                <Icon name='trash'/>
+                                            <Button
+                                                onPress={this.toggleEditModal}
+                                                style={{backgroundColor:'#767676',marginLeft:-1}}>
+                                                <Icon name='create' style={{color:'white'}}/>
                                             </Button>
                                             <Button onPress={this.markAsFavorite} warning>
                                                 <Icon name={todo.isStar ? 'md-star' : 'star'}/>
@@ -92,3 +110,13 @@ class Todo extends Component {
         )
     }
 }
+/**
+ * Css styling for title and date
+ */
+const styles = StyleSheet.create({
+
+    dateStyle: {
+        color:'#999999'
+    }
+
+})

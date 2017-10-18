@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Label, Item, Input, Text, Content , Button, Form, Grid, Col } from 'native-base';
-import { Modal } from 'react-native'
+import { Modal, StyleSheet } from 'react-native'
 import DefaultHeader from '../DefaultHeader'
 
 export default class NewNoteModal extends Component {
@@ -51,7 +51,7 @@ export default class NewNoteModal extends Component {
         })
     }
 
-
+    
     render() {
         const { isOpen } = this.props
         const { title, content } = this.state
@@ -64,10 +64,10 @@ export default class NewNoteModal extends Component {
                 onRequestClose={() => {alert("NewNoteModal has been closed.")}}>
 
                 <DefaultHeader title={"New Note"} toggleModal={this.handleButtonCloseClick}/>
-                <View style={{flex:1}}>
+                <View style={styles.view}>
                     <Content >
                         <Form>
-                            <View style={{flex:1}}>
+                            <View style={styles.view}>
                                 <Item floatingLabel>
                                     <Label>
                                         Title
@@ -87,7 +87,7 @@ export default class NewNoteModal extends Component {
                                         onChangeText={(content) => this.setState({content})}
                                         value={content}
                                         multiline={true}
-                                        style={{height:300}}/>
+                                        style={styles.noteContent}/>
                                 </Item>
                             </View>
                         </Form>
@@ -126,3 +126,28 @@ export default class NewNoteModal extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    view: {
+        flex: 1,
+        marginTop: 7,
+        marginLeft: 7,
+        marginRight: 7,
+        backgroundColor: "#f5fcff"
+    },
+    addButtonView: {
+        position:'absolute',
+        bottom:0,
+        width:'100%'
+    },
+    noteContent: {
+        height: 200,
+        textAlignVertical: 'top',
+    },
+    addButton: {
+        backgroundColor: "#21ba45"
+    },
+    addText: {
+        fontSize: 20
+    }
+})
