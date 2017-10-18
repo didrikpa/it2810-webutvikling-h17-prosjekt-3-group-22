@@ -3,7 +3,7 @@ import { View,Content, Label, Grid, Col, Button, Text } from 'native-base';
 import { Modal } from 'react-native'
 import DefaultHeader from './DefaultHeader'
 
-export default class NewNoteModal extends Component {
+export default class DeleteModal extends Component {
 
     /**
      * Handle for close button.
