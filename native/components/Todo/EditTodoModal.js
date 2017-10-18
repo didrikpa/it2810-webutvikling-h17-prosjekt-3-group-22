@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { View, Label, Item, Input, Text, Content, Title, Icon,
-  Button, Form, H1 } from 'native-base';
+import { View, Item, Input, Text, Content, Title, Button, Form, H1 } from 'native-base';
 import { Modal } from 'react-native'
 import DefaultHeader from '../DefaultHeader'
 

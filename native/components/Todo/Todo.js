@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, CheckBox, Button, Icon, Content, Text, ListItem,
-  Item, Container } from 'native-base'
+import { CheckBox, Button, Icon, Content, Text, ListItem, Item } from 'native-base'
 import { Col, Grid, Row } from 'react-native-easy-grid';
 import { StyleSheet } from 'react-native'
 import moment from 'moment'

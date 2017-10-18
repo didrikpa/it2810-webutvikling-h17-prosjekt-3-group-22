@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Content, Divider, List, Text } from 'native-base'
+import { Content, List, Text } from 'native-base'
 import { AsyncStorage, StyleSheet } from 'react-native';
 import Todo from './Todo'
 import TodoInput from './TodoInput'
