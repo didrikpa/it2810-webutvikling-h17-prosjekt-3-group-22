@@ -70,7 +70,6 @@ export default class Event extends Component {
                                         event={event}
                                         updateEvent={this.handleEdit}
                                         handleDelete={this.handleDelete}
-                                        color='grey'
                                         icon='edit'/>
                                     <DeleteModal
                                         handleDelete = {this.handleDelete}

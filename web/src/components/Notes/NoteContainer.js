@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import { Divider, Button, Grid, Container, Header } from 'semantic-ui-react'
 import moment from 'moment'
 
-import Navbar from '../Navbar'
 import Note from './Notes'
 import NewNoteModal from './NewNoteModal'
-import Footer from '../Footer'
 
 export default class NoteContainer extends Component {
     constructor (props) {
@@ -97,7 +95,6 @@ export default class NoteContainer extends Component {
 
         return (
             <div>
-                <Navbar />
                 <Divider hidden/>
                 <Container text>
                     <Grid width={16}>
@@ -119,13 +116,12 @@ export default class NoteContainer extends Component {
                     {notes.sort((b, a) => {
                         return moment(a.date).unix() - moment(b.date).unix()
                     }).map((note) =>
-                        <Note
-                            note={note}
-                            key={note.date}
-                            deleteItem={this.deleteItem}
-                            onButtonSaveClick={this.onButtonSaveClick}/>)}
-                            </Container>
-                <Footer/>
+                    <Note
+                        note={note}
+                        key={note.date}
+                        deleteItem={this.deleteItem}
+                        onButtonSaveClick={this.onButtonSaveClick}/>)}
+                </Container>
             </div>
         )
     }

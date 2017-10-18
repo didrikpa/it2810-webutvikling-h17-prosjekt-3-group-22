@@ -28,7 +28,10 @@ export default class NavFooter extends Component {
                             style={navFooter.button}
                             vertical
                             active={active === 'home'}
-                            onPress={Actions.home}
+                            onPress={() => {
+                                Actions.pop()
+                                Actions.home()
+                            }}
                         >
                             <Icon name='home'/>
                             <Text>Home</Text>
@@ -37,7 +40,10 @@ export default class NavFooter extends Component {
                             style={navFooter.button}
                             vertical
                             active={active === 'todos'}
-                            onPress={Actions.todos}
+                            onPress={() => {
+                                Actions.pop()
+                                Actions.todos()
+                            }}
                         >
                             <Icon name='list'/>
                             <Text>Todos</Text>
@@ -46,7 +52,10 @@ export default class NavFooter extends Component {
                             style={navFooter.button}
                             vertical
                             active={active === 'notes'}
-                            onPress={Actions.notes}
+                            onPress={() => {
+                                Actions.pop()
+                                Actions.notes()
+                            }}
                         >
                             <Icon active name='clipboard' />
                             <Text>Notes</Text>
@@ -55,7 +64,10 @@ export default class NavFooter extends Component {
                             style={navFooter.button}
                             vertical
                             active={active === 'events'}
-                            onPress={Actions.events}
+                            onPress={() => {
+                                Actions.pop()
+                                Actions.events()
+                            }}
                         >
                             <Icon name='calendar' />
                             <Text>Events</Text>
