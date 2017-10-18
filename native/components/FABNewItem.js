@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {  View, Icon, Fab } from 'native-base';
 
-export default class Note extends Component {
+export default class FABNewItem extends Component {
 
     /**
      * Handle button click for new note

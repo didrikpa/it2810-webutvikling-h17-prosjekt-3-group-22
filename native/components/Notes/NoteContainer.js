@@ -4,7 +4,7 @@ import { Content, List, View, Text, } from 'native-base';
 import moment from 'moment'
 
 import NewNoteModal from './NewNoteModal'
-import FABNewNote from './FABNewNote'
+import FABNewItem from '../FABNewItem'
 import Note from './Note'
 
 export default class NoteContainer extends Component {
@@ -128,7 +128,7 @@ export default class NoteContainer extends Component {
                   }
                   </Content>
               <View>
-                  <FABNewNote toggleModal={this.toggleNewModal}/>
+                  <FABNewItem toggleModal={this.toggleNewModal}/>
               </View>
           </View>
       )

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Content, List, Text } from 'native-base'
+import { View, Content, List, Text } from 'native-base'
 import { AsyncStorage, StyleSheet } from 'react-native';
 import Todo from './Todo'
-import TodoInput from './TodoInput'
 import moment from "moment";
+import FABNewItem from '../FABNewItem'
+import NewTodoModal from './NewTodoModal'
 
 export default class TodoContainer extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ export default class TodoContainer extends Component {
 
         //Sets the state
         this.state = {
+            newModalOpen: false,
             todos: []
         }
     }
@@ -35,6 +37,7 @@ export default class TodoContainer extends Component {
         if (i >= 0) {
             todos[i].checked = !todos[i].checked
             this.updateState({
+                newModalOpen: false,
                 todos: todos
             })
         } else {
@@ -58,6 +61,15 @@ export default class TodoContainer extends Component {
         todos.splice(0,0,todo)
         this.updateState({
             todos: todos
+        })
+    }
+
+    /**
+     * Toggles new note modal on/off
+     */
+    toggleNewModal = () => {
+        this.setState({
+            newModalOpen: !this.state.newModalOpen
         })
     }
 
@@ -119,10 +131,16 @@ export default class TodoContainer extends Component {
 
     render() {
         //define constants
-        const { todos } = this.state
+        const { todos, newModalOpen } = this.state
         return(
-                <Content>
-                    <TodoInput onButtonClick={this.newTodo}/>
+                <View style={{flex:1, backgroundColor:"white"}}>
+                    <Content>
+
+                    <NewTodoModal
+                        toggleModal={this.toggleNewModal}
+                        onButtonSaveClick={this.newTodo}
+                        isOpen={ newModalOpen }/>
+
                     <List>
                     { todos.map((todo) => (
                         <Todo key={todo.date}
@@ -142,7 +160,11 @@ export default class TodoContainer extends Component {
                         No todos
                     </Text>
                   }
-                </Content>
+                    </Content>
+                    <View>
+                  <FABNewItem toggleModal={this.toggleNewModal}/>
+                    </View>
+                </View>
         )
     }
 

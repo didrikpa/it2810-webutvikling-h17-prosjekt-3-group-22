@@ -5,7 +5,7 @@ import moment from 'moment'
 
 import Event from './Event'
 import CreateEvent from './CreateEvent'
-import FABNewEvent from './FABNewEvent'
+import FABNewItem from '../FABNewItem'
 
 export default class EventContainer extends Component {
     constructor(props) {
@@ -188,7 +188,7 @@ export default class EventContainer extends Component {
                 }
           </Content>
           <View>
-            <FABNewEvent toggleModal={this.toggleNewModal}/>
+            <FABNewItem toggleModal={this.toggleNewModal}/>
           </View>
         </View>
       )
