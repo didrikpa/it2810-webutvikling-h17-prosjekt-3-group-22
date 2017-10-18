@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Label, Item, Input, Text, Content , Button, Form, Grid ,Col } from 'native-base';
 import { Modal } from 'react-native'
 import DefaultHeader from '../DefaultHeader'
+import {views, button, noteEditMod } from '../../styles'
 
 export default class NewNoteModal extends Component {
 
@@ -66,11 +67,11 @@ export default class NewNoteModal extends Component {
                 onRequestClose={() => {alert("EditNoteModal has been closed.")}}>
 
                 <DefaultHeader title={"Edit Note"} toggleModal={toggleModal}/>
-                <View style={{flex:1}}>
+                <View style={noteEditMod.view}>
                     <Content>
                         <Form>
 
-                            <View style={{flex:1}}>
+                            <View style={noteEditMod.view}>
                                 <Item floatingLabel>
                                     <Label>
                                         Title
@@ -81,7 +82,7 @@ export default class NewNoteModal extends Component {
                                 </Item>
                             </View>
 
-                            <View style={{flex:2}}>
+                            <View style={views.flex2}>
                                 <Item floatingLabel>
                                     <Label>
                                         Content
@@ -90,7 +91,7 @@ export default class NewNoteModal extends Component {
                                         onChangeText={(tempContent) => this.setState({tempContent})}
                                         value={tempContent}
                                         multiline={true}
-                                        style={{height:300}}/>
+                                        style={noteEditMod.inputCont}/>
                                 </Item>
                             </View>
 
@@ -98,15 +99,14 @@ export default class NewNoteModal extends Component {
 
                     </Content>
                 </View>
-                <View style={{flex:1}}>
+                <View style={views.flex1}>
                     <Grid style={{backgroundColor:'red'}}>
 
                         <Col>
-                            <View style={{position:'absolute', bottom:0, width:'100%'}}>
+                            <View style={views.buttonView}>
                                 <Button block
-                                        success
                                         onPress={this.handleButtonSaveClick}
-                                        style={{backgroundColor:"#21BA45"}}>
+                                        style={button.successColor}>
                                     <Text>
                                         Add
                                     </Text>
@@ -115,10 +115,10 @@ export default class NewNoteModal extends Component {
                         </Col>
 
                         <Col>
-                            <View style={{position:'absolute', bottom:0, width:'100%'}}>
+                            <View style={views.buttonView}>
                                 <Button block
                                         onPress={this.handleButtonClose}
-                                        style={{backgroundColor:"#767676"}}>
+                                        style={button.closeColor}>
                                     <Text>Close</Text>
                                 </Button>
                             </View>
