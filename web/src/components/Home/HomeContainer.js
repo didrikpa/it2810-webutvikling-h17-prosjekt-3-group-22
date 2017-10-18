@@ -1,6 +1,9 @@
 import React from 'react'
 import { Header, Divider, Container } from 'semantic-ui-react'
 
+/**
+ * Define local CSS for this Component.
+ */
 const preStyle = {
     backgroundColor: '#eee',
     border: '0.1rem',
@@ -9,6 +12,11 @@ const preStyle = {
     padding: '1rem'
 }
 
+/**
+ * Define HomeContainer as a 'dumb' Component.
+ * Because the Component doesn't have any built in logic,
+ * it is only defined as a function which returns JSX.
+ */
 const HomeContainer = () => (
     <div>
         <Divider hidden />

@@ -6,6 +6,9 @@ import ViewNoteModal from './ViewNoteModal'
 import EditNoteModal from './EditNoteModal'
 import DeleteModal from '../DeleteModal'
 
+/**
+ * Define local CSS for this Component.
+ */
 const dateStyle = {
     fontSize: '1rem',
     color: '#999999'
@@ -15,13 +18,17 @@ export default class Note extends Component {
     constructor (props) {
         super(props)
 
+        /**
+         * Set initial state to closed Modals.
+         * Set Component state to include Note variables passed from parent as props.
+         */
         this.state = {
             viewModalOpen: false,
             editModalOpen: false,
             deleteModalOpen: false,
-            title: this.props.note.title,
-            content: this.props.note.content,
-            date: this.props.note.date
+            title: props.note.title,
+            content: props.note.content,
+            date: props.note.date
         }
     }
 
@@ -61,25 +68,28 @@ export default class Note extends Component {
     }
 
     render () {
+        /**
+         * Fetch 'note' variable and 'onButtonSaceClick' method passed as props from parent.
+         * Fetch 'viewModalOpen', 'title', 'content', 'date', 'editModalOpen' from state.
+         */
         const { note, onButtonSaveClick } = this.props
         const { viewModalOpen, title, content, date, editModalOpen } = this.state
 
         return (
-
             <div>
                 <Segment>
                     <Grid
                         columns='equal'
                         width={16}
-                        verticalAlign="middle">
-
+                        verticalAlign="middle"
+                    >
                         <Grid.Column width={9} onClick={this.toggleViewModal}>
                             {note.title}
-                            </Grid.Column>
+                        </Grid.Column>
 
                         <Grid.Column onClick={this.toggleViewModal} style={dateStyle}>
                             {moment(date).calendar()}
-                            </Grid.Column>
+                        </Grid.Column>
 
                         <Grid.Column>
                             <Button.Group floated='right'>
@@ -100,7 +110,7 @@ export default class Note extends Component {
                 </Segment>
 
                 <ViewNoteModal
-                    isOpen={ viewModalOpen}
+                    isOpen={viewModalOpen}
                     onClose={this.toggleViewModal}
                     title={title}
                     content={content}
