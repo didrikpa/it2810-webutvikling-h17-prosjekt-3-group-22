@@ -8,40 +8,52 @@ import EventContainer from './components/Event/EventContainer'
 import NavFooter from './components/NavFooter'
 import HomeComponent from './components/HomeComponent'
 
+import { routes } from './styles'
+
+/**
+ * Navigation between scenes, from React Native Router Flux.
+ * The main component of the App. This renders all other components
+ * based on what scene is on the top of the navigation stack.
+ */
+
 export default class Routes extends Component {
     render = () => {
         return(
-            <Router navigationBarStyle={styles.navBar} backAndroidHandler={Actions.home}>
+            <Router navigationBarStyle={routes.navBar} backAndroidHandler={Actions.home}>
                 <Stack key="root">
                     <Scene key="home"
                            component={Home}
                            title="Home"
-                           headerTitleStyle={styles.title}
-                           navBarButtonColor='#b3c7f9'
+                           headerTitleStyle={routes.title}
+                           navBarButtonColor='white'
                            init={true}/>
                     <Scene key="notes"
                            component={Notes}
                            title="Notes"
-                           headerTitleStyle={styles.title}
-                           navBarButtonColor='#b3c7f9'
+                           headerTitleStyle={routes.title}
+                           navBarButtonColor='white'
                            />
                     <Scene key="todos"
                            component={Todos}
                            title="Todos"
-                           headerTitleStyle={styles.title}
-                           navBarButtonColor='#b3c7f9'
+                           headerTitleStyle={routes.title}
+                           navBarButtonColor='white'
                            />
                     <Scene key="events"
                            component={Events}
                            title="Events"
-                           headerTitleStyle={styles.title}
-                           navBarButtonColor='#b3c7f9'/>
+                           headerTitleStyle={routes.title}
+                           navBarButtonColor='white'/>
                 </Stack>
             </Router>
         )
     }
 }
 
+/**
+ * Renders Todo in todo scene.
+ * @constructor
+ */
 const Todos = () => (
     <Container>
         <TodoContainer/>
@@ -49,6 +61,10 @@ const Todos = () => (
     </Container>
 )
 
+/**
+ * Renders Notes in notes scene.
+ * @constructor
+ */
 const Notes = () => (
     <Container>
         <NoteContainer/>
@@ -56,6 +72,10 @@ const Notes = () => (
     </Container>
 )
 
+/**
+ * Renders Events in events scene.
+ * @constructor
+ */
 const Events = () => (
     <Container>
         <EventContainer/>
@@ -63,32 +83,13 @@ const Events = () => (
     </Container>
 )
 
+/**
+ * Renders Home in home scene.
+ * @constructor
+ */
 const Home = () => (
     <Container>
         <HomeComponent/>
         <NavFooter active='home' />
     </Container>
 )
-
-const Master = ({ children }) => (
-    <View>
-        {children}
-    </View>
-)
-
-const styles = StyleSheet.create({
-    navBar: {
-        backgroundColor:'#1b1c1d',
-    },
-    title: {
-        fontWeight:'500',
-        fontSize: 24,
-        marginTop: 5,
-        marginBottom: 5,
-        alignSelf:'center',
-        color: '#b3c7f9',
-    },
-    color: {
-        color: '#b3c7f9'
-    }
-})
