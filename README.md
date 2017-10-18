@@ -1,32 +1,38 @@
-# PIM
+# Personal Information Manager
 
 With this application you can create and store your todos, notes and events locally on your device!
 
 ### Want to run it for yourself?
 
-```
-# To run it you need to frist install nodejs to your system, we use version 8.6.
-# Then you need to clone our repository
+1. Install nodejs to your system, we use version 8.6.
 
-git clone https://github.com/IT2810/it2810-webutvikling-h17-prosjekt-3-group-22.git
 
-# Enter the project directory
+2. Clone our repository:  
+ `git clone https://github.com/IT2810/it2810-webutvikling-h17-prosjekt-3-group-22.git`
 
-cd it2810-webutvikling-h17-prosjekt-3-group-22
 
-# install webpack and webpack-dev-server globally on your system
-# Note that you may need to use `sudo` on *NIX systems, depending on your configuration
+3. Enter the project directory:  
+ `cd it2810-webutvikling-h17-prosjekt-3-group-22`
+ 
 
-npm install webpack webpack-dev-server -g
+4. Install webpack and webpack-dev-server globally on your system.
+ Note that you may need to use `sudo` on *NIX systems, depending on your configuration,  
+ `npm install webpack webpack-dev-server -g`
+ 
 
-# Install projec dependencies locally to the project
+5. Install project dependencies locally to the project:  
+ `npm install`
+ 
 
-npm install
+6. Run the project  
+ `npm start`
+ 
 
-# Run the project
+##### The website will be available locally on your machine at `localhost:8000`.
 
-npm start
+<p align="center">
+  <a href="Source: https://moduscreate.com/wp-content/uploads/2014/03/react-opti.png">
+    <img src="https://github.com/IT2810/it2810-webutvikling-h17-prosjekt-3-group-22/blob/master/react-opti.png">
+  </a>
+</p>
 
-# The website will be available locally on your machine at `localhost:8000`
-
-```
