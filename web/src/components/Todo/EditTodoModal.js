@@ -9,7 +9,7 @@ const dateStyle = {
     color: '#999999'
 }
 
-export default class EditToDoModal extends Component {
+export default class EditTodoModal extends Component {
     constructor (props) {
         super(props)
 
@@ -102,7 +102,7 @@ export default class EditToDoModal extends Component {
                           <TextArea
                               onChange={ this.handleContentInput }
                               value={ tempContent } size='small'
-                              placeholder='ToDo text ...'
+                              placeholder='Todo text ...'
                               autoHeight={true}/>
                         </Form>
                     </Modal.Description>

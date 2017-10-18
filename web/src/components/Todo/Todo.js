@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Segment, Checkbox, Grid, Button, Icon } from 'semantic-ui-react'
 import moment from 'moment'
 
-import EditToDoModal from './EditTodoModal'
+import EditTodoModal from './EditTodoModal'
 import DeleteModal from '../DeleteModal'
 
 class Todo extends Component {
@@ -49,9 +49,9 @@ class Todo extends Component {
      * Call parents updateTodos() method to toggle in state.
      */
     markAsFavorite = () => {
-        let { todo, updateToDos } = this.props
+        let { todo, updateTodos } = this.props
         todo.isStar = !todo.isStar
-        updateToDos(todo)
+        updateTodos(todo)
     }
 
     render () {
@@ -102,7 +102,7 @@ class Todo extends Component {
                     </Grid>
                 </Segment>
 
-                <EditToDoModal
+                <EditTodoModal
                     isOpen={editModalOpen}
                     onClose={this.toggleEditModal}
                     onButtonSaveClick = {onButtonClick}
