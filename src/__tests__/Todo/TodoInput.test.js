@@ -12,3 +12,13 @@ test('Todo component should render as expected', () => {
   expect(tree).toMatchSnapshot();
 
 });
+
+const todoInput = shallow(<TodoInput/>);
+const instance = todoInput.instance();
+
+test('TodoInputs state should change when onChange is called', () => {
+  expect(instance.state.text).toBe("");
+  const value = "some text";
+  instance.onChange("", {value});
+  expect(instance.state.text).toBe("some text");
+});

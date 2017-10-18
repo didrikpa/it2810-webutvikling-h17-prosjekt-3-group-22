@@ -11,4 +11,3 @@ test('Todo component should render as expected', () => {
   const tree = toJson(component);
   expect(tree).toMatchSnapshot();
 });
-
