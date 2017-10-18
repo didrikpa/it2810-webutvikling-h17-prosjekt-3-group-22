@@ -4,7 +4,7 @@ import { Col, Grid, Row } from 'react-native-easy-grid';
 import { StyleSheet } from 'react-native'
 import moment from 'moment'
 import EditTodoModal from "./EditTodoModal"
-
+import DeleteModal from '../DeleteModal'
 
 
 export default class Todo extends Component {
@@ -14,8 +14,9 @@ export default class Todo extends Component {
 
         //sets the state
         this.state = {
-            //Boolean used to open and close modal
+            //Booleans used to open and close modals
             editModalOpen: false,
+            deleteModalOpen: false,
             //Sets the date to props date
             date: this.props.todo.date,
         }
@@ -39,11 +40,20 @@ export default class Todo extends Component {
 
 
   /**
-   * Toggele the modal window
+   * Toggle the modal window
    */
   toggleEditModal = () => {
         this.setState({
             editModalOpen: !this.state.editModalOpen
+        })
+    }
+
+    /**
+     * Toggle delete modal on/off
+     */
+    toggleDeleteModal = () => {
+        this.setState({
+            deleteModalOpen: !this.state.deleteModalOpen
         })
     }
 
@@ -60,11 +70,10 @@ export default class Todo extends Component {
 
     render() {
         //defines constants
-        const { date, editModalOpen} = this.state
-        const { todo, onButtonClick} = this.props
+        const { date, editModalOpen, deleteModalOpen } = this.state
+        const { todo, onButtonClick, deleteItem } = this.props
         return(
-            <ListItem style={{backgroundColor: todo.checked ? "#4BB543" : "white" }}>
-                    <Content>
+            <ListItem style={{backgroundColor: todo.checked ? "#4BB543" : "white" }}><Content>
                         <Grid>
                             <Col size={15}>
                                 <CheckBox onPress={this.handleCheckBoxClick} checked={todo.checked} />
@@ -80,7 +89,7 @@ export default class Todo extends Component {
                                     <Col size={55}>
                                         <Item>
                                             <Button
-                                                onPress={this.handleDelete}
+                                                onPress={this.toggleDeleteModal}
                                                 style={{backgroundColor:"#db2828", paddingRight:4}}>
                                                 <Icon
                                                     name='close'
@@ -100,11 +109,22 @@ export default class Todo extends Component {
                                 </Row>
                             </Col>
                           </Grid>
-                        <EditTodoModal toggleModal={this.toggleEditModal}
-                                       isOpen={editModalOpen}
-                                       onButtonSaveClick={onButtonClick}
-                                       handleDelete = {this.handleDelete}
-                                       content = {todo.text} />
+                        <EditTodoModal
+                            toggleModal={this.toggleEditModal}
+                            isOpen={editModalOpen}
+                            onButtonSaveClick={onButtonClick}
+                            handleDelete = {this.handleDelete}
+                            content = {todo.text} />
+
+                <DeleteModal
+                    isOpen={deleteModalOpen}
+                    toggleModal={this.toggleDeleteModal}
+                    deleteFunction={deleteItem}
+                    object={todo}
+                    title={todo.text}
+                    headerTitle={"todo"}
+                />
+
                 </Content>
             </ListItem>
         )
