@@ -1,9 +1,6 @@
 import React from 'react'
 import { Header, Divider, Container } from 'semantic-ui-react'
 
-import Navbar from '../Navbar'
-import Footer from '../Footer'
-
 const preStyle = {
     backgroundColor: '#eee',
     border: '0.1rem',
@@ -14,8 +11,7 @@ const preStyle = {
 
 const HomeContainer = () => (
     <div>
-        <Navbar/>
-        <Divider hidden/>
+        <Divider hidden />
 
         <Container text>
             <Header as='h1'> PIM</Header>
@@ -61,7 +57,6 @@ const HomeContainer = () => (
             <p>The website will be available locally on your machine at <code>localhost:8000</code>.</p>
             <br/>
         </Container>
-        <Footer/>
     </div>
 )
 

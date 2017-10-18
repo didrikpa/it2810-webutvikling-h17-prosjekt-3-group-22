@@ -4,8 +4,6 @@ import moment from 'moment'
 
 import Todo from './Todo'
 import TodoInput from './TodoInput'
-import Navbar from '../Navbar'
-import Footer from '../Footer'
 
 export default class TodoContainer extends Component {
     constructor (props) {
@@ -100,7 +98,7 @@ export default class TodoContainer extends Component {
         const { todos } = this.state
         return (
             <div>
-                <Navbar />
+                <Divider hidden />
                 <Container text>
                     <Divider hidden />
                     <TodoInput onButtonClick={this.newTodo}/>
@@ -114,7 +112,6 @@ export default class TodoContainer extends Component {
                         updateToDos = {this.updateToDos} />) }
                 </Container>
                 <Divider hidden />
-                <Footer/>
             </div>
         )
     }
