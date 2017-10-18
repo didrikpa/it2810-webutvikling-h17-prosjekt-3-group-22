@@ -37,6 +37,7 @@ export default class NoteContainer extends Component {
     /**
      * This method is used as a wrapper for the Component setState() method.
      * It is used so that the localStorage is updated every time the state is finished setting.
+     * @param state Changes to be added to state.
      */
     updateState = (state) => {
         this.setState(state, () => {

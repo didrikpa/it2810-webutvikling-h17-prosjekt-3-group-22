@@ -9,22 +9,30 @@ export default class TodoContainer extends Component {
     constructor (props) {
         super(props)
 
-        // init state
+        /**
+         * Set the initial state on the Component.
+         * Initialize Todos as an empty list because Component isn't mounted yet.
+         */
         this.state = {
             todos: []
         }
     }
 
-    // loads todo from localStorage
+    /**
+     * Use built in method to fetch Todos from localStorage on the host.
+     * If localStoreage doesn't contain any Todos, set an empty list to avoid problems.
+     */
     componentWillMount = () => {
-        // localStorage.clear()
         let localTodos = JSON.parse(localStorage.getItem('todos'))
         this.setState({
             todos: localTodos || []
         })
     }
 
-    // handles checkbox click
+    /**
+     * This method handles checkbox toggles on a given Todo.
+     * @param todo The Todo on which the 'checked' variable should be toggled.
+     */
     checkBoxClick = (todo) => {
         const { todos } = this.state
         const i = todos.indexOf(todo)
@@ -38,7 +46,10 @@ export default class TodoContainer extends Component {
         }
     }
 
-    // Creates new todo and adds it to array
+    /**
+     * Create a new Todo and add it to state.
+     * @param text The text of the new Todo which is created.
+     */
     newTodo = (text) => {
         const { todos } = this.state
         let todo = {
@@ -53,7 +64,11 @@ export default class TodoContainer extends Component {
         })
     }
 
-    // removes todo
+    /**
+     * This method deletes a given Todo from the state and localStorage
+     * If given Todo doesn't exist, throw error to console.
+     * @param todo Todo object to be deleted.
+     */
     deleteItem = (todo) => {
         let { todos } = this.state
         const i = todos.indexOf(todo)
@@ -67,21 +82,29 @@ export default class TodoContainer extends Component {
         }
     }
 
-    // updates localstorage
+    /**
+     * This method is used to update localStorage on the host with the current state od the Component.
+     */
     updateLocalStorage = () => {
         const { todos } = this.state
         localStorage.setItem('todos', JSON.stringify(todos))
     }
 
-    // Updates state
+    /**
+     * This method is used as a wrapper for the Component setState() method.
+     * It is used so that the localStorage is updated every time the state is finished setting.
+     * @param state Changes to be added to state.
+     */
     updateState = (state) => {
         this.setState(state, () => {
             this.updateLocalStorage()
         })
     }
 
-    // Updates the order of the todos
-    updateToDos = (todo) => {
+    /**
+     * Updates the order of the todos
+     */
+    updateTodos = (todo) => {
         const {todos} = this.state
         for (let i = 0; i < todos.length; i++) {
             if (todos[i] === todo) {
@@ -94,7 +117,9 @@ export default class TodoContainer extends Component {
     }
 
     render () {
-        // define constants
+        /**
+         * Fetch 'todos' from state.
+         */
         const { todos } = this.state
         return (
             <div>
@@ -104,12 +129,15 @@ export default class TodoContainer extends Component {
                     <TodoInput onButtonClick={this.newTodo}/>
                     <Divider hidden/>
                     { todos.map((todo) =>
-                        < Todo key={todo.date}
-                        todo={todo}
-                        checkBoxClick={this.checkBoxClick}
-                        deleteItem={this.deleteItem}
-                        onButtonClick = {this.newTodo}
-                        updateToDos = {this.updateToDos} />) }
+                        < Todo
+                            key={todo.date}
+                            todo={todo}
+                            checkBoxClick={this.checkBoxClick}
+                            deleteItem={this.deleteItem}
+                            onButtonClick={this.newTodo}
+                            updateTodos={this.updateTodos}
+                            />
+                    )}
                 </Container>
                 <Divider hidden />
             </div>
