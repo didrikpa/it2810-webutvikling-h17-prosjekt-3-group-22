@@ -58,7 +58,7 @@ export default class EditNoteModal extends Component {
     handleButtonSaveClick = () => {
         const { tempTitle, tempContent } = this.state
 
-        if ((!tempTitle.length) && (!tempContent.length)) {
+        if ((tempTitle.length !== 0) && (!tempContent.length !== 0)) {
             const { handleDelete } = this.props
             this.props.onButtonSaveClick(tempTitle, tempContent)
             handleDelete()
@@ -73,12 +73,12 @@ export default class EditNoteModal extends Component {
             this.props.onClose()
         }
 
-        if (tempTitle.length) {
+        if (tempTitle.length === 0) {
             this.toggleErrorTitleInput()
             setTimeout(this.toggleErrorTitleInput, 3000)
         }
 
-        if (tempContent.length) {
+        if (tempContent.length === 0) {
             this.toggleErrorContentInput()
             setTimeout(this.toggleErrorContentInput, 3000)
         }
