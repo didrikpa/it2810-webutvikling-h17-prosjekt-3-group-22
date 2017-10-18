@@ -127,7 +127,7 @@ export default class NoteContainer extends Component {
                             End of your list
                         </Header> :
                         <Header as='h3' block textAlign='center'>
-                            No notes
+                            You have no notes
                         </Header>
                     }
 
