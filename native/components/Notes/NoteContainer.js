@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { AsyncStorage, StyleSheet } from 'react-native'
-import { Content, List,View, Button, Text,Footer } from 'native-base';
+import { Content, List, View, Text, } from 'native-base';
 import moment from 'moment'
 
 import HeaderMenu from '../HeaderMenu'

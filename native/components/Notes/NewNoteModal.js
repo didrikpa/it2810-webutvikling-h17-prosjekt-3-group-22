@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Label, Item, Input, Text, Content, Title ,Icon , Button, Form, Grid, Col } from 'native-base';
+import { View, Label, Item, Input, Text, Content , Button, Form, Grid, Col } from 'native-base';
 import { Modal, StyleSheet } from 'react-native'
 import DefaultHeader from '../DefaultHeader'
 
@@ -51,10 +51,10 @@ export default class NewNoteModal extends Component {
         })
     }
 
-
-  render() {
-    const { toggleModal, isOpen, onButtonSaveClick } = this.props
-    const { title, content } = this.state
+    
+    render() {
+        const { isOpen } = this.props
+        const { title, content } = this.state
 
         return (
             <Modal
