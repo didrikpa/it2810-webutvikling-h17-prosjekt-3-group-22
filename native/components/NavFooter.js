@@ -20,7 +20,10 @@ export default class NavFooter extends Component {
                         <Button
                             vertical
                             active={active === 'home'}
-                            onPress={Actions.home}
+                            onPress={() => {
+                                Actions.pop()
+                                Actions.home()
+                            }}
                         >
                             <Icon name='home' color="#e2e2e2"/>
                             <Text>Home</Text>
@@ -28,7 +31,10 @@ export default class NavFooter extends Component {
                         <Button
                             vertical
                             active={active === 'todos'}
-                            onPress={Actions.todos}
+                            onPress={() => {
+                                Actions.pop()
+                                Actions.todos()
+                            }}
                         >
                             <Icon name='list' color="red"/>
                             <Text>Todos</Text>
@@ -36,7 +42,10 @@ export default class NavFooter extends Component {
                         <Button
                             vertical
                             active={active === 'notes'}
-                            onPress={Actions.notes}
+                            onPress={() => {
+                                Actions.pop()
+                                Actions.notes()
+                            }}
                         >
                             <Icon active name='clipboard' color="#e2e2e2" />
                             <Text>Notes</Text>
@@ -44,7 +53,10 @@ export default class NavFooter extends Component {
                         <Button
                             vertical
                             active={active === 'events'}
-                            onPress={Actions.events}
+                            onPress={() => {
+                                Actions.pop()
+                                Actions.events()
+                            }}
                         >
                             <Icon name='calendar' color="#e2e2e2" />
                             <Text>Events</Text>
