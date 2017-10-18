@@ -100,7 +100,7 @@ export default class NewNoteModal extends Component {
                         <View style={{position:'absolute',bottom:0, width:'100%'}}>
                             <Button
                                 block
-                                success
+                                style={{backgroundColor:'#21BA45'}}
                                 onPress={this.handleButtonSaveClick}>
                                 <Text>Add</Text>
                             </Button>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Label, Item, Input, Text, Content , Button, Form, Grid ,Col } from 'native-base';
-import { Modal } from 'react-native'
+import { View, Label, Item, Input, Content, Form, Grid, Col } from 'native-base';
+import { Modal,Text,TouchableHighlight } from 'react-native'
 import DefaultHeader from '../DefaultHeader'
 
 export default class NewNoteModal extends Component {
@@ -66,64 +66,77 @@ export default class NewNoteModal extends Component {
                 onRequestClose={() => {alert("EditNoteModal has been closed.")}}>
 
                 <DefaultHeader title={"Edit Note"} toggleModal={toggleModal}/>
-                <View style={{flex:1}}>
-                    <Content>
-                        <Form>
+                <Content>
+                    <Form>
 
-                            <View style={{flex:1}}>
-                                <Item floatingLabel>
-                                    <Label>
-                                        Title
-                                    </Label>
-                                    <Input
-                                        onChangeText={(tempTitle) => this.setState({tempTitle})}
-                                        value={tempTitle}/>
-                                </Item>
-                            </View>
+                        <View style={{flex:1, flexDirection:'column',justifyContent:'center'}}>
+                            <Item floatingLabel>
+                                <Label>
+                                    Title
+                                </Label>
+                                <Input
+                                    onChangeText={(tempTitle) => this.setState({tempTitle})}
+                                    value={tempTitle}/>
+                            </Item>
+                        </View>
 
-                            <View style={{flex:2}}>
-                                <Item floatingLabel>
-                                    <Label>
-                                        Content
-                                    </Label>
-                                    <Input
-                                        onChangeText={(tempContent) => this.setState({tempContent})}
-                                        value={tempContent}
-                                        multiline={true}
-                                        style={{height:300}}/>
-                                </Item>
-                            </View>
+                        <View>
+                            <Item floatingLabel>
+                                <Label>
+                                    Content
+                                </Label>
+                                <Input
+                                    onChangeText={(tempContent) => this.setState({tempContent})}
+                                    value={tempContent}
+                                    multiline={true}
+                                    style={{height:500}}/>
+                            </Item>
+                        </View>
 
-                        </Form>
+                    </Form>
+                </Content>
 
-                    </Content>
-                </View>
-                <View style={{flex:1}}>
-                    <Grid style={{backgroundColor:'red'}}>
-
+                <View style={{position:'absolute',
+                    bottom: 0,
+					height:50,
+					justifyContent:'center',
+					width: '100%'}}>
+                    <Grid>
                         <Col>
-                            <View style={{position:'absolute', bottom:0, width:'100%'}}>
-                                <Button block
-                                        success
-                                        onPress={this.handleButtonSaveClick}
-                                        style={{backgroundColor:"#21BA45"}}>
-                                    <Text>
-                                        Add
-                                    </Text>
-                                </Button>
-                            </View>
-                        </Col>
+                    <TouchableHighlight
+                        onPress={this.handleButtonSaveClick}
+                        style={{
+                            backgroundColor:'#21BA45',
+							flex:1,
+							justifyContent:'center',
+							alignItems:'center',
+                            height:'100%'}}>
 
+                        <Text style={{
+							color:'white',
+                            fontWeight:'bold'}}>
+                            SAVE
+                        </Text>
+
+                    </TouchableHighlight>
+                        </Col>
                         <Col>
-                            <View style={{position:'absolute', bottom:0, width:'100%'}}>
-                                <Button block
-                                        onPress={this.handleButtonClose}
-                                        style={{backgroundColor:"#767676"}}>
-                                    <Text>Close</Text>
-                                </Button>
-                            </View>
-                        </Col>
+                            <TouchableHighlight
+                                onPress={this.handleButtonClose}
+                                style={{
+                                    backgroundColor:'#767676',
+                                    flex:1,
+                                    justifyContent:'center',
+                                    alignItems:'center',
+                                    height:'100%'}}>
 
+                                <Text style={{
+                                    color:'white',
+                                    fontWeight:'bold'}}>
+                                    CLOSE
+                                </Text>
+                            </TouchableHighlight>
+                        </Col>
                     </Grid>
                 </View>
 
