@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Button, Modal, Grid, Form, TextArea } from 'semantic-ui-react'
 
-// Define style for grid
+/**
+ * Define CSS locally for this Component.
+ */
 const dateStyle = {
     fontSize: '1rem',
     color: '#999999'
@@ -11,22 +13,36 @@ export default class EditToDoModal extends Component {
     constructor (props) {
         super(props)
 
-        // Init state
+        /**
+         * Initialize default state.
+         * State is set to correspont with the Todo object passed from the parent.
+         */
         this.state = {
-            tempContent: this.props.content,
-            content: this.props.content,
-            date: this.props.date
+            tempContent: props.content,
+            content: props.content,
+            date: props.date
         }
     }
 
-    // Monitor tempContent input
+    /**
+     * This method handles input from the Content field.
+     * Changes in the Content Field are mirrored directly to state.
+     * @param e The event that triggered this method.
+     * @param value The value from the Conent field.
+     */
     handleContentInput = (e, {value}) => {
         this.setState({
             tempContent: value
         })
     }
 
-    // Saves the changes made, on save button click
+    /**
+     * This method handles the saving of an edited Todo.
+     * First it fetches the new Todo content from state.
+     * If the content is not empty, the onButtonSaveClick() method passed from the parent is called.
+     * Then the State of this Component is reset.
+     * This Modal is then Closed and the old version of the Todo object is deleted.
+     */
     handleButtonSaveClick = () => {
         const { tempContent } = this.state
         if (tempContent !== '') {
@@ -35,15 +51,14 @@ export default class EditToDoModal extends Component {
                 tempContent: '',
                 text: ''
             })
-
-            // Close the window
             this.props.onClose()
-            // delete old todo
             this.props.handleDelete()
         }
     }
 
-    // closes the window, no change
+    /**
+     * Closes the window, no change.
+     */
     handleButtonClose = () => {
         const { content } = this.state
         this.setState({
@@ -53,11 +68,13 @@ export default class EditToDoModal extends Component {
     }
 
     render () {
-        // define constants
+        /**
+         * Fetch 'isOpen' from props passed from parent.
+         * Fatch 'tempContent' and 'date' from state.
+         */
         const { isOpen } = this.props
         const { tempContent, date } = this.state
 
-        // checks if the window is open or not
         if (!this.props.isOpen) {
             return null
         }
@@ -80,7 +97,6 @@ export default class EditToDoModal extends Component {
                     </Grid>
                 </Modal.Header>
                 <Modal.Content scrolling>
-
                     <Modal.Description>
                         <Form>
                           <TextArea
@@ -90,7 +106,6 @@ export default class EditToDoModal extends Component {
                               autoHeight={true}/>
                         </Form>
                     </Modal.Description>
-
                 </Modal.Content>
                 <Modal.Actions>
                     <Button.Group>
