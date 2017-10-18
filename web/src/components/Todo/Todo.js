@@ -75,7 +75,8 @@ class Todo extends Component {
                             <Button.Group>
                                 <Button
                                     icon="edit"
-                                    onClick={this.toggleEditModal}/>
+                                    onClick={this.toggleEditModal}
+                                    color='grey'/>
                                 <DeleteModal
                                     handleDelete={this.handleDelete}
                                     title={'Todo'} />
